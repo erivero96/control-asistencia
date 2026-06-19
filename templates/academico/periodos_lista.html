@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Periodos academicos</title>
+</head>
+<body>
+    <main>
+        <h1>Periodos academicos</h1>
+
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="{% url 'academico:crear_periodo' %}">Registrar periodo</a>
+            <a href="{% url 'academico:listar_materias' %}">Materias</a>
+            <a href="{% url 'academico:listar_matriculas' %}">Matriculas</a>
+        </nav>
+
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Fecha de inicio</th>
+                    <th>Fecha de fin</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for periodo in periodos %}
+                    <tr>
+                        <td>{{ periodo.nombre }}</td>
+                        <td>{{ periodo.fecha_inicio|date:"d/m/Y" }}</td>
+                        <td>{{ periodo.fecha_fin|date:"d/m/Y" }}</td>
+                        <td>{{ periodo.get_estado_display }}</td>
+                        <td>
+                            <a href="{% url 'academico:editar_periodo' periodo.id %}">Editar</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5">No hay periodos academicos registrados.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matriculas</title>
+</head>
+<body>
+    <main>
+        <h1>Matriculas</h1>
+
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="{% url 'academico:crear_matricula' %}">Registrar matricula</a>
+            <a href="{% url 'academico:listar_materias' %}">Materias</a>
+            <a href="{% url 'academico:listar_periodos' %}">Periodos</a>
+        </nav>
+
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Estudiante</th>
+                    <th>Materia</th>
+                    <th>Periodo</th>
+                    <th>Estado</th>
+                    <th>Fecha de matricula</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for matricula in matriculas %}
+                    <tr>
+                        <td>{{ matricula.estudiante }}</td>
+                        <td>{{ matricula.materia }}</td>
+                        <td>{{ matricula.periodo }}</td>
+                        <td>{{ matricula.get_estado_display }}</td>
+                        <td>{{ matricula.fecha_matricula|date:"d/m/Y H:i" }}</td>
+                        <td>
+                            <a href="{% url 'academico:detalle_matricula' matricula.id %}">Ver</a>
+                            <a href="{% url 'academico:retirar_matricula' matricula.id %}">Retirar</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="6">No hay matriculas registradas.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

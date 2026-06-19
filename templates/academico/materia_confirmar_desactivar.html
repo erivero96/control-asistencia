@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desactivar materia</title>
+</head>
+<body>
+    <main>
+        <h1>Desactivar materia</h1>
+
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <p>
+            Desea desactivar la materia
+            <strong>{{ materia.nombre }}</strong>?
+        </p>
+
+        <ul>
+            <li>Codigo: {{ materia.codigo }}</li>
+            <li>Creditos: {{ materia.creditos }}</li>
+            <li>Estado actual: {{ materia.get_estado_display }}</li>
+        </ul>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Confirmar desactivacion</button>
+            <a href="{% url 'academico:listar_materias' %}">Cancelar</a>
+        </form>
+    </main>
+</body>
+</html>

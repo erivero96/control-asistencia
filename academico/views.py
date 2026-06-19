@@ -15,7 +15,7 @@ def listar_materias(request):
 
     return render(
         request,
-        'academico/materias/lista.html',
+        'academico/materias_lista.html',
         {'materias': materias},
     )
 
@@ -41,7 +41,7 @@ def crear_materia(request):
 
     return render(
         request,
-        'academico/materias/formulario.html',
+        'academico/materia_formulario.html',
         {
             'form': form,
             'titulo': 'Registrar materia',
@@ -73,7 +73,7 @@ def editar_materia(request, materia_id):
 
     return render(
         request,
-        'academico/materias/formulario.html',
+        'academico/materia_formulario.html',
         {
             'form': form,
             'materia': materia,
@@ -104,7 +104,7 @@ def desactivar_materia(request, materia_id):
 
     return render(
         request,
-        'academico/materias/confirmar_desactivar.html',
+        'academico/materia_confirmar_desactivar.html',
         {'materia': materia},
     )
 
@@ -114,7 +114,7 @@ def listar_periodos(request):
 
     return render(
         request,
-        'academico/periodos/lista.html',
+        'academico/periodos_lista.html',
         {'periodos': periodos},
     )
 
@@ -141,7 +141,7 @@ def crear_periodo(request):
 
     return render(
         request,
-        'academico/periodos/formulario.html',
+        'academico/periodo_formulario.html',
         {
             'form': form,
             'titulo': 'Registrar periodo academico',
@@ -174,7 +174,7 @@ def editar_periodo(request, periodo_id):
 
     return render(
         request,
-        'academico/periodos/formulario.html',
+        'academico/periodo_formulario.html',
         {
             'form': form,
             'periodo': periodo,
@@ -197,7 +197,7 @@ def listar_matriculas(request):
 
     return render(
         request,
-        'academico/matriculas/lista.html',
+        'academico/matriculas_lista.html',
         {'matriculas': matriculas},
     )
 
@@ -223,7 +223,7 @@ def crear_matricula(request):
 
     return render(
         request,
-        'academico/matriculas/formulario.html',
+        'academico/matricula_formulario.html',
         {
             'form': form,
             'titulo': 'Registrar matricula',
@@ -240,7 +240,7 @@ def detalle_matricula(request, matricula_id):
 
     return render(
         request,
-        'academico/matriculas/detalle.html',
+        'academico/matricula_detalle.html',
         {'matricula': matricula},
     )
 
@@ -269,6 +269,6 @@ def retirar_matricula(request, matricula_id):
 
     return render(
         request,
-        'academico/matriculas/confirmar_retirar.html',
+        'academico/matricula_confirmar_retirar.html',
         {'matricula': matricula},
     )

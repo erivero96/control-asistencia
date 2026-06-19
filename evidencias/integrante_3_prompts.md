@@ -362,3 +362,62 @@ Se configuraron las rutas del modulo `academico` para materias, periodos academi
 - Se agregaron rutas para listar, crear, ver detalle y retirar matriculas.
 - Se mantuvo el namespace `academico`.
 - Se verifico que `config/urls.py` ya incluye `academico.urls`.
+
+## Subfase 3.7
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 3.7 del proyecto.
+
+Necesito crear los templates HTML del modulo academico.
+
+Requisitos:
+- Crear carpeta templates/academico/ si no existe.
+- Crear templates para materias:
+  - materias_lista.html
+  - materia_formulario.html
+  - materia_confirmar_desactivar.html
+- Crear templates para periodos:
+  - periodos_lista.html
+  - periodo_formulario.html
+- Crear templates para matriculas:
+  - matriculas_lista.html
+  - matricula_formulario.html
+  - matricula_detalle.html
+  - matricula_confirmar_retirar.html
+- Usar estructura simple.
+- Si existe base.html, extenderlo.
+- Incluir botones de volver, editar y registrar.
+- Mostrar mensajes de exito o error.
+
+Quiero que me indiques:
+1. Codigo completo de cada template.
+2. Como se conectan con las vistas.
+3. Como probar en el navegador.
+4. Mensaje de commit recomendado.
+5. Breve explicacion para defensa.
+
+Tambien actualiza:
+evidencias/integrante_3_prompts.md
+
+Agrega:
+- Subfase 3.7
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se crearon los templates HTML del modulo `academico` para materias, periodos academicos y matriculas. No existia `base.html`, por lo que se uso una estructura HTML completa y simple, consistente con los templates existentes del modulo `estudiantes`.
+
+### Cambios realizados
+
+- Se creo la carpeta `templates/academico/`.
+- Se crearon los templates `materias_lista.html`, `materia_formulario.html` y `materia_confirmar_desactivar.html`.
+- Se crearon los templates `periodos_lista.html` y `periodo_formulario.html`.
+- Se crearon los templates `matriculas_lista.html`, `matricula_formulario.html`, `matricula_detalle.html` y `matricula_confirmar_retirar.html`.
+- Se agregaron enlaces para volver, registrar, editar, desactivar o retirar segun corresponda.
+- Se agrego visualizacion de mensajes de exito o error con `messages`.
+- Se actualizaron las vistas de `academico/views.py` para usar los nombres de templates solicitados.
