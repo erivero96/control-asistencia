@@ -40,6 +40,7 @@ class EstudianteForm(forms.ModelForm):
             'dni': {
                 'required': 'El DNI del estudiante es obligatorio.',
                 'unique': 'Ya existe un estudiante registrado con este DNI.',
+                'max_length': 'El DNI debe tener exactamente 8 digitos.',
             },
             'correo': {
                 'required': 'El correo electronico es obligatorio.',

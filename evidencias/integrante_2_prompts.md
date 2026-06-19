@@ -305,3 +305,66 @@ Se crearon los templates HTML del modulo `estudiantes` para listar, crear/editar
 - Se reutilizo `formulario.html` para registrar y editar estudiantes.
 - Se agregaron enlaces de acciones para ver, editar y desactivar estudiantes.
 - Se agrego confirmacion previa antes de desactivar un estudiante.
+
+## Subfase 2.6
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 2.6 del proyecto.
+
+Necesito probar el modulo de estudiantes y dejar evidencia.
+
+Requisitos:
+- Verificar que el servidor Django corre sin errores.
+- Verificar que se puede entrar a /estudiantes/.
+- Probar registro de estudiante.
+- Probar edicion de estudiante.
+- Probar detalle de estudiante.
+- Probar desactivacion de estudiante.
+- Probar error por DNI duplicado.
+- Probar error por codigo duplicado.
+- Probar error por DNI con menos o mas de 8 digitos.
+- Crear o actualizar un archivo de casos de prueba.
+
+Archivo sugerido:
+evidencias/integrante_2_pruebas.md
+
+Debe contener:
+- Caso probado
+- Datos ingresados
+- Resultado esperado
+- Resultado obtenido
+- Estado: correcto o corregido
+
+Quiero que me indiques:
+1. Lista de pruebas a realizar.
+2. Contenido sugerido para integrante_2_pruebas.md.
+3. Errores comunes y como solucionarlos.
+4. Comando para correr el servidor.
+5. Mensaje de commit recomendado.
+6. Breve explicacion para defensa.
+
+Tambien actualiza:
+evidencias/integrante_2_prompts.md
+
+Agrega:
+- Subfase 2.6
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se probaron las funciones principales del modulo de estudiantes: acceso al listado, registro, edicion, detalle, desactivacion y validaciones de duplicados y longitud del DNI. Tambien se creo el archivo `evidencias/integrante_2_pruebas.md` con los casos probados y sus resultados.
+
+### Cambios realizados
+
+- Se verifico que Django no reporta errores con `manage.py check`.
+- Se verifico que `/estudiantes/` responde correctamente.
+- Se probaron registro, edicion, detalle y desactivacion de estudiante con datos temporales.
+- Se probaron errores por DNI duplicado y codigo duplicado.
+- Se probaron errores por DNI con menos y mas de 8 digitos.
+- Se creo `evidencias/integrante_2_pruebas.md`.
+- Se corrigio el mensaje de error de `dni` para el caso `max_length`, mostrando un mensaje claro cuando el DNI tiene mas de 8 digitos.
