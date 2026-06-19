@@ -303,3 +303,62 @@ Se crearon las vistas del modulo `academico` para listar, registrar, editar y de
 - Se ordenaron materias por nombre.
 - Se ordenaron periodos por fecha de inicio.
 - Se ordenaron matriculas por periodo y estudiante.
+
+## Subfase 3.6
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 3.6 del proyecto.
+
+Necesito configurar las rutas del modulo academico.
+
+Requisitos:
+- Trabajar en academico/urls.py.
+- Crear rutas para materias:
+  - /academico/materias/
+  - /academico/materias/crear/
+  - /academico/materias/<id>/editar/
+  - /academico/materias/<id>/desactivar/
+- Crear rutas para periodos:
+  - /academico/periodos/
+  - /academico/periodos/crear/
+  - /academico/periodos/<id>/editar/
+- Crear rutas para matriculas:
+  - /academico/matriculas/
+  - /academico/matriculas/crear/
+  - /academico/matriculas/<id>/
+  - /academico/matriculas/<id>/retirar/
+- Verificar que config/urls.py incluya las rutas de academico.
+- Usar nombres de rutas claros.
+
+Quiero que me indiques:
+1. Codigo completo de academico/urls.py.
+2. Si se modifica config/urls.py, mostrar el codigo necesario.
+3. Explicacion de cada ruta.
+4. Comando para probar.
+5. Mensaje de commit recomendado.
+6. Breve explicacion para defensa.
+
+Tambien actualiza:
+evidencias/integrante_3_prompts.md
+
+Agrega:
+- Subfase 3.6
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se configuraron las rutas del modulo `academico` para materias, periodos academicos y matriculas. Tambien se verifico que `config/urls.py` ya incluye las rutas de la app mediante `path('academico/', include('academico.urls'))`, por lo que no fue necesario modificar la configuracion principal.
+
+### Cambios realizados
+
+- Se actualizo `academico/urls.py`.
+- Se agregaron rutas para listar, crear, editar y desactivar materias.
+- Se agregaron rutas para listar, crear y editar periodos academicos.
+- Se agregaron rutas para listar, crear, ver detalle y retirar matriculas.
+- Se mantuvo el namespace `academico`.
+- Se verifico que `config/urls.py` ya incluye `academico.urls`.
