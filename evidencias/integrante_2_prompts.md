@@ -64,3 +64,65 @@ Se creo el modelo `Estudiante` dentro de la app `estudiantes`, con campos para d
 - Se configuraron columnas importantes en el admin.
 - Se habilito busqueda por codigo, DNI, nombres y apellidos.
 - Se dejo pendiente el desarrollo de vistas y formularios para subfases posteriores.
+
+## Subfase 2.2
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 2.2 del proyecto.
+
+Necesito crear el formulario para registrar y editar estudiantes.
+
+Requisitos:
+- Trabajar en la app estudiantes.
+- Crear un archivo forms.py si no existe.
+- Crear EstudianteForm usando ModelForm.
+- Incluir los campos:
+  - codigo
+  - nombres
+  - apellidos
+  - dni
+  - correo
+  - telefono
+  - direccion
+  - estado
+- Validar que el codigo no este vacio.
+- Validar que el DNI tenga 8 digitos.
+- Validar que nombres y apellidos sean obligatorios.
+- Mostrar mensajes de error claros.
+- No crear todavia templates completos si no es necesario.
+- No tocar otros modulos.
+
+Quiero que me indiques:
+1. Codigo completo de forms.py.
+2. Validaciones incluidas.
+3. Como funciona el formulario.
+4. Comando para probar que no hay errores.
+5. Mensaje de commit recomendado.
+6. Breve explicacion para defensa.
+
+Tambien actualiza:
+evidencias/integrante_2_prompts.md
+
+Agrega:
+- Subfase 2.2
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se creo el formulario `EstudianteForm` usando `ModelForm` para registrar y editar estudiantes a partir del modelo `Estudiante`. El formulario incluye los campos solicitados y validaciones personalizadas para codigo, DNI, nombres y apellidos, con mensajes de error claros.
+
+### Cambios realizados
+
+- Se creo el archivo `estudiantes/forms.py`.
+- Se creo la clase `EstudianteForm`.
+- Se incluyeron los campos `codigo`, `nombres`, `apellidos`, `dni`, `correo`, `telefono`, `direccion` y `estado`.
+- Se agrego validacion para evitar codigo vacio.
+- Se agrego validacion para exigir DNI de exactamente 8 digitos numericos.
+- Se agregaron validaciones para nombres y apellidos obligatorios.
+- Se configuraron mensajes de error claros para los campos del formulario.
+- No se crearon vistas ni templates en esta subfase.
