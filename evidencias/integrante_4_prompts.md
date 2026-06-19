@@ -132,3 +132,64 @@ Se creo el modelo `Nota` dentro de la app `notas` para registrar calificaciones 
 - Se configuro el admin para mostrar estudiante, materia, evaluacion, calificacion y fecha de registro.
 - Se genero la migracion `notas/migrations/0002_nota.py`.
 - Se aplico la migracion en la base de datos configurada.
+
+## Subfase 4.3
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 4.3 del proyecto.
+
+Necesito crear formularios para el modulo de notas.
+
+Requisitos:
+- Trabajar en la app notas.
+- Crear archivo forms.py si no existe.
+- Crear:
+  - EvaluacionForm
+  - NotaForm
+- EvaluacionForm debe validar:
+  - materia obligatoria
+  - periodo obligatorio
+  - nombre obligatorio
+  - peso mayor que 0
+- NotaForm debe validar:
+  - matricula obligatoria
+  - evaluacion obligatoria
+  - calificacion entre 0 y 20
+  - que no exista nota duplicada para la misma matricula y evaluacion
+- Mostrar mensajes de error claros.
+- No tocar asistencia ni reportes generales.
+
+Quiero que me indiques:
+1. Codigo completo de forms.py.
+2. Validaciones incluidas.
+3. Como funciona cada formulario.
+4. Comando para probar que no hay errores.
+5. Mensaje de commit recomendado.
+6. Breve explicacion para defensa.
+
+Tambien actualiza:
+evidencias/integrante_4_prompts.md
+
+Agrega:
+- Subfase 4.3
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se creo el archivo `notas/forms.py` con los formularios `EvaluacionForm` y `NotaForm`. Ambos formularios usan `ModelForm`, muestran etiquetas y mensajes de error claros, y agregan validaciones especificas para campos obligatorios, rangos numericos y duplicidad de notas.
+
+### Cambios realizados
+
+- Se creo el archivo `notas/forms.py`.
+- Se creo `EvaluacionForm` para registrar y editar evaluaciones.
+- Se agregaron validaciones para materia obligatoria, periodo obligatorio, nombre obligatorio y peso mayor que cero.
+- Se creo `NotaForm` para registrar y editar calificaciones.
+- Se agregaron validaciones para matricula obligatoria, evaluacion obligatoria y calificacion entre 0 y 20.
+- Se agrego validacion para evitar duplicar una nota con la misma matricula y evaluacion.
+- Se configuraron etiquetas y mensajes de error claros en ambos formularios.
+- No se tocaron asistencia ni reportes generales.
