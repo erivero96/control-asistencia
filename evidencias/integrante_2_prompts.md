@@ -126,3 +126,63 @@ Se creo el formulario `EstudianteForm` usando `ModelForm` para registrar y edita
 - Se agregaron validaciones para nombres y apellidos obligatorios.
 - Se configuraron mensajes de error claros para los campos del formulario.
 - No se crearon vistas ni templates en esta subfase.
+
+## Subfase 2.3
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 2.3 del proyecto.
+
+Necesito crear las vistas del modulo de estudiantes en Django.
+
+Requisitos:
+- Trabajar en la app estudiantes.
+- Crear vistas para:
+  - listar_estudiantes
+  - crear_estudiante
+  - detalle_estudiante
+  - editar_estudiante
+  - desactivar_estudiante
+- Usar el modelo Estudiante.
+- Usar EstudianteForm.
+- En desactivar_estudiante no borrar el registro, solo cambiar estado a inactivo.
+- Ordenar estudiantes por apellidos y nombres.
+- Mostrar mensajes de exito o error usando django.contrib.messages.
+- No desarrollar todavia materias, notas, asistencia ni reportes.
+
+Quiero que me indiques:
+1. Codigo completo de views.py.
+2. Explicacion de cada vista.
+3. Validaciones aplicadas.
+4. Comando para probar que no hay errores.
+5. Mensaje de commit recomendado.
+6. Breve explicacion para defensa.
+
+Tambien actualiza:
+evidencias/integrante_2_prompts.md
+
+Agrega:
+- Subfase 2.3
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se crearon las vistas principales del modulo de estudiantes: listado, registro, detalle, edicion y desactivacion. Las vistas usan el modelo `Estudiante`, el formulario `EstudianteForm` y mensajes de Django para informar resultados correctos o errores de validacion.
+
+### Cambios realizados
+
+- Se agrego la vista `listar_estudiantes`.
+- Se agrego la vista `crear_estudiante`.
+- Se agrego la vista `detalle_estudiante`.
+- Se agrego la vista `editar_estudiante`.
+- Se agrego la vista `desactivar_estudiante`.
+- Se ordeno el listado por apellidos y nombres.
+- Se uso `EstudianteForm` para crear y editar estudiantes.
+- Se uso `get_object_or_404` para obtener estudiantes existentes.
+- Se configuro la desactivacion para cambiar `estado` a `inactivo` sin borrar registros.
+- Se agregaron mensajes de exito y error con `django.contrib.messages`.
+- No se desarrollaron materias, notas, asistencia ni reportes.
