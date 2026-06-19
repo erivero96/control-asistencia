@@ -8,6 +8,7 @@ from estudiantes.models import Estudiante
 
 from .forms import AsistenciaForm, AsistenciaPorMateriaForm
 from .models import Asistencia
+from .utils import resumen_asistencia_matricula
 
 
 def index(request):
@@ -33,6 +34,10 @@ def _matriculas_activas_por_materia_periodo(materia, periodo):
         )
         .order_by('estudiante__apellidos', 'estudiante__nombres')
     )
+
+
+def _matriculas_con_relaciones():
+    return Matricula.objects.select_related('estudiante', 'materia', 'periodo')
 
 
 def _filas_asistencia_por_matricula(matriculas, fecha):
@@ -242,6 +247,46 @@ def detalle_asistencia(request, asistencia_id):
         request,
         'asistencia/asistencia_detalle.html',
         {'asistencia': asistencia},
+    )
+
+
+def porcentaje_asistencia_matricula(request, matricula_id):
+    matricula = get_object_or_404(
+        _matriculas_con_relaciones(),
+        id=matricula_id,
+    )
+    resumen = resumen_asistencia_matricula(matricula)
+
+    return render(
+        request,
+        'asistencia/porcentaje_asistencia_matricula.html',
+        resumen,
+    )
+
+
+def porcentajes_por_materia(request, materia_id):
+    materia = get_object_or_404(Materia, id=materia_id)
+    matriculas = (
+        _matriculas_con_relaciones()
+        .filter(materia=materia)
+        .order_by(
+            'estudiante__apellidos',
+            'estudiante__nombres',
+            'periodo__fecha_inicio',
+        )
+    )
+    porcentajes = [
+        resumen_asistencia_matricula(matricula)
+        for matricula in matriculas
+    ]
+
+    return render(
+        request,
+        'asistencia/porcentajes_por_materia.html',
+        {
+            'materia': materia,
+            'porcentajes': porcentajes,
+        },
     )
 
 

@@ -258,3 +258,72 @@ Se creo la vista `registrar_asistencia_por_materia` para seleccionar materia, pe
 - Se uso `transaction.atomic()` para guardar la asistencia de todos los estudiantes como una sola operacion.
 - Se agrego mensaje de exito al guardar correctamente.
 - Se manejo el caso donde no existen estudiantes matriculados en la materia y periodo seleccionados.
+
+## Subfase 5.5
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 5.5 del proyecto.
+
+Necesito agregar el calculo de porcentaje de asistencia.
+
+Requisitos:
+- Trabajar en la app asistencia.
+- Crear funciones auxiliares para:
+  - total de clases registradas por matricula
+  - total de presentes
+  - total de tardanzas
+  - total de faltas
+  - total de justificados
+  - porcentaje de asistencia
+- Considerar presente, tardanza y justificado como asistencia valida.
+- Considerar falta como inasistencia.
+- Si no hay registros, mostrar porcentaje pendiente o 0%.
+- Crear vista porcentaje_asistencia_matricula.
+- Crear vista porcentajes_por_materia.
+- Mostrar:
+  - estudiante
+  - materia
+  - periodo
+  - total de clases
+  - presentes
+  - tardanzas
+  - faltas
+  - justificados
+  - porcentaje
+
+Quiero que me indiques:
+1. Codigo completo de las funciones auxiliares.
+2. Codigo actualizado de views.py.
+3. Explicacion del calculo usado.
+4. Comando para probar que no hay errores.
+5. Mensaje de commit recomendado.
+6. Breve explicacion para defensa.
+
+Tambien actualiza:
+evidencias/integrante_5_prompts.md
+
+Agrega:
+- Subfase 5.5
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se agregaron funciones auxiliares para calcular totales de asistencia por matricula y el porcentaje de asistencia. Tambien se crearon vistas para consultar el porcentaje de una matricula especifica y los porcentajes de todas las matriculas de una materia.
+
+### Cambios realizados
+
+- Se creo `asistencia/utils.py`.
+- Se agrego el calculo de total de clases registradas por matricula.
+- Se agregaron funciones para contar presentes, tardanzas, faltas y justificados.
+- Se agrego el calculo de porcentaje considerando presente, tardanza y justificado como asistencia valida.
+- Se configuro el resultado como `pendiente` cuando una matricula no tiene registros de asistencia.
+- Se agrego una funcion de resumen para entregar estudiante, materia, periodo, totales y porcentaje.
+- Se actualizo `asistencia/views.py`.
+- Se agrego la vista `porcentaje_asistencia_matricula`.
+- Se agrego la vista `porcentajes_por_materia`.
+- No se desarrollaron reportes generales.
