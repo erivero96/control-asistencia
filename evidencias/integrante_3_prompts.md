@@ -180,3 +180,59 @@ Se creo el modelo `Matricula` dentro de la app `academico` para relacionar un es
 - Se agrego una restriccion unica para `estudiante`, `materia` y `periodo`.
 - Se registro `Matricula` en `academico/admin.py`.
 - Se configuro el admin para mostrar estudiante, materia, periodo, estado y fecha_matricula.
+
+## Subfase 3.4
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 3.4 del proyecto.
+
+Necesito crear formularios para el modulo academico.
+
+Requisitos:
+- Trabajar en la app academico.
+- Crear archivo forms.py si no existe.
+- Crear:
+  - MateriaForm
+  - PeriodoAcademicoForm
+  - MatriculaForm
+- MateriaForm debe validar codigo, nombre y creditos.
+- PeriodoAcademicoForm debe validar fechas.
+- MatriculaForm debe validar estudiante, materia y periodo.
+- MatriculaForm debe evitar matricula duplicada.
+- Mostrar mensajes de error claros.
+- No tocar notas, asistencia ni reportes.
+
+Quiero que me indiques:
+1. Codigo completo de forms.py.
+2. Validaciones incluidas.
+3. Como funciona cada formulario.
+4. Comando para probar que no hay errores.
+5. Mensaje de commit recomendado.
+6. Breve explicacion para defensa.
+
+Tambien actualiza:
+evidencias/integrante_3_prompts.md
+
+Agrega:
+- Subfase 3.4
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se creo el archivo `academico/forms.py` con los formularios `MateriaForm`, `PeriodoAcademicoForm` y `MatriculaForm`. Cada formulario usa `ModelForm`, define etiquetas y mensajes de error claros, y agrega validaciones especificas para datos obligatorios, creditos, fechas y matriculas duplicadas.
+
+### Cambios realizados
+
+- Se creo `MateriaForm` para registrar y editar materias.
+- Se validaron codigo, nombre y creditos de materia.
+- Se creo `PeriodoAcademicoForm` para registrar y editar periodos academicos.
+- Se valido que la fecha de fin no sea menor que la fecha de inicio.
+- Se creo `MatriculaForm` para registrar y editar matriculas.
+- Se validaron estudiante, materia y periodo en matriculas.
+- Se agrego validacion para evitar matriculas duplicadas del mismo estudiante en la misma materia y periodo.
+- No se tocaron las apps de notas, asistencia ni reportes.
