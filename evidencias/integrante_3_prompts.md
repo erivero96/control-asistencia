@@ -236,3 +236,70 @@ Se creo el archivo `academico/forms.py` con los formularios `MateriaForm`, `Peri
 - Se validaron estudiante, materia y periodo en matriculas.
 - Se agrego validacion para evitar matriculas duplicadas del mismo estudiante en la misma materia y periodo.
 - No se tocaron las apps de notas, asistencia ni reportes.
+
+## Subfase 3.5
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 3.5 del proyecto.
+
+Necesito crear las vistas del modulo academico en Django.
+
+Requisitos:
+- Trabajar en la app academico.
+- Crear vistas para materias:
+  - listar_materias
+  - crear_materia
+  - editar_materia
+  - desactivar_materia
+- Crear vistas para periodos:
+  - listar_periodos
+  - crear_periodo
+  - editar_periodo
+- Crear vistas para matriculas:
+  - listar_matriculas
+  - crear_matricula
+  - detalle_matricula
+  - retirar_matricula
+- Usar django.contrib.messages.
+- No borrar registros, solo cambiar estado cuando corresponda.
+- Ordenar materias por nombre.
+- Ordenar periodos por fecha_inicio.
+- Ordenar matriculas por periodo y estudiante.
+
+Quiero que me indiques:
+1. Codigo completo de views.py.
+2. Explicacion de cada vista.
+3. Validaciones aplicadas.
+4. Comando para probar que no hay errores.
+5. Mensaje de commit recomendado.
+6. Breve explicacion para defensa.
+
+Tambien actualiza:
+evidencias/integrante_3_prompts.md
+
+Agrega:
+- Subfase 3.5
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se crearon las vistas del modulo `academico` para listar, registrar, editar y desactivar materias; listar, registrar y editar periodos academicos; y listar, registrar, ver detalle y retirar matriculas. Las vistas usan formularios del modulo, mensajes de Django y cambios de estado para evitar borrar registros.
+
+### Cambios realizados
+
+- Se actualizaron las vistas en `academico/views.py`.
+- Se agregaron vistas de materias: `listar_materias`, `crear_materia`, `editar_materia` y `desactivar_materia`.
+- Se agregaron vistas de periodos: `listar_periodos`, `crear_periodo` y `editar_periodo`.
+- Se agregaron vistas de matriculas: `listar_matriculas`, `crear_matricula`, `detalle_matricula` y `retirar_matricula`.
+- Se usaron `MateriaForm`, `PeriodoAcademicoForm` y `MatriculaForm`.
+- Se agregaron mensajes de exito y error con `django.contrib.messages`.
+- Se configuro la desactivacion de materias para cambiar estado a `inactivo` sin borrar registros.
+- Se configuro el retiro de matriculas para cambiar estado a `retirado` sin borrar registros.
+- Se ordenaron materias por nombre.
+- Se ordenaron periodos por fecha de inicio.
+- Se ordenaron matriculas por periodo y estudiante.
