@@ -452,3 +452,73 @@ Se crearon los templates HTML del modulo `asistencia` para listar, registrar, ed
 - Se agrego una tabla con selector de estado por estudiante en `registrar_por_materia.html`.
 - Se agregaron tablas claras de totales y porcentaje en los templates de porcentaje.
 - Se actualizaron las vistas para usar `registrar_por_materia.html` y `porcentaje_matricula.html`.
+
+## Subfase 5.8
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 5.8 del proyecto.
+
+Necesito probar el modulo de asistencia y dejar evidencia.
+
+Requisitos:
+- Verificar que el servidor Django corre sin errores.
+- Probar registro de asistencia individual.
+- Probar error por asistencia duplicada.
+- Probar edicion de asistencia.
+- Probar consulta por estudiante.
+- Probar consulta por materia.
+- Probar registro de asistencia por materia.
+- Probar el caso de materia sin estudiantes matriculados.
+- Probar calculo de porcentaje de asistencia.
+- Probar que presente, tardanza y justificado cuentan como asistencia valida.
+- Probar que falta cuenta como inasistencia.
+- Crear o actualizar archivo de pruebas.
+
+Archivo sugerido:
+evidencias/integrante_5_pruebas.md
+
+Debe contener:
+- Caso probado
+- Datos ingresados
+- Resultado esperado
+- Resultado obtenido
+- Estado: correcto o corregido
+
+Quiero que me indiques:
+1. Lista de pruebas a realizar.
+2. Contenido sugerido para integrante_5_pruebas.md.
+3. Errores comunes y como solucionarlos.
+4. Comando para correr el servidor.
+5. Mensaje de commit recomendado.
+6. Breve explicacion para defensa.
+
+Tambien actualiza:
+evidencias/integrante_5_prompts.md
+
+Agrega:
+- Subfase 5.8
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se probaron los flujos principales del modulo `asistencia` y se documento la evidencia en `evidencias/integrante_5_pruebas.md`. Las pruebas cubren servidor, registro individual, duplicados, edicion, consultas, registro por materia, materia sin estudiantes y calculo de porcentaje.
+
+### Cambios realizados
+
+- Se creo `evidencias/integrante_5_pruebas.md`.
+- Se documento el caso de servidor Django ejecutandose sin errores.
+- Se documento el registro de asistencia individual.
+- Se documento la validacion de asistencia duplicada.
+- Se documento la edicion de asistencia.
+- Se documentaron consultas por estudiante y por materia.
+- Se documento el registro de asistencia por materia.
+- Se documento el caso de materia sin estudiantes matriculados.
+- Se documento el calculo de porcentaje de asistencia.
+- Se documento que presente, tardanza y justificado cuentan como asistencia valida.
+- Se documento que falta cuenta como inasistencia.
+- Se agregaron errores comunes y formas de solucionarlos.
