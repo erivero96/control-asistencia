@@ -174,3 +174,62 @@ Se configuro Django para usar MySQL en lugar de SQLite. La configuracion carga v
 - Se agrego la configuracion de `PyMySQL` en `config/__init__.py`.
 - Se actualizo `.env.example` con variables de Django y MySQL.
 - Se creo un archivo `.env` local para desarrollo, ignorado por Git.
+
+## Subfase 1.4
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 1.4 del proyecto.
+
+Necesito crear las apps principales del sistema de Control Academico, pero sin desarrollar todavia sus modelos internos.
+
+Apps requeridas:
+- estudiantes
+- academico
+- notas
+- asistencia
+- reportes
+
+Requisitos:
+- Crear las apps con manage.py.
+- Registrarlas en INSTALLED_APPS.
+- Crear archivo urls.py basico en cada app.
+- Conectar las URLs de cada app en config/urls.py.
+- Crear una vista simple temporal para cada app.
+- Crear enlaces desde la pagina de inicio hacia cada modulo.
+- No crear todavia modelos de estudiantes, materias, notas, asistencia ni reportes.
+
+Quiero que me indiques:
+1. Comandos para crear cada app.
+2. Archivos que se modifican.
+3. Codigo completo de urls.py y views.py basicos.
+4. Codigo actualizado de config/urls.py.
+5. Codigo actualizado de la pagina de inicio con enlaces.
+6. Comando para probar.
+7. Mensaje de commit recomendado.
+8. Breve explicacion para defensa.
+
+Tambien actualiza:
+evidencias/integrante_1_prompts.md
+
+Agrega:
+- Subfase 1.4
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se crearon las apps principales del sistema de Control Academico: `estudiantes`, `academico`, `notas`, `asistencia` y `reportes`. Cada app quedo registrada en Django, con una ruta basica y una vista temporal para confirmar que el modulo responde.
+
+### Cambios realizados
+
+- Se crearon las apps `estudiantes`, `academico`, `notas`, `asistencia` y `reportes`.
+- Se registraron las apps en `INSTALLED_APPS`.
+- Se creo un archivo `urls.py` basico en cada app.
+- Se agrego una vista temporal `index` en cada app.
+- Se conectaron las rutas de cada app en `config/urls.py`.
+- Se agregaron enlaces desde la pagina de inicio hacia cada modulo.
+- No se crearon modelos de estudiantes, materias, notas, asistencia ni reportes.

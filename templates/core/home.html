@@ -9,6 +9,15 @@
     <main>
         <h1>Sistema de Control Academico</h1>
         <p>Base inicial del proyecto Django configurada correctamente.</p>
+        <nav>
+            <ul>
+                <li><a href="{% url 'estudiantes:index' %}">Estudiantes</a></li>
+                <li><a href="{% url 'academico:index' %}">Academico</a></li>
+                <li><a href="{% url 'notas:index' %}">Notas</a></li>
+                <li><a href="{% url 'asistencia:index' %}">Asistencia</a></li>
+                <li><a href="{% url 'reportes:index' %}">Reportes</a></li>
+            </ul>
+        </nav>
     </main>
 </body>
 </html>
