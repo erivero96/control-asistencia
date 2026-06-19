@@ -186,3 +186,58 @@ Se crearon las vistas principales del modulo de estudiantes: listado, registro, 
 - Se configuro la desactivacion para cambiar `estado` a `inactivo` sin borrar registros.
 - Se agregaron mensajes de exito y error con `django.contrib.messages`.
 - No se desarrollaron materias, notas, asistencia ni reportes.
+
+## Subfase 2.4
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 2.4 del proyecto.
+
+Necesito configurar las rutas del modulo estudiantes.
+
+Requisitos:
+- Trabajar en estudiantes/urls.py.
+- Crear rutas para:
+  - /estudiantes/
+  - /estudiantes/crear/
+  - /estudiantes/<id>/
+  - /estudiantes/<id>/editar/
+  - /estudiantes/<id>/desactivar/
+- Usar nombres de rutas claros.
+- Verificar que config/urls.py incluya las rutas de estudiantes.
+- No modificar rutas de otros modulos salvo que sea necesario para conectar estudiantes.
+
+Quiero que me indiques:
+1. Codigo completo de estudiantes/urls.py.
+2. Si se modifica config/urls.py, mostrar el codigo necesario.
+3. Explicacion de cada ruta.
+4. Comando para probar.
+5. Mensaje de commit recomendado.
+6. Breve explicacion para defensa.
+
+Tambien actualiza:
+evidencias/integrante_2_prompts.md
+
+Agrega:
+- Subfase 2.4
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se configuraron las rutas del modulo `estudiantes` para listar, crear, ver detalle, editar y desactivar estudiantes. Tambien se verifico que `config/urls.py` ya incluye las rutas de la app mediante `path('estudiantes/', include('estudiantes.urls'))`, por lo que no fue necesario modificar la configuracion principal.
+
+### Cambios realizados
+
+- Se actualizo `estudiantes/urls.py`.
+- Se agrego la ruta `/estudiantes/` para listar estudiantes.
+- Se agrego la ruta `/estudiantes/crear/` para registrar estudiantes.
+- Se agrego la ruta `/estudiantes/<id>/` para ver el detalle de un estudiante.
+- Se agrego la ruta `/estudiantes/<id>/editar/` para editar un estudiante.
+- Se agrego la ruta `/estudiantes/<id>/desactivar/` para desactivar un estudiante.
+- Se usaron nombres de ruta claros como `listar_estudiantes`, `crear_estudiante`, `detalle_estudiante`, `editar_estudiante` y `desactivar_estudiante`.
+- Se mantuvo `index` como alias temporal de compatibilidad para enlaces existentes hacia el modulo.
+- No se modificaron rutas de otros modulos.
