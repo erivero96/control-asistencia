@@ -327,3 +327,63 @@ Se agregaron funciones auxiliares para calcular totales de asistencia por matric
 - Se agrego la vista `porcentaje_asistencia_matricula`.
 - Se agrego la vista `porcentajes_por_materia`.
 - No se desarrollaron reportes generales.
+
+## Subfase 5.6
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 5.6 del proyecto.
+
+Necesito configurar las rutas del modulo asistencia.
+
+Requisitos:
+- Trabajar en asistencia/urls.py.
+- Crear rutas para:
+  - /asistencia/
+  - /asistencia/registrar/
+  - /asistencia/<id>/
+  - /asistencia/<id>/editar/
+  - /asistencia/estudiante/<id>/
+  - /asistencia/materia/<id>/
+  - /asistencia/registrar-por-materia/
+  - /asistencia/porcentaje/matricula/<id>/
+  - /asistencia/porcentajes/materia/<id>/
+- Verificar que config/urls.py incluya las rutas de asistencia.
+- Usar nombres de rutas claros.
+
+Quiero que me indiques:
+1. Codigo completo de asistencia/urls.py.
+2. Si se modifica config/urls.py, mostrar el codigo necesario.
+3. Explicacion de cada ruta.
+4. Comando para probar.
+5. Mensaje de commit recomendado.
+6. Breve explicacion para defensa.
+
+Tambien actualiza:
+evidencias/integrante_5_prompts.md
+
+Agrega:
+- Subfase 5.6
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se configuraron las rutas del modulo `asistencia` para listar, registrar, editar, detallar, consultar por estudiante, consultar por materia, registrar por materia y consultar porcentajes de asistencia. Tambien se verifico que `config/urls.py` ya incluye las rutas de la app mediante `path('asistencia/', include('asistencia.urls'))`.
+
+### Cambios realizados
+
+- Se actualizo `asistencia/urls.py`.
+- Se configuro `/asistencia/` para listar asistencias.
+- Se configuro `/asistencia/registrar/` para registrar una asistencia individual.
+- Se configuro `/asistencia/<id>/` para ver el detalle de una asistencia.
+- Se configuro `/asistencia/<id>/editar/` para editar una asistencia.
+- Se configuro `/asistencia/estudiante/<id>/` para consultar asistencias por estudiante.
+- Se configuro `/asistencia/materia/<id>/` para consultar asistencias por materia.
+- Se configuro `/asistencia/registrar-por-materia/` para registrar asistencia masiva por materia, periodo y fecha.
+- Se configuro `/asistencia/porcentaje/matricula/<id>/` para consultar el porcentaje de asistencia de una matricula.
+- Se configuro `/asistencia/porcentajes/materia/<id>/` para consultar porcentajes por materia.
+- Se verifico que `config/urls.py` ya incluye `asistencia.urls`, por lo que no fue necesario modificarlo.
