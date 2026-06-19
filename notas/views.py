@@ -2,11 +2,16 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
-from academico.models import Materia
+from academico.models import Materia, Matricula
 from estudiantes.models import Estudiante
 
 from .forms import EvaluacionForm, NotaForm
 from .models import Evaluacion, Nota
+from .utils import (
+    calcular_promedio_ponderado_por_matricula,
+    calcular_promedio_simple_por_matricula,
+    determinar_estado_promedio,
+)
 
 
 def index(request):
@@ -20,6 +25,29 @@ def _notas_con_relaciones():
         'matricula__periodo',
         'evaluacion',
     )
+
+
+def _matriculas_con_relaciones():
+    return Matricula.objects.select_related('estudiante', 'materia', 'periodo')
+
+
+def _resumen_promedio_matricula(matricula):
+    promedio_simple = calcular_promedio_simple_por_matricula(matricula)
+    promedio_ponderado = calcular_promedio_ponderado_por_matricula(matricula)
+    promedio = promedio_ponderado
+    estado = determinar_estado_promedio(promedio)
+
+    return {
+        'matricula': matricula,
+        'estudiante': matricula.estudiante,
+        'materia': matricula.materia,
+        'periodo': matricula.periodo,
+        'promedio': promedio,
+        'promedio_mostrar': promedio if promedio is not None else 'pendiente',
+        'promedio_simple': promedio_simple,
+        'promedio_ponderado': promedio_ponderado,
+        'estado': estado,
+    }
 
 
 def listar_evaluaciones(request):
@@ -253,5 +281,42 @@ def notas_por_materia(request, materia_id):
         {
             'materia': materia,
             'notas': notas,
+        },
+    )
+
+
+def promedio_matricula(request, matricula_id):
+    matricula = get_object_or_404(_matriculas_con_relaciones(), id=matricula_id)
+    resumen = _resumen_promedio_matricula(matricula)
+
+    return render(
+        request,
+        'notas/promedio_matricula.html',
+        resumen,
+    )
+
+
+def promedios_por_materia(request, materia_id):
+    materia = get_object_or_404(Materia, id=materia_id)
+    matriculas = (
+        _matriculas_con_relaciones()
+        .filter(materia=materia)
+        .order_by(
+            'estudiante__apellidos',
+            'estudiante__nombres',
+            'periodo__fecha_inicio',
+        )
+    )
+    promedios = [
+        _resumen_promedio_matricula(matricula)
+        for matricula in matriculas
+    ]
+
+    return render(
+        request,
+        'notas/promedios_por_materia.html',
+        {
+            'materia': materia,
+            'promedios': promedios,
         },
     )

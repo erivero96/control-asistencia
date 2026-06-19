@@ -317,3 +317,67 @@ Se crearon las vistas para registrar, editar, detallar y consultar notas dentro 
 - Se reutilizaron las validaciones de `NotaForm` para rango de calificacion entre 0 y 20 y notas duplicadas.
 - Se incluyo informacion relacionada de estudiante, materia, periodo, evaluacion y calificacion mediante consultas con `select_related`.
 - Se ordenaron las notas por estudiante, materia y evaluacion.
+
+## Subfase 4.6
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 4.6 del proyecto.
+
+Necesito agregar la logica para calcular promedios academicos.
+
+Requisitos:
+- Trabajar en la app notas.
+- Crear funciones auxiliares para:
+  - calcular promedio simple por matricula
+  - calcular promedio ponderado por matricula usando el peso de evaluaciones
+  - determinar estado aprobado o desaprobado
+- La nota minima aprobatoria sera 11.
+- Si no hay notas, el promedio debe mostrarse como pendiente.
+- Crear una vista llamada promedio_matricula.
+- Crear una vista llamada promedios_por_materia.
+- Mostrar:
+  - estudiante
+  - materia
+  - periodo
+  - promedio
+  - estado: aprobado, desaprobado o pendiente
+- Evitar errores si faltan notas o evaluaciones.
+
+Quiero que me indiques:
+1. Codigo completo de las funciones de promedio.
+2. Codigo actualizado de views.py.
+3. Explicacion del calculo usado.
+4. Comando para probar que no hay errores.
+5. Mensaje de commit recomendado.
+6. Breve explicacion para defensa.
+
+Tambien actualiza:
+evidencias/integrante_4_prompts.md
+
+Agrega:
+- Subfase 4.6
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se agrego la logica de promedios academicos para el modulo `notas`. Se crearon funciones auxiliares para calcular promedio simple, promedio ponderado y estado academico, ademas de vistas para consultar el promedio de una matricula y los promedios por materia.
+
+### Cambios realizados
+
+- Se creo el archivo `notas/utils.py`.
+- Se agrego la constante de nota minima aprobatoria `11.00`.
+- Se creo la funcion `calcular_promedio_simple_por_matricula`.
+- Se creo la funcion `calcular_promedio_ponderado_por_matricula`.
+- Se creo la funcion `determinar_estado_promedio`.
+- Se configuro el estado como `aprobado`, `desaprobado` o `pendiente`.
+- Se actualizo `notas/views.py`.
+- Se agrego la vista `promedio_matricula`.
+- Se agrego la vista `promedios_por_materia`.
+- Se incluyo estudiante, materia, periodo, promedio y estado en el contexto de las vistas.
+- Se manejo el caso sin notas mostrando el promedio como `pendiente`.
+- Se evito error por falta de pesos validos usando el promedio simple como respaldo.
