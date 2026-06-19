@@ -67,3 +67,62 @@ Se creo el modelo `Asistencia` dentro de la app `asistencia`, relacionado con `M
 - Se habilito busqueda por codigo, nombres y apellidos del estudiante, ademas de codigo y nombre de la materia.
 - Se genero y aplico la migracion inicial de la app `asistencia`.
 - No se crearon vistas ni formularios en esta subfase.
+
+## Subfase 5.2
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 5.2 del proyecto.
+
+Necesito crear formularios para el modulo de asistencia.
+
+Requisitos:
+- Trabajar en la app asistencia.
+- Crear archivo forms.py si no existe.
+- Crear AsistenciaForm usando ModelForm.
+- Campos:
+  - matricula
+  - fecha
+  - estado
+  - observacion
+- Validar que la matricula sea obligatoria.
+- Validar que la fecha sea obligatoria.
+- Validar que el estado sea obligatorio.
+- Validar que no exista asistencia duplicada para la misma matricula y fecha.
+- Mostrar mensajes de error claros.
+- No tocar reportes generales.
+
+Quiero que me indiques:
+1. Codigo completo de forms.py.
+2. Validaciones incluidas.
+3. Como funciona el formulario.
+4. Comando para probar que no hay errores.
+5. Mensaje de commit recomendado.
+6. Breve explicacion para defensa.
+
+Tambien actualiza:
+evidencias/integrante_5_prompts.md
+
+Agrega:
+- Subfase 5.2
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se creo `AsistenciaForm` dentro de `asistencia/forms.py` usando `ModelForm`. El formulario permite capturar matricula, fecha, estado y observacion, con mensajes claros para campos obligatorios y una validacion para evitar duplicar asistencia en la misma matricula y fecha.
+
+### Cambios realizados
+
+- Se creo el archivo `asistencia/forms.py`.
+- Se creo `AsistenciaForm` basado en el modelo `Asistencia`.
+- Se limitaron los campos del formulario a `matricula`, `fecha`, `estado` y `observacion`.
+- Se agregaron etiquetas y mensajes de error claros para el usuario.
+- Se valido que `matricula`, `fecha` y `estado` sean obligatorios.
+- Se agrego validacion de duplicidad por `matricula` y `fecha`.
+- Se configuro el campo `fecha` con widget de tipo fecha.
+- Se configuro `observacion` como area de texto de tres filas.
+- No se tocaron reportes generales.
