@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desactivar evaluacion</title>
+</head>
+<body>
+    <main>
+        <h1>Desactivar evaluacion</h1>
+
+        <nav>
+            <a href="{% url 'notas:listar_evaluaciones' %}">Volver a evaluaciones</a>
+        </nav>
+
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <p>
+            Desea desactivar la evaluacion
+            <strong>{{ evaluacion.nombre }}</strong>?
+        </p>
+
+        <ul>
+            <li>Materia: {{ evaluacion.materia }}</li>
+            <li>Periodo: {{ evaluacion.periodo }}</li>
+            <li>Peso: {{ evaluacion.peso }}%</li>
+            <li>Estado actual: {{ evaluacion.get_estado_display }}</li>
+        </ul>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Confirmar desactivacion</button>
+            <a href="{% url 'notas:listar_evaluaciones' %}">Cancelar</a>
+        </form>
+    </main>
+</body>
+</html>

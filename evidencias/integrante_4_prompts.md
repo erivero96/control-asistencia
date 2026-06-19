@@ -442,3 +442,72 @@ Se configuraron las rutas del modulo `notas` para evaluaciones, notas y promedio
 - Se agregaron rutas para consultar promedio por matricula y promedios por materia.
 - Se usaron nombres de rutas claros y consistentes con las vistas.
 - Se verifico que `config/urls.py` ya incluye `notas.urls`, por lo que no fue necesario modificarlo.
+
+## Subfase 4.8
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 4.8 del proyecto.
+
+Necesito crear los templates HTML del modulo notas.
+
+Requisitos:
+- Crear carpeta templates/notas/ si no existe.
+- Crear templates para evaluaciones:
+  - evaluaciones_lista.html
+  - evaluacion_formulario.html
+  - evaluacion_confirmar_desactivar.html
+- Crear templates para notas:
+  - notas_lista.html
+  - nota_formulario.html
+  - nota_detalle.html
+  - notas_por_estudiante.html
+  - notas_por_materia.html
+- Crear templates para promedios:
+  - promedio_matricula.html
+  - promedios_por_materia.html
+- Usar estructura simple.
+- Si existe base.html, extenderlo.
+- Incluir botones de volver, editar y registrar.
+- Mostrar mensajes de exito o error.
+- Mostrar aprobado/desaprobado de forma clara.
+
+Quiero que me indiques:
+1. Codigo completo de cada template.
+2. Como se conectan con las vistas.
+3. Como probar en el navegador.
+4. Mensaje de commit recomendado.
+5. Breve explicacion para defensa.
+
+Tambien actualiza:
+evidencias/integrante_4_prompts.md
+
+Agrega:
+- Subfase 4.8
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se crearon los templates HTML del modulo `notas` para evaluaciones, notas y promedios. No existe un `base.html` en el proyecto, por lo que se usaron documentos HTML completos y simples, siguiendo la estructura de los templates existentes de `academico` y `estudiantes`.
+
+### Cambios realizados
+
+- Se creo la carpeta `templates/notas/`.
+- Se creo `evaluaciones_lista.html`.
+- Se creo `evaluacion_formulario.html`.
+- Se creo `evaluacion_confirmar_desactivar.html`.
+- Se creo `notas_lista.html`.
+- Se creo `nota_formulario.html`.
+- Se creo `nota_detalle.html`.
+- Se creo `notas_por_estudiante.html`.
+- Se creo `notas_por_materia.html`.
+- Se creo `promedio_matricula.html`.
+- Se creo `promedios_por_materia.html`.
+- Se agregaron enlaces de volver, editar, registrar y consultar promedios segun corresponda.
+- Se agrego visualizacion de mensajes de Django en los templates.
+- Se mostro el estado del promedio como aprobado, desaprobado o pendiente.
+- Se mantuvo una ruta `notas:index` apuntando al listado de notas para conservar compatibilidad con el enlace existente en la pagina de inicio.

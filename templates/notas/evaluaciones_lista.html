@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluaciones</title>
+</head>
+<body>
+    <main>
+        <h1>Evaluaciones</h1>
+
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="{% url 'notas:listar_notas' %}">Notas</a>
+            <a href="{% url 'notas:crear_evaluacion' %}">Registrar evaluacion</a>
+        </nav>
+
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Materia</th>
+                    <th>Periodo</th>
+                    <th>Nombre</th>
+                    <th>Peso</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for evaluacion in evaluaciones %}
+                    <tr>
+                        <td>{{ evaluacion.materia }}</td>
+                        <td>{{ evaluacion.periodo }}</td>
+                        <td>{{ evaluacion.nombre }}</td>
+                        <td>{{ evaluacion.peso }}%</td>
+                        <td>{{ evaluacion.get_estado_display }}</td>
+                        <td>
+                            <a href="{% url 'notas:editar_evaluacion' evaluacion.id %}">Editar</a>
+                            <a href="{% url 'notas:desactivar_evaluacion' evaluacion.id %}">Desactivar</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="6">No hay evaluaciones registradas.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

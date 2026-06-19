@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promedios por materia</title>
+</head>
+<body>
+    <main>
+        <h1>Promedios de {{ materia }}</h1>
+
+        <nav>
+            <a href="{% url 'notas:listar_notas' %}">Volver a notas</a>
+            <a href="{% url 'notas:notas_por_materia' materia.id %}">Notas de la materia</a>
+        </nav>
+
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Estudiante</th>
+                    <th>Materia</th>
+                    <th>Periodo</th>
+                    <th>Promedio</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in promedios %}
+                    <tr>
+                        <td>{{ item.estudiante }}</td>
+                        <td>{{ item.materia }}</td>
+                        <td>{{ item.periodo }}</td>
+                        <td>{{ item.promedio_mostrar }}</td>
+                        <td>
+                            {% if item.estado == 'aprobado' %}
+                                Aprobado
+                            {% elif item.estado == 'desaprobado' %}
+                                Desaprobado
+                            {% else %}
+                                Pendiente
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'notas:promedio_matricula' item.matricula.id %}">Ver promedio</a>
+                            <a href="{% url 'notas:notas_por_estudiante' item.estudiante.id %}">Notas del estudiante</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="6">No hay matriculas registradas para esta materia.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

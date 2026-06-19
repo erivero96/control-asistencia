@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promedio de matricula</title>
+</head>
+<body>
+    <main>
+        <h1>Promedio de matricula</h1>
+
+        <nav>
+            <a href="{% url 'notas:listar_notas' %}">Volver a notas</a>
+            <a href="{% url 'notas:notas_por_estudiante' estudiante.id %}">Notas del estudiante</a>
+            <a href="{% url 'notas:notas_por_materia' materia.id %}">Notas de la materia</a>
+        </nav>
+
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <dl>
+            <dt>Estudiante</dt>
+            <dd>{{ estudiante }}</dd>
+
+            <dt>Materia</dt>
+            <dd>{{ materia }}</dd>
+
+            <dt>Periodo academico</dt>
+            <dd>{{ periodo }}</dd>
+
+            <dt>Promedio ponderado</dt>
+            <dd>{{ promedio_mostrar }}</dd>
+
+            <dt>Promedio simple</dt>
+            <dd>{{ promedio_simple|default:"pendiente" }}</dd>
+
+            <dt>Estado</dt>
+            <dd>
+                {% if estado == 'aprobado' %}
+                    Aprobado
+                {% elif estado == 'desaprobado' %}
+                    Desaprobado
+                {% else %}
+                    Pendiente
+                {% endif %}
+            </dd>
+        </dl>
+    </main>
+</body>
+</html>
