@@ -381,3 +381,64 @@ Se agrego la logica de promedios academicos para el modulo `notas`. Se crearon f
 - Se incluyo estudiante, materia, periodo, promedio y estado en el contexto de las vistas.
 - Se manejo el caso sin notas mostrando el promedio como `pendiente`.
 - Se evito error por falta de pesos validos usando el promedio simple como respaldo.
+
+## Subfase 4.7
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 4.7 del proyecto.
+
+Necesito configurar las rutas del modulo notas.
+
+Requisitos:
+- Trabajar en notas/urls.py.
+- Crear rutas para evaluaciones:
+  - /notas/evaluaciones/
+  - /notas/evaluaciones/crear/
+  - /notas/evaluaciones/<id>/editar/
+  - /notas/evaluaciones/<id>/desactivar/
+- Crear rutas para notas:
+  - /notas/
+  - /notas/registrar/
+  - /notas/<id>/
+  - /notas/<id>/editar/
+  - /notas/estudiante/<id>/
+  - /notas/materia/<id>/
+- Crear rutas para promedios:
+  - /notas/promedios/matricula/<id>/
+  - /notas/promedios/materia/<id>/
+- Verificar que config/urls.py incluya las rutas de notas.
+- Usar nombres de rutas claros.
+
+Quiero que me indiques:
+1. Codigo completo de notas/urls.py.
+2. Si se modifica config/urls.py, mostrar el codigo necesario.
+3. Explicacion de cada ruta.
+4. Comando para probar.
+5. Mensaje de commit recomendado.
+6. Breve explicacion para defensa.
+
+Tambien actualiza:
+evidencias/integrante_4_prompts.md
+
+Agrega:
+- Subfase 4.7
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se configuraron las rutas del modulo `notas` para evaluaciones, notas y promedios. Tambien se verifico que `config/urls.py` ya incluye las rutas de la app mediante `path('notas/', include('notas.urls'))`.
+
+### Cambios realizados
+
+- Se actualizo `notas/urls.py`.
+- Se configuro `/notas/` para listar notas.
+- Se agregaron rutas para registrar, ver, editar y consultar notas por estudiante o materia.
+- Se agregaron rutas para listar, crear, editar y desactivar evaluaciones.
+- Se agregaron rutas para consultar promedio por matricula y promedios por materia.
+- Se usaron nombres de rutas claros y consistentes con las vistas.
+- Se verifico que `config/urls.py` ya incluye `notas.urls`, por lo que no fue necesario modificarlo.
