@@ -241,3 +241,67 @@ Se configuraron las rutas del modulo `estudiantes` para listar, crear, ver detal
 - Se usaron nombres de ruta claros como `listar_estudiantes`, `crear_estudiante`, `detalle_estudiante`, `editar_estudiante` y `desactivar_estudiante`.
 - Se mantuvo `index` como alias temporal de compatibilidad para enlaces existentes hacia el modulo.
 - No se modificaron rutas de otros modulos.
+
+## Subfase 2.5
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 2.5 del proyecto.
+
+Necesito crear los templates HTML del modulo estudiantes.
+
+Requisitos:
+- Crear carpeta templates/estudiantes/ si no existe.
+- Crear los templates:
+  - lista.html
+  - formulario.html
+  - detalle.html
+  - confirmar_desactivar.html
+- La lista debe mostrar:
+  - codigo
+  - nombres
+  - apellidos
+  - DNI
+  - correo
+  - estado
+  - acciones
+- El formulario debe servir para crear y editar.
+- El detalle debe mostrar toda la informacion del estudiante.
+- La confirmacion debe preguntar antes de desactivar.
+- Usar una estructura simple y entendible.
+- Si existe un template base.html, extenderlo.
+- Si no existe, indicar como crear uno basico sin afectar otros modulos.
+
+Quiero que me indiques:
+1. Codigo completo de cada template.
+2. Como se conectan con las vistas.
+3. Como probar en el navegador.
+4. Mensaje de commit recomendado.
+5. Breve explicacion para defensa.
+
+Tambien actualiza:
+evidencias/integrante_2_prompts.md
+
+Agrega:
+- Subfase 2.5
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se crearon los templates HTML del modulo `estudiantes` para listar, crear/editar, ver detalle y confirmar la desactivacion de estudiantes. No existia un `base.html` global, por lo que se usaron templates independientes con estructura HTML simple.
+
+### Cambios realizados
+
+- Se creo la carpeta `templates/estudiantes/`.
+- Se creo `templates/estudiantes/lista.html`.
+- Se creo `templates/estudiantes/formulario.html`.
+- Se creo `templates/estudiantes/detalle.html`.
+- Se creo `templates/estudiantes/confirmar_desactivar.html`.
+- Se actualizo `estudiantes/views.py` para usar los nombres de templates solicitados.
+- Se reutilizo `formulario.html` para registrar y editar estudiantes.
+- Se agregaron enlaces de acciones para ver, editar y desactivar estudiantes.
+- Se agrego confirmacion previa antes de desactivar un estudiante.

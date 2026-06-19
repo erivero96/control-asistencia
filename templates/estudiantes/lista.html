@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudiantes</title>
+</head>
+<body>
+    <main>
+        <h1>Estudiantes</h1>
+
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="{% url 'estudiantes:crear_estudiante' %}">Registrar estudiante</a>
+        </nav>
+
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>DNI</th>
+                    <th>Correo</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for estudiante in estudiantes %}
+                    <tr>
+                        <td>{{ estudiante.codigo }}</td>
+                        <td>{{ estudiante.nombres }}</td>
+                        <td>{{ estudiante.apellidos }}</td>
+                        <td>{{ estudiante.dni }}</td>
+                        <td>{{ estudiante.correo }}</td>
+                        <td>{{ estudiante.get_estado_display }}</td>
+                        <td>
+                            <a href="{% url 'estudiantes:detalle_estudiante' estudiante.id %}">Ver</a>
+                            <a href="{% url 'estudiantes:editar_estudiante' estudiante.id %}">Editar</a>
+                            <a href="{% url 'estudiantes:desactivar_estudiante' estudiante.id %}">Desactivar</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="7">No hay estudiantes registrados.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

@@ -15,7 +15,7 @@ def listar_estudiantes(request):
 
     return render(
         request,
-        'estudiantes/listar_estudiantes.html',
+        'estudiantes/lista.html',
         {'estudiantes': estudiantes},
     )
 
@@ -31,7 +31,7 @@ def crear_estudiante(request):
                 f'Estudiante {estudiante.nombres} {estudiante.apellidos} '
                 'registrado correctamente.',
             )
-            return redirect('estudiantes:index')
+            return redirect('estudiantes:listar_estudiantes')
 
         messages.error(
             request,
@@ -42,8 +42,12 @@ def crear_estudiante(request):
 
     return render(
         request,
-        'estudiantes/crear_estudiante.html',
-        {'form': form},
+        'estudiantes/formulario.html',
+        {
+            'form': form,
+            'titulo': 'Registrar estudiante',
+            'texto_boton': 'Guardar estudiante',
+        },
     )
 
 
@@ -52,7 +56,7 @@ def detalle_estudiante(request, estudiante_id):
 
     return render(
         request,
-        'estudiantes/detalle_estudiante.html',
+        'estudiantes/detalle.html',
         {'estudiante': estudiante},
     )
 
@@ -70,7 +74,7 @@ def editar_estudiante(request, estudiante_id):
                 f'Estudiante {estudiante.nombres} {estudiante.apellidos} '
                 'actualizado correctamente.',
             )
-            return redirect('estudiantes:index')
+            return redirect('estudiantes:listar_estudiantes')
 
         messages.error(
             request,
@@ -81,10 +85,12 @@ def editar_estudiante(request, estudiante_id):
 
     return render(
         request,
-        'estudiantes/editar_estudiante.html',
+        'estudiantes/formulario.html',
         {
             'form': form,
             'estudiante': estudiante,
+            'titulo': 'Editar estudiante',
+            'texto_boton': 'Guardar cambios',
         },
     )
 
@@ -107,10 +113,10 @@ def desactivar_estudiante(request, estudiante_id):
                 'desactivado correctamente.',
             )
 
-        return redirect('estudiantes:index')
+        return redirect('estudiantes:listar_estudiantes')
 
     return render(
         request,
-        'estudiantes/desactivar_estudiante.html',
+        'estudiantes/confirmar_desactivar.html',
         {'estudiante': estudiante},
     )

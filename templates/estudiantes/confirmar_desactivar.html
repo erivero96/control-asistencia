@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desactivar estudiante</title>
+</head>
+<body>
+    <main>
+        <h1>Desactivar estudiante</h1>
+
+        <p>
+            Desea desactivar al estudiante
+            <strong>{{ estudiante.nombres }} {{ estudiante.apellidos }}</strong>?
+        </p>
+
+        <ul>
+            <li>Codigo: {{ estudiante.codigo }}</li>
+            <li>DNI: {{ estudiante.dni }}</li>
+            <li>Estado actual: {{ estudiante.get_estado_display }}</li>
+        </ul>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Confirmar desactivacion</button>
+            <a href="{% url 'estudiantes:detalle_estudiante' estudiante.id %}">Cancelar</a>
+        </form>
+    </main>
+</body>
+</html>

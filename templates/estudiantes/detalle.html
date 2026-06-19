@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de estudiante</title>
+</head>
+<body>
+    <main>
+        <h1>Detalle de estudiante</h1>
+
+        <nav>
+            <a href="{% url 'estudiantes:listar_estudiantes' %}">Volver a estudiantes</a>
+            <a href="{% url 'estudiantes:editar_estudiante' estudiante.id %}">Editar</a>
+            <a href="{% url 'estudiantes:desactivar_estudiante' estudiante.id %}">Desactivar</a>
+        </nav>
+
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <dl>
+            <dt>Codigo</dt>
+            <dd>{{ estudiante.codigo }}</dd>
+
+            <dt>Nombres</dt>
+            <dd>{{ estudiante.nombres }}</dd>
+
+            <dt>Apellidos</dt>
+            <dd>{{ estudiante.apellidos }}</dd>
+
+            <dt>DNI</dt>
+            <dd>{{ estudiante.dni }}</dd>
+
+            <dt>Correo</dt>
+            <dd>{{ estudiante.correo }}</dd>
+
+            <dt>Telefono</dt>
+            <dd>{{ estudiante.telefono }}</dd>
+
+            <dt>Direccion</dt>
+            <dd>{{ estudiante.direccion }}</dd>
+
+            <dt>Estado</dt>
+            <dd>{{ estudiante.get_estado_display }}</dd>
+
+            <dt>Fecha de registro</dt>
+            <dd>{{ estudiante.fecha_registro|date:"d/m/Y H:i" }}</dd>
+        </dl>
+    </main>
+</body>
+</html>
