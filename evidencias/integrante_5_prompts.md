@@ -194,3 +194,67 @@ Se crearon las vistas principales del modulo `asistencia` para listar, registrar
 - Se incluyo informacion relacionada de estudiante, materia, periodo, fecha y estado mediante consultas con `select_related`.
 - Se ordenaron las asistencias por fecha descendente.
 - No se desarrollaron reportes generales.
+
+## Subfase 5.4
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 5.4 del proyecto.
+
+Necesito una funcion/vista para registrar asistencia por materia, periodo y fecha.
+
+Requisitos:
+- Trabajar en la app asistencia.
+- Crear vista registrar_asistencia_por_materia.
+- El usuario debe seleccionar:
+  - materia
+  - periodo
+  - fecha
+- El sistema debe listar las matriculas activas de esa materia y periodo.
+- Para cada estudiante debe permitir marcar:
+  - presente
+  - tardanza
+  - falta
+  - justificado
+- Al guardar, debe crear o actualizar la asistencia de cada matricula para esa fecha.
+- No debe duplicar registros.
+- Debe mostrar mensaje de exito.
+- Debe manejar el caso donde no haya estudiantes matriculados.
+
+Quiero que me indiques:
+1. Codigo completo de la vista.
+2. Si se necesita un formulario adicional, mostrarlo completo.
+3. Como se evita duplicar asistencia.
+4. Como se actualiza una asistencia existente.
+5. Comando para probar que no hay errores.
+6. Mensaje de commit recomendado.
+7. Breve explicacion para defensa.
+
+Tambien actualiza:
+evidencias/integrante_5_prompts.md
+
+Agrega:
+- Subfase 5.4
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se creo la vista `registrar_asistencia_por_materia` para seleccionar materia, periodo y fecha, listar las matriculas activas correspondientes y registrar la asistencia de todos los estudiantes en una sola operacion. Tambien se creo un formulario adicional para capturar los criterios de seleccion.
+
+### Cambios realizados
+
+- Se actualizo `asistencia/forms.py`.
+- Se creo `AsistenciaPorMateriaForm` para seleccionar materia, periodo academico y fecha.
+- Se actualizo `asistencia/views.py`.
+- Se agrego la vista `registrar_asistencia_por_materia`.
+- Se agrego una consulta auxiliar para obtener matriculas activas por materia y periodo.
+- Se agrego una estructura auxiliar para mostrar cada estudiante con su estado de asistencia actual.
+- Se permitio marcar presente, tardanza, falta o justificado por cada matricula.
+- Se uso `update_or_create` para crear o actualizar asistencia por matricula y fecha sin duplicar registros.
+- Se uso `transaction.atomic()` para guardar la asistencia de todos los estudiantes como una sola operacion.
+- Se agrego mensaje de exito al guardar correctamente.
+- Se manejo el caso donde no existen estudiantes matriculados en la materia y periodo seleccionados.
