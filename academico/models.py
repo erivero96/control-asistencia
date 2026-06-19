@@ -1,6 +1,8 @@
 from django.core.exceptions import ValidationError
 from django.db import models
 
+from estudiantes.models import Estudiante
+
 
 class Materia(models.Model):
     ESTADO_ACTIVO = 'activo'
@@ -72,3 +74,39 @@ class PeriodoAcademico(models.Model):
 
     def __str__(self):
         return self.nombre
+
+
+class Matricula(models.Model):
+    ESTADO_MATRICULADO = 'matriculado'
+    ESTADO_RETIRADO = 'retirado'
+    ESTADO_FINALIZADO = 'finalizado'
+
+    ESTADO_CHOICES = [
+        (ESTADO_MATRICULADO, 'Matriculado'),
+        (ESTADO_RETIRADO, 'Retirado'),
+        (ESTADO_FINALIZADO, 'Finalizado'),
+    ]
+
+    estudiante = models.ForeignKey(Estudiante, on_delete=models.PROTECT)
+    materia = models.ForeignKey(Materia, on_delete=models.PROTECT)
+    periodo = models.ForeignKey(PeriodoAcademico, on_delete=models.PROTECT)
+    fecha_matricula = models.DateTimeField(auto_now_add=True)
+    estado = models.CharField(
+        max_length=12,
+        choices=ESTADO_CHOICES,
+        default=ESTADO_MATRICULADO,
+    )
+
+    class Meta:
+        ordering = ['-fecha_matricula']
+        verbose_name = 'matricula'
+        verbose_name_plural = 'matriculas'
+        constraints = [
+            models.UniqueConstraint(
+                fields=['estudiante', 'materia', 'periodo'],
+                name='matricula_unica_por_estudiante_materia_periodo',
+            ),
+        ]
+
+    def __str__(self):
+        return f'{self.estudiante} - {self.materia} - {self.periodo}'

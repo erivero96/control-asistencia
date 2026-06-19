@@ -120,3 +120,63 @@ Se creo el modelo `PeriodoAcademico` dentro de la app `academico`, con nombre un
 - Se registro `PeriodoAcademico` en `academico/admin.py`.
 - Se habilito busqueda por nombre en el admin.
 - Se dejo pendiente el desarrollo de vistas y formularios para subfases posteriores.
+
+## Subfase 3.3
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 3.3 del proyecto.
+
+Necesito crear el modelo Matricula para relacionar estudiantes, materias y periodos academicos.
+
+Requisitos:
+- Trabajar en la app academico.
+- Usar el modelo Estudiante de la app estudiantes.
+- Usar los modelos Materia y PeriodoAcademico de academico.
+- Crear el modelo Matricula.
+- Campos:
+  - estudiante
+  - materia
+  - periodo
+  - fecha_matricula
+  - estado
+- El estado debe permitir matriculado, retirado y finalizado.
+- Evitar que un mismo estudiante se matricule dos veces en la misma materia y periodo.
+- Registrar el modelo en admin.py.
+- En el admin mostrar estudiante, materia, periodo, estado y fecha_matricula.
+- Crear y ejecutar migraciones.
+
+Quiero que me indiques:
+1. Codigo completo del modelo Matricula.
+2. Codigo actualizado de admin.py.
+3. Como se evita la matricula duplicada.
+4. Comandos de migracion.
+5. Comando para probar que no hay errores.
+6. Mensaje de commit recomendado.
+7. Breve explicacion para defensa.
+
+Tambien actualiza:
+evidencias/integrante_3_prompts.md
+
+Agrega:
+- Subfase 3.3
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se creo el modelo `Matricula` dentro de la app `academico` para relacionar un estudiante con una materia en un periodo academico. El modelo incluye estado matriculado/retirado/finalizado, fecha automatica de matricula y una restriccion para evitar matriculas duplicadas del mismo estudiante en la misma materia y periodo.
+
+### Cambios realizados
+
+- Se importo el modelo `Estudiante` desde la app `estudiantes`.
+- Se creo el modelo `Matricula` en `academico/models.py`.
+- Se relaciono `Matricula` con `Estudiante`, `Materia` y `PeriodoAcademico`.
+- Se configuro el campo `estado` con opciones `matriculado`, `retirado` y `finalizado`.
+- Se configuro `fecha_matricula` con `auto_now_add=True`.
+- Se agrego una restriccion unica para `estudiante`, `materia` y `periodo`.
+- Se registro `Matricula` en `academico/admin.py`.
+- Se configuro el admin para mostrar estudiante, materia, periodo, estado y fecha_matricula.
