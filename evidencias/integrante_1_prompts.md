@@ -112,3 +112,65 @@ Se dockerizo un servicio de base de datos MySQL 8 para el proyecto de Control Ac
 - Se agrego un healthcheck con `mysqladmin ping`.
 - Se creo `.env.example` con variables de ejemplo.
 - No se dockerizo Django en esta subfase.
+
+## Subfase 1.3
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 1.3 del proyecto.
+
+Necesito conectar Django con la base de datos MySQL que esta corriendo en Docker.
+
+Requisitos:
+- Django debe dejar de usar SQLite.
+- Configurar la base de datos MySQL en settings.py.
+- Leer las credenciales desde un archivo .env.
+- Usar python-dotenv.
+- Usar PyMySQL o mysqlclient, elige la opcion mas facil de instalar y explicar.
+- Actualizar requirements.txt.
+- Configurar SECRET_KEY, DEBUG y ALLOWED_HOSTS desde variables de entorno.
+- Mantener la zona horaria America/Lima.
+- Ejecutar migraciones iniciales correctamente.
+
+Variables esperadas:
+DB_NAME=control_academico_db
+DB_USER=django_user
+DB_PASSWORD=django_password
+DB_HOST=127.0.0.1
+DB_PORT=3307
+
+Quiero que me indiques:
+1. Dependencias necesarias.
+2. Cambios en settings.py.
+3. Si se usa PyMySQL, indicar donde configurarlo.
+4. Comandos para instalar dependencias.
+5. Comando para correr migraciones.
+6. Como verificar que Django ya esta usando MySQL.
+7. Mensaje de commit recomendado.
+8. Breve explicacion para defensa.
+
+Tambien actualiza:
+evidencias/integrante_1_prompts.md
+
+Agrega:
+- Subfase 1.3
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se configuro Django para usar MySQL en lugar de SQLite. La configuracion carga variables desde `.env` mediante `python-dotenv`, usa `PyMySQL` como adaptador compatible con el backend MySQL de Django, y deja `SECRET_KEY`, `DEBUG`, `ALLOWED_HOSTS` y las credenciales de base de datos fuera del codigo fuente.
+
+### Cambios realizados
+
+- Se agregaron las dependencias `PyMySQL` y `python-dotenv` en `requirements.txt`.
+- Se configuro la carga del archivo `.env` en `config/settings.py`.
+- Se cambio `DATABASES` para usar `django.db.backends.mysql`.
+- Se configuraron `SECRET_KEY`, `DEBUG` y `ALLOWED_HOSTS` desde variables de entorno.
+- Se mantuvo la zona horaria `America/Lima`.
+- Se agrego la configuracion de `PyMySQL` en `config/__init__.py`.
+- Se actualizo `.env.example` con variables de Django y MySQL.
+- Se creo un archivo `.env` local para desarrollo, ignorado por Git.

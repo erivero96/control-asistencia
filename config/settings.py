@@ -11,21 +11,34 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+from os import getenv
+
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+load_dotenv(BASE_DIR / '.env')
+
+
+def env_bool(name, default=False):
+    return getenv(name, str(default)).lower() in ('1', 'true', 'yes', 'on')
+
+
+def env_list(name, default=''):
+    return [value.strip() for value in getenv(name, default).split(',') if value.strip()]
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-k)4@(tqts&7#0t-0s+45_sw^9$33molf4^$$edkcvqqt%ltjhh'
+SECRET_KEY = getenv('SECRET_KEY', 'django-insecure-dev-only-change-me')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env_bool('DEBUG', True)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env_list('ALLOWED_HOSTS', '127.0.0.1,localhost')
 
 
 # Application definition
@@ -75,8 +88,15 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': getenv('DB_NAME', 'control_academico_db'),
+        'USER': getenv('DB_USER', 'django_user'),
+        'PASSWORD': getenv('DB_PASSWORD', 'django_password'),
+        'HOST': getenv('DB_HOST', '127.0.0.1'),
+        'PORT': getenv('DB_PORT', '3307'),
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+        },
     }
 }
 
