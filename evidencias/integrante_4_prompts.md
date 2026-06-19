@@ -250,3 +250,70 @@ Se crearon las vistas para gestionar evaluaciones dentro de la app `notas`. Las 
 - Se ordenaron las evaluaciones por materia, periodo y nombre.
 - Se configuro la desactivacion para cambiar el estado a `inactivo` sin borrar registros.
 - No se crearon reportes generales.
+
+## Subfase 4.5
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 4.5 del proyecto.
+
+Necesito crear las vistas para registrar y consultar notas.
+
+Requisitos:
+- Trabajar en la app notas.
+- Crear vistas para:
+  - listar_notas
+  - registrar_nota
+  - editar_nota
+  - detalle_nota
+  - notas_por_estudiante
+  - notas_por_materia
+- Usar NotaForm.
+- Usar django.contrib.messages.
+- Validar nota entre 0 y 20.
+- Evitar notas duplicadas.
+- Mostrar informacion relacionada:
+  - estudiante
+  - materia
+  - periodo
+  - evaluacion
+  - calificacion
+- Ordenar notas por estudiante, materia y evaluacion.
+
+Quiero que me indiques:
+1. Codigo completo o actualizado de views.py.
+2. Explicacion de cada vista.
+3. Validaciones aplicadas.
+4. Comando para probar que no hay errores.
+5. Mensaje de commit recomendado.
+6. Breve explicacion para defensa.
+
+Tambien actualiza:
+evidencias/integrante_4_prompts.md
+
+Agrega:
+- Subfase 4.5
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se crearon las vistas para registrar, editar, detallar y consultar notas dentro de la app `notas`. Las vistas usan `NotaForm`, mensajes de Django y consultas optimizadas con relaciones hacia estudiante, materia, periodo y evaluacion.
+
+### Cambios realizados
+
+- Se actualizo `notas/views.py`.
+- Se agrego la vista `listar_notas`.
+- Se agrego la vista `registrar_nota`.
+- Se agrego la vista `editar_nota`.
+- Se agrego la vista `detalle_nota`.
+- Se agrego la vista `notas_por_estudiante`.
+- Se agrego la vista `notas_por_materia`.
+- Se uso `NotaForm` para registrar y editar notas.
+- Se usaron mensajes de exito y error con `django.contrib.messages`.
+- Se reutilizaron las validaciones de `NotaForm` para rango de calificacion entre 0 y 20 y notas duplicadas.
+- Se incluyo informacion relacionada de estudiante, materia, periodo, evaluacion y calificacion mediante consultas con `select_related`.
+- Se ordenaron las notas por estudiante, materia y evaluacion.

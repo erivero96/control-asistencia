@@ -2,12 +2,24 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
-from .forms import EvaluacionForm
-from .models import Evaluacion
+from academico.models import Materia
+from estudiantes.models import Estudiante
+
+from .forms import EvaluacionForm, NotaForm
+from .models import Evaluacion, Nota
 
 
 def index(request):
     return HttpResponse('Modulo de notas')
+
+
+def _notas_con_relaciones():
+    return Nota.objects.select_related(
+        'matricula__estudiante',
+        'matricula__materia',
+        'matricula__periodo',
+        'evaluacion',
+    )
 
 
 def listar_evaluaciones(request):
@@ -110,4 +122,136 @@ def desactivar_evaluacion(request, evaluacion_id):
         request,
         'notas/evaluacion_confirmar_desactivar.html',
         {'evaluacion': evaluacion},
+    )
+
+
+def listar_notas(request):
+    notas = _notas_con_relaciones().order_by(
+        'matricula__estudiante__apellidos',
+        'matricula__estudiante__nombres',
+        'matricula__materia__nombre',
+        'evaluacion__nombre',
+    )
+
+    return render(
+        request,
+        'notas/notas_lista.html',
+        {'notas': notas},
+    )
+
+
+def registrar_nota(request):
+    if request.method == 'POST':
+        form = NotaForm(request.POST)
+
+        if form.is_valid():
+            nota = form.save()
+            messages.success(
+                request,
+                'Nota registrada correctamente.',
+            )
+            return redirect('notas:detalle_nota', nota_id=nota.id)
+
+        messages.error(
+            request,
+            'No se pudo registrar la nota. Revise los datos ingresados.',
+        )
+    else:
+        form = NotaForm()
+
+    return render(
+        request,
+        'notas/nota_formulario.html',
+        {
+            'form': form,
+            'titulo': 'Registrar nota',
+            'texto_boton': 'Guardar nota',
+        },
+    )
+
+
+def editar_nota(request, nota_id):
+    nota = get_object_or_404(_notas_con_relaciones(), id=nota_id)
+
+    if request.method == 'POST':
+        form = NotaForm(request.POST, instance=nota)
+
+        if form.is_valid():
+            nota = form.save()
+            messages.success(
+                request,
+                'Nota actualizada correctamente.',
+            )
+            return redirect('notas:detalle_nota', nota_id=nota.id)
+
+        messages.error(
+            request,
+            'No se pudo actualizar la nota. Revise los datos ingresados.',
+        )
+    else:
+        form = NotaForm(instance=nota)
+
+    return render(
+        request,
+        'notas/nota_formulario.html',
+        {
+            'form': form,
+            'nota': nota,
+            'titulo': 'Editar nota',
+            'texto_boton': 'Guardar cambios',
+        },
+    )
+
+
+def detalle_nota(request, nota_id):
+    nota = get_object_or_404(_notas_con_relaciones(), id=nota_id)
+
+    return render(
+        request,
+        'notas/nota_detalle.html',
+        {'nota': nota},
+    )
+
+
+def notas_por_estudiante(request, estudiante_id):
+    estudiante = get_object_or_404(Estudiante, id=estudiante_id)
+    notas = (
+        _notas_con_relaciones()
+        .filter(matricula__estudiante=estudiante)
+        .order_by(
+            'matricula__materia__nombre',
+            'matricula__periodo__fecha_inicio',
+            'evaluacion__nombre',
+        )
+    )
+
+    return render(
+        request,
+        'notas/notas_por_estudiante.html',
+        {
+            'estudiante': estudiante,
+            'notas': notas,
+        },
+    )
+
+
+def notas_por_materia(request, materia_id):
+    materia = get_object_or_404(Materia, id=materia_id)
+    notas = (
+        _notas_con_relaciones()
+        .filter(matricula__materia=materia)
+        .order_by(
+            'matricula__estudiante__apellidos',
+            'matricula__estudiante__nombres',
+            'evaluacion__nombre',
+        )
+    )
+
+    return render(
+        request,
+        'notas/notas_por_materia.html',
+        {
+            'materia': materia,
+            'notas': notas,
+        },
     )
