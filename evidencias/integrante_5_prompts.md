@@ -126,3 +126,71 @@ Se creo `AsistenciaForm` dentro de `asistencia/forms.py` usando `ModelForm`. El 
 - Se configuro el campo `fecha` con widget de tipo fecha.
 - Se configuro `observacion` como area de texto de tres filas.
 - No se tocaron reportes generales.
+
+## Subfase 5.3
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 5.3 del proyecto.
+
+Necesito crear las vistas principales del modulo de asistencia en Django.
+
+Requisitos:
+- Trabajar en la app asistencia.
+- Crear vistas para:
+  - listar_asistencias
+  - registrar_asistencia
+  - editar_asistencia
+  - detalle_asistencia
+  - asistencias_por_estudiante
+  - asistencias_por_materia
+- Usar AsistenciaForm.
+- Usar django.contrib.messages.
+- Validar que no exista asistencia duplicada.
+- Mostrar informacion relacionada:
+  - estudiante
+  - materia
+  - periodo
+  - fecha
+  - estado
+- Ordenar asistencia por fecha descendente.
+- No desarrollar reportes generales.
+
+Quiero que me indiques:
+1. Codigo completo de views.py.
+2. Explicacion de cada vista.
+3. Validaciones aplicadas.
+4. Comando para probar que no hay errores.
+5. Mensaje de commit recomendado.
+6. Breve explicacion para defensa.
+
+Tambien actualiza:
+evidencias/integrante_5_prompts.md
+
+Agrega:
+- Subfase 5.3
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se crearon las vistas principales del modulo `asistencia` para listar, registrar, editar, detallar y consultar asistencias por estudiante o por materia. Las vistas usan `AsistenciaForm`, mensajes de Django y consultas con relaciones hacia estudiante, materia y periodo.
+
+### Cambios realizados
+
+- Se actualizo `asistencia/views.py`.
+- Se agrego la vista `listar_asistencias`.
+- Se agrego la vista `registrar_asistencia`.
+- Se agrego la vista `editar_asistencia`.
+- Se agrego la vista `detalle_asistencia`.
+- Se agrego la vista `asistencias_por_estudiante`.
+- Se agrego la vista `asistencias_por_materia`.
+- Se uso `AsistenciaForm` para registrar y editar asistencias.
+- Se usaron mensajes de exito y error con `django.contrib.messages`.
+- Se reutilizo la validacion de `AsistenciaForm` para evitar asistencias duplicadas por matricula y fecha.
+- Se incluyo informacion relacionada de estudiante, materia, periodo, fecha y estado mediante consultas con `select_related`.
+- Se ordenaron las asistencias por fecha descendente.
+- No se desarrollaron reportes generales.
