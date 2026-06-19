@@ -233,3 +233,59 @@ Se crearon las apps principales del sistema de Control Academico: `estudiantes`,
 - Se conectaron las rutas de cada app en `config/urls.py`.
 - Se agregaron enlaces desde la pagina de inicio hacia cada modulo.
 - No se crearon modelos de estudiantes, materias, notas, asistencia ni reportes.
+
+## Subfase 1.5
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 1.5 del proyecto.
+
+Necesito crear la documentacion tecnica inicial del proyecto Django de Control Academico.
+
+Requisitos:
+- Crear README.md.
+- Crear AGENTS.md.
+- Crear carpeta evidencias si no existe.
+- Crear archivo evidencias/integrante_1_prompts.md si no existe.
+- Explicar como instalar dependencias.
+- Explicar como crear y activar entorno virtual.
+- Explicar como copiar .env.example a .env.
+- Explicar como levantar MySQL con Docker.
+- Explicar como ejecutar migraciones.
+- Explicar como correr el servidor Django.
+- Explicar la estructura de carpetas del proyecto.
+- Explicar que parte hizo el Integrante 1.
+
+No inventes modulos que aun no estan desarrollados. Solo documenta la base creada.
+
+Quiero que me indiques:
+1. Contenido completo de README.md.
+2. Contenido completo de AGENTS.md.
+3. Comandos finales para correr el proyecto desde cero.
+4. Mensaje de commit recomendado.
+5. Breve explicacion para defensa.
+
+Tambien actualiza:
+evidencias/integrante_1_prompts.md
+
+Agrega:
+- Subfase 1.5
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se creo la documentacion tecnica inicial del proyecto. El `README.md` explica como instalar dependencias, configurar el entorno, levantar MySQL, ejecutar migraciones y correr Django. Tambien se creo `AGENTS.md` con reglas de trabajo para mantener la base tecnica ordenada.
+
+### Cambios realizados
+
+- Se actualizo `README.md` con instrucciones de instalacion y ejecucion.
+- Se creo `AGENTS.md` con pautas de trabajo para el repositorio.
+- Se verifico que la carpeta `evidencias` existe.
+- Se actualizo `evidencias/integrante_1_prompts.md` con la subfase 1.5.
+- Se documento la estructura de carpetas del proyecto.
+- Se documento el alcance del trabajo realizado por el Integrante 1.
+- No se documentaron funcionalidades internas que aun no han sido desarrolladas.
