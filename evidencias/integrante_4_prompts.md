@@ -511,3 +511,71 @@ Se crearon los templates HTML del modulo `notas` para evaluaciones, notas y prom
 - Se agrego visualizacion de mensajes de Django en los templates.
 - Se mostro el estado del promedio como aprobado, desaprobado o pendiente.
 - Se mantuvo una ruta `notas:index` apuntando al listado de notas para conservar compatibilidad con el enlace existente en la pagina de inicio.
+
+## Subfase 4.9
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 4.9 del proyecto.
+
+Necesito probar el modulo de notas y dejar evidencia.
+
+Requisitos:
+- Verificar que el servidor Django corre sin errores.
+- Probar registro de evaluacion.
+- Probar error por peso invalido.
+- Probar registro de nota.
+- Probar error por nota menor que 0.
+- Probar error por nota mayor que 20.
+- Probar error por nota duplicada.
+- Probar edicion de nota.
+- Probar consulta de notas por estudiante.
+- Probar consulta de notas por materia.
+- Probar calculo de promedio.
+- Probar estado aprobado si promedio es mayor o igual a 11.
+- Probar estado desaprobado si promedio es menor a 11.
+- Crear o actualizar archivo de pruebas.
+
+Archivo sugerido:
+evidencias/integrante_4_pruebas.md
+
+Debe contener:
+- Caso probado
+- Datos ingresados
+- Resultado esperado
+- Resultado obtenido
+- Estado: correcto o corregido
+
+Quiero que me indiques:
+1. Lista de pruebas a realizar.
+2. Contenido sugerido para integrante_4_pruebas.md.
+3. Errores comunes y como solucionarlos.
+4. Comando para correr el servidor.
+5. Mensaje de commit recomendado.
+6. Breve explicacion para defensa.
+
+Tambien actualiza:
+evidencias/integrante_4_prompts.md
+
+Agrega:
+- Subfase 4.9
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se probaron las funcionalidades principales del modulo `notas`: servidor, evaluaciones, registro y edicion de notas, validaciones, consultas y promedios academicos. Tambien se creo el archivo `evidencias/integrante_4_pruebas.md` con los casos probados, datos ingresados, resultados esperados, resultados obtenidos y estado de cada prueba.
+
+### Cambios realizados
+
+- Se verifico que Django ejecuta `manage.py check` sin errores.
+- Se levanto el servidor local en `127.0.0.1:8020`.
+- Se verifico respuesta `HTTP/1.1 200 OK` para `/notas/` y `/notas/evaluaciones/`.
+- Se probaron formularios de evaluacion y nota con datos temporales.
+- Se probaron errores por peso invalido, nota menor que 0, nota mayor que 20 y nota duplicada.
+- Se probaron consultas por estudiante y por materia.
+- Se probaron calculos de promedio y estados `aprobado`, `desaprobado` y `pendiente`.
+- Se creo `evidencias/integrante_4_pruebas.md`.
