@@ -421,3 +421,67 @@ Se crearon los templates HTML del modulo `academico` para materias, periodos aca
 - Se agregaron enlaces para volver, registrar, editar, desactivar o retirar segun corresponda.
 - Se agrego visualizacion de mensajes de exito o error con `messages`.
 - Se actualizaron las vistas de `academico/views.py` para usar los nombres de templates solicitados.
+
+## Subfase 3.8
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 3.8 del proyecto.
+
+Necesito probar el modulo academico y dejar evidencia.
+
+Requisitos:
+- Verificar que el servidor Django corre sin errores.
+- Probar registro de materia.
+- Probar error por codigo de materia duplicado.
+- Probar edicion de materia.
+- Probar desactivacion de materia.
+- Probar registro de periodo academico.
+- Probar error si fecha fin es menor que fecha inicio.
+- Probar registro de matricula.
+- Probar error por matricula duplicada.
+- Probar retiro de matricula.
+- Crear o actualizar archivo de pruebas.
+
+Archivo sugerido:
+evidencias/integrante_3_pruebas.md
+
+Debe contener:
+- Caso probado
+- Datos ingresados
+- Resultado esperado
+- Resultado obtenido
+- Estado: correcto o corregido
+
+Quiero que me indiques:
+1. Lista de pruebas a realizar.
+2. Contenido sugerido para integrante_3_pruebas.md.
+3. Errores comunes y como solucionarlos.
+4. Comando para correr el servidor.
+5. Mensaje de commit recomendado.
+6. Breve explicacion para defensa.
+
+Tambien actualiza:
+evidencias/integrante_3_prompts.md
+
+Agrega:
+- Subfase 3.8
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se probaron las funcionalidades principales del modulo academico y se creo el archivo `evidencias/integrante_3_pruebas.md` con los casos ejecutados, datos ingresados, resultados esperados, resultados obtenidos y estado de cada prueba.
+
+### Cambios realizados
+
+- Se verifico que `manage.py check` no reporta errores.
+- Se levanto el servidor Django en `127.0.0.1:8001` y se verifico respuesta `200 OK`.
+- Se probaron registro, duplicado, edicion y desactivacion de materias.
+- Se probaron registro y validacion de fechas en periodos academicos.
+- Se probaron registro, duplicado y retiro de matriculas.
+- Se creo `evidencias/integrante_3_pruebas.md`.
+- No se modifico codigo funcional del modulo academico.
