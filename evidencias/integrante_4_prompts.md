@@ -193,3 +193,60 @@ Se creo el archivo `notas/forms.py` con los formularios `EvaluacionForm` y `Nota
 - Se agrego validacion para evitar duplicar una nota con la misma matricula y evaluacion.
 - Se configuraron etiquetas y mensajes de error claros en ambos formularios.
 - No se tocaron asistencia ni reportes generales.
+
+## Subfase 4.4
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 4.4 del proyecto.
+
+Necesito crear las vistas para gestionar evaluaciones.
+
+Requisitos:
+- Trabajar en la app notas.
+- Crear vistas para:
+  - listar_evaluaciones
+  - crear_evaluacion
+  - editar_evaluacion
+  - desactivar_evaluacion
+- Usar EvaluacionForm.
+- Usar django.contrib.messages.
+- No borrar evaluaciones, solo cambiar estado a inactivo.
+- Ordenar evaluaciones por materia, periodo y nombre.
+- No crear todavia reportes generales.
+
+Quiero que me indiques:
+1. Codigo completo o actualizado de views.py.
+2. Explicacion de cada vista.
+3. Validaciones aplicadas.
+4. Comando para probar que no hay errores.
+5. Mensaje de commit recomendado.
+6. Breve explicacion para defensa.
+
+Tambien actualiza:
+evidencias/integrante_4_prompts.md
+
+Agrega:
+- Subfase 4.4
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se crearon las vistas para gestionar evaluaciones dentro de la app `notas`. Las vistas permiten listar, registrar, editar y desactivar evaluaciones usando `EvaluacionForm`, mensajes de Django y desactivacion logica mediante el campo `estado`.
+
+### Cambios realizados
+
+- Se actualizo `notas/views.py`.
+- Se agrego la vista `listar_evaluaciones`.
+- Se agrego la vista `crear_evaluacion`.
+- Se agrego la vista `editar_evaluacion`.
+- Se agrego la vista `desactivar_evaluacion`.
+- Se uso `EvaluacionForm` para crear y editar evaluaciones.
+- Se uso `django.contrib.messages` para mostrar mensajes de exito y error.
+- Se ordenaron las evaluaciones por materia, periodo y nombre.
+- Se configuro la desactivacion para cambiar el estado a `inactivo` sin borrar registros.
+- No se crearon reportes generales.
