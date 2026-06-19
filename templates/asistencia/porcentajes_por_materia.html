@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Porcentajes por materia</title>
+</head>
+<body>
+    <main>
+        <h1>Porcentajes de {{ materia }}</h1>
+
+        <nav>
+            <a href="{% url 'asistencia:listar_asistencias' %}">Volver a asistencias</a>
+            <a href="{% url 'asistencia:asistencias_por_materia' materia.id %}">Asistencias de la materia</a>
+            <a href="{% url 'asistencia:registrar_asistencia_por_materia' %}">Registrar por materia</a>
+        </nav>
+
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Estudiante</th>
+                    <th>Materia</th>
+                    <th>Periodo</th>
+                    <th>Total de clases</th>
+                    <th>Presentes</th>
+                    <th>Tardanzas</th>
+                    <th>Faltas</th>
+                    <th>Justificados</th>
+                    <th>Porcentaje</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in porcentajes %}
+                    <tr>
+                        <td>{{ item.estudiante }}</td>
+                        <td>{{ item.materia }}</td>
+                        <td>{{ item.periodo }}</td>
+                        <td>{{ item.total_clases }}</td>
+                        <td>{{ item.presentes }}</td>
+                        <td>{{ item.tardanzas }}</td>
+                        <td>{{ item.faltas }}</td>
+                        <td>{{ item.justificados }}</td>
+                        <td>
+                            {% if item.total_clases > 0 %}
+                                {{ item.porcentaje }}%
+                            {% else %}
+                                {{ item.porcentaje_mostrar }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'asistencia:porcentaje_asistencia_matricula' item.matricula.id %}">Ver porcentaje</a>
+                            <a href="{% url 'asistencia:asistencias_por_estudiante' item.estudiante.id %}">Asistencias</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="10">No hay matriculas registradas para esta materia.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

@@ -387,3 +387,68 @@ Se configuraron las rutas del modulo `asistencia` para listar, registrar, editar
 - Se configuro `/asistencia/porcentaje/matricula/<id>/` para consultar el porcentaje de asistencia de una matricula.
 - Se configuro `/asistencia/porcentajes/materia/<id>/` para consultar porcentajes por materia.
 - Se verifico que `config/urls.py` ya incluye `asistencia.urls`, por lo que no fue necesario modificarlo.
+
+## Subfase 5.7
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 5.7 del proyecto.
+
+Necesito crear los templates HTML del modulo asistencia.
+
+Requisitos:
+- Crear carpeta templates/asistencia/ si no existe.
+- Crear templates:
+  - asistencias_lista.html
+  - asistencia_formulario.html
+  - asistencia_detalle.html
+  - asistencias_por_estudiante.html
+  - asistencias_por_materia.html
+  - registrar_por_materia.html
+  - porcentaje_matricula.html
+  - porcentajes_por_materia.html
+- Usar estructura simple.
+- Si existe base.html, extenderlo.
+- Incluir botones de volver, editar y registrar.
+- Mostrar mensajes de exito o error.
+- En registrar_por_materia.html mostrar lista de estudiantes con selector de estado.
+- En porcentajes mostrar tabla clara con total y porcentaje.
+
+Quiero que me indiques:
+1. Codigo completo de cada template.
+2. Como se conectan con las vistas.
+3. Como probar en el navegador.
+4. Mensaje de commit recomendado.
+5. Breve explicacion para defensa.
+
+Tambien actualiza:
+evidencias/integrante_5_prompts.md
+
+Agrega:
+- Subfase 5.7
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se crearon los templates HTML del modulo `asistencia` para listar, registrar, editar, detallar, consultar por estudiante, consultar por materia, registrar asistencia por materia y mostrar porcentajes. No existe un `base.html` en el proyecto, por lo que se usaron documentos HTML completos y simples, siguiendo el estilo de `academico` y `notas`.
+
+### Cambios realizados
+
+- Se creo la carpeta `templates/asistencia/`.
+- Se creo `asistencias_lista.html`.
+- Se creo `asistencia_formulario.html`.
+- Se creo `asistencia_detalle.html`.
+- Se creo `asistencias_por_estudiante.html`.
+- Se creo `asistencias_por_materia.html`.
+- Se creo `registrar_por_materia.html`.
+- Se creo `porcentaje_matricula.html`.
+- Se creo `porcentajes_por_materia.html`.
+- Se agrego visualizacion de mensajes de Django en los templates.
+- Se agregaron enlaces para volver, editar, registrar y consultar porcentajes.
+- Se agrego una tabla con selector de estado por estudiante en `registrar_por_materia.html`.
+- Se agregaron tablas claras de totales y porcentaje en los templates de porcentaje.
+- Se actualizaron las vistas para usar `registrar_por_materia.html` y `porcentaje_matricula.html`.

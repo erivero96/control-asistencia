@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar asistencia por materia</title>
+</head>
+<body>
+    <main>
+        <h1>Registrar asistencia por materia</h1>
+
+        <nav>
+            <a href="{% url 'asistencia:listar_asistencias' %}">Volver a asistencias</a>
+            <a href="{% url 'asistencia:registrar_asistencia' %}">Registrar asistencia individual</a>
+        </nav>
+
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <form method="get" novalidate>
+            {% if form.non_field_errors %}
+                <ul>
+                    {% for error in form.non_field_errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {% for field in form %}
+                <div>
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+
+                    {% for error in field.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+            <button type="submit">Buscar estudiantes</button>
+        </form>
+
+        {% if filas_asistencia %}
+            <h2>Estudiantes matriculados</h2>
+            <p>{{ materia }} - {{ periodo }} - {{ fecha|date:"d/m/Y" }}</p>
+
+            <form method="post" novalidate>
+                {% csrf_token %}
+                <input type="hidden" name="materia" value="{{ materia.id }}">
+                <input type="hidden" name="periodo" value="{{ periodo.id }}">
+                <input type="hidden" name="fecha" value="{{ fecha|date:'Y-m-d' }}">
+
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Estudiante</th>
+                            <th>Materia</th>
+                            <th>Periodo</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for fila in filas_asistencia %}
+                            <tr>
+                                <td>{{ fila.estudiante }}</td>
+                                <td>{{ fila.materia }}</td>
+                                <td>{{ fila.periodo }}</td>
+                                <td>
+                                    <select name="estado_{{ fila.matricula.id }}">
+                                        {% for estado_valor, estado_nombre in estados_asistencia %}
+                                            <option value="{{ estado_valor }}" {% if estado_valor == fila.estado_actual %}selected{% endif %}>
+                                                {{ estado_nombre }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <button type="submit">Guardar asistencia</button>
+                <a href="{% url 'asistencia:listar_asistencias' %}">Cancelar</a>
+            </form>
+        {% elif form.is_bound and materia and periodo and fecha %}
+            <p>No hay estudiantes matriculados para la materia y periodo seleccionados.</p>
+        {% endif %}
+    </main>
+</body>
+</html>

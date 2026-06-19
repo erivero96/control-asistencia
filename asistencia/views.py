@@ -186,7 +186,7 @@ def registrar_asistencia_por_materia(request):
 
     return render(
         request,
-        'asistencia/asistencia_por_materia_formulario.html',
+        'asistencia/registrar_por_materia.html',
         {
             'form': form,
             'filas_asistencia': filas_asistencia,
@@ -259,7 +259,7 @@ def porcentaje_asistencia_matricula(request, matricula_id):
 
     return render(
         request,
-        'asistencia/porcentaje_asistencia_matricula.html',
+        'asistencia/porcentaje_matricula.html',
         resumen,
     )
 

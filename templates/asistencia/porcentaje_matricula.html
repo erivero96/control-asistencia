@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Porcentaje de asistencia</title>
+</head>
+<body>
+    <main>
+        <h1>Porcentaje de asistencia</h1>
+
+        <nav>
+            <a href="{% url 'asistencia:listar_asistencias' %}">Volver a asistencias</a>
+            <a href="{% url 'asistencia:asistencias_por_estudiante' estudiante.id %}">Asistencias del estudiante</a>
+            <a href="{% url 'asistencia:asistencias_por_materia' materia.id %}">Asistencias de la materia</a>
+            <a href="{% url 'asistencia:porcentajes_por_materia' materia.id %}">Porcentajes de la materia</a>
+        </nav>
+
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <dl>
+            <dt>Estudiante</dt>
+            <dd>{{ estudiante }}</dd>
+
+            <dt>Materia</dt>
+            <dd>{{ materia }}</dd>
+
+            <dt>Periodo academico</dt>
+            <dd>{{ periodo }}</dd>
+
+            <dt>Total de clases</dt>
+            <dd>{{ total_clases }}</dd>
+
+            <dt>Presentes</dt>
+            <dd>{{ presentes }}</dd>
+
+            <dt>Tardanzas</dt>
+            <dd>{{ tardanzas }}</dd>
+
+            <dt>Faltas</dt>
+            <dd>{{ faltas }}</dd>
+
+            <dt>Justificados</dt>
+            <dd>{{ justificados }}</dd>
+
+            <dt>Porcentaje</dt>
+            <dd>
+                {% if total_clases > 0 %}
+                    {{ porcentaje }}%
+                {% else %}
+                    {{ porcentaje_mostrar }}
+                {% endif %}
+            </dd>
+        </dl>
+    </main>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de asistencia</title>
+</head>
+<body>
+    <main>
+        <h1>Detalle de asistencia</h1>
+
+        <nav>
+            <a href="{% url 'asistencia:listar_asistencias' %}">Volver a asistencias</a>
+            <a href="{% url 'asistencia:editar_asistencia' asistencia.id %}">Editar</a>
+            <a href="{% url 'asistencia:registrar_asistencia' %}">Registrar asistencia</a>
+            <a href="{% url 'asistencia:porcentaje_asistencia_matricula' asistencia.matricula.id %}">Ver porcentaje</a>
+        </nav>
+
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <dl>
+            <dt>Estudiante</dt>
+            <dd>{{ asistencia.matricula.estudiante }}</dd>
+
+            <dt>Materia</dt>
+            <dd>{{ asistencia.matricula.materia }}</dd>
+
+            <dt>Periodo academico</dt>
+            <dd>{{ asistencia.matricula.periodo }}</dd>
+
+            <dt>Fecha</dt>
+            <dd>{{ asistencia.fecha|date:"d/m/Y" }}</dd>
+
+            <dt>Estado</dt>
+            <dd>{{ asistencia.get_estado_display }}</dd>
+
+            <dt>Observacion</dt>
+            <dd>{{ asistencia.observacion|default:"Sin observacion" }}</dd>
+
+            <dt>Fecha de registro</dt>
+            <dd>{{ asistencia.fecha_registro|date:"d/m/Y H:i" }}</dd>
+        </dl>
+    </main>
+</body>
+</html>
