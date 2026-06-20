@@ -419,3 +419,60 @@ Se verifico que la vista `reporte_estudiante` ya existia en `reportes/views.py` 
 - Se agrego boton "Reporte" en `estudiantes/lista.html` dentro de la columna de acciones.
 - Se agrego boton "Ver reporte" en `estudiantes/detalle.html` en la barra de navegacion.
 - Se mantuvo sin cambios la logica interna de `estudiantes/views.py`, `notas` y `asistencia`.
+
+## Subfase 2.7
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 2.7 del proyecto.
+
+Estoy trabajando en el sistema Django de Control Academico.
+
+Actualmente, cuando la sesion esta cerrada y aparece la pantalla de login, en la barra superior siguen apareciendo opciones internas del sistema como:
+- Inicio
+- Estudiantes
+- Academico
+- Notas
+- Asistencia
+- Reportes
+
+Eso esta mal, porque si el usuario no ha iniciado sesion, no deberia ver las opciones internas del sistema.
+
+Yo soy el Integrante 2 y mi tarea es corregir la navegacion segun el estado de sesion.
+
+Requisitos:
+- Trabajar principalmente en templates/base.html.
+- Usar user.is_authenticated para controlar el menu.
+- Si el usuario esta autenticado, mostrar:
+  - Inicio
+  - Estudiantes
+  - Academico
+  - Notas
+  - Asistencia
+  - Reportes
+  - nombre del usuario
+  - boton Cerrar sesion
+- Si el usuario NO esta autenticado, mostrar solamente:
+  - titulo Control Academico
+  - subtitulo Gestion academica
+  - boton Iniciar sesion
+- En la pantalla de login no deben aparecer Estudiantes, Academico, Notas, Asistencia ni Reportes.
+- No modificar la logica interna de estudiantes, academico, notas, asistencia ni reportes.
+- No cambiar rutas existentes.
+- Mantener el diseno actual del CSS.
+- Verificar que despues de cerrar sesion el menu se oculte correctamente.
+```
+
+### Resumen de lo generado
+
+Se corrigio la barra de navegacion en `templates/base.html` para que el menu principal (Inicio, Estudiantes, Academico, Notas, Asistencia, Reportes) solo se muestre cuando el usuario ha iniciado sesion. Cuando no hay sesion activa, la barra superior muestra unicamente el titulo "Control Academico", el subtitulo "Gestion academica" y el boton "Iniciar sesion". Al autenticarse, aparece el menu completo con el nombre del usuario y el boton "Cerrar sesion". Al cerrar sesion, el menu vuelve a ocultarse correctamente.
+
+### Cambios realizados
+
+- Se modifico `templates/base.html`.
+- Se envolvio el bloque `<nav class="navegacion-principal">` y el `<div class="acciones-sesion">` con `{% if user.is_authenticated %}`.
+- En el bloque autenticado se muestra: menu de navegacion + nombre de usuario + boton Cerrar sesion.
+- En el bloque `{% else %}` se muestra unicamente el boton "Iniciar sesion".
+- El titulo "Control Academico" y subtitulo "Gestion academica" permanecen visibles en ambos estados.
+- No se modifico CSS, rutas ni logica interna de ningun modulo.

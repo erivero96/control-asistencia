@@ -16,25 +16,27 @@
                     <span class="marca-titulo">Control Académico</span>
                     <span class="marca-subtitulo">Gestión académica</span>
                 </a>
-                <nav class="navegacion-principal" aria-label="Navegación principal">
-                    <a href="{% url 'home' %}">Inicio</a>
-                    <a href="{% url 'estudiantes:listar_estudiantes' %}">Estudiantes</a>
-                    <a href="{% url 'academico:listar_materias' %}">Académico</a>
-                    <a href="{% url 'notas:listar_notas' %}">Notas</a>
-                    <a href="{% url 'asistencia:listar_asistencias' %}">Asistencia</a>
-                    <a href="{% url 'reportes:panel_reportes' %}">Reportes</a>
-                </nav>
-                <div class="acciones-sesion">
-                    {% if user.is_authenticated %}
+                {% if user.is_authenticated %}
+                    <nav class="navegacion-principal" aria-label="Navegación principal">
+                        <a href="{% url 'home' %}">Inicio</a>
+                        <a href="{% url 'estudiantes:listar_estudiantes' %}">Estudiantes</a>
+                        <a href="{% url 'academico:listar_materias' %}">Académico</a>
+                        <a href="{% url 'notas:listar_notas' %}">Notas</a>
+                        <a href="{% url 'asistencia:listar_asistencias' %}">Asistencia</a>
+                        <a href="{% url 'reportes:panel_reportes' %}">Reportes</a>
+                    </nav>
+                    <div class="acciones-sesion">
                         <span class="usuario-autenticado">{{ user.get_username }}</span>
                         <form class="form-cerrar-sesion" method="post" action="{% url 'logout' %}">
                             {% csrf_token %}
                             <button class="boton boton-secundario" type="submit">Cerrar sesión</button>
                         </form>
-                    {% else %}
+                    </div>
+                {% else %}
+                    <div class="acciones-sesion">
                         <a class="boton boton-secundario" href="{% url 'login' %}">Iniciar sesión</a>
-                    {% endif %}
-                </div>
+                    </div>
+                {% endif %}
             </div>
         </header>
 
