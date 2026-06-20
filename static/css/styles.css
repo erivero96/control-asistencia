@@ -480,6 +480,124 @@ article {
     text-align: center;
 }
 
+/* Autenticación */
+.acciones-sesion {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+}
+
+.usuario-autenticado {
+    max-width: 150px;
+    overflow: hidden;
+    color: #ffffff;
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.form-cerrar-sesion {
+    width: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.encabezado .boton-secundario {
+    border-color: rgba(255, 255, 255, 0.6);
+    background: transparent;
+    color: #ffffff;
+}
+
+.encabezado .boton-secundario:hover {
+    border-color: #ffffff;
+    background: rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+}
+
+.pagina-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: min(560px, calc(100vh - 220px));
+    padding: 1.5rem 0;
+}
+
+.tarjeta-login {
+    width: min(100%, 460px);
+    padding: clamp(1.5rem, 5vw, 2.5rem);
+}
+
+.encabezado-login {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.encabezado-login h1,
+.tarjeta-sesion-cerrada h1 {
+    margin: 0.2rem 0 0.6rem;
+}
+
+.etiqueta-login {
+    margin: 0;
+    color: var(--acento);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.formulario-login {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.campo-login {
+    margin-bottom: 1.1rem;
+}
+
+.campo-login input {
+    min-height: 2.7rem;
+}
+
+.alerta-login {
+    margin-bottom: 1rem;
+    padding: 0.75rem 0.9rem;
+    border-left: 4px solid var(--peligro);
+    border-radius: 4px;
+    background: #fff0f0;
+    color: #812b2b;
+}
+
+.alerta-login p,
+.error-campo {
+    margin: 0;
+    color: inherit;
+}
+
+.error-campo {
+    margin-top: 0.35rem;
+    color: var(--peligro);
+    font-size: 0.9rem;
+}
+
+.boton-ingresar {
+    width: 100%;
+    margin-top: 0.35rem;
+}
+
+.tarjeta-sesion-cerrada {
+    text-align: center;
+}
+
 
 /* Refinamiento visual de formularios, tablas y acciones (Subfase 1.8) */
 .formulario {
@@ -629,6 +747,10 @@ article {
         justify-content: flex-start;
     }
 
+    .acciones-sesion {
+        width: 100%;
+    }
+
     table,
     .tabla-datos {
         display: block;
@@ -656,6 +778,25 @@ article {
     .navegacion-principal a {
         padding: 0.36rem 0.45rem;
         font-size: 0.84rem;
+    }
+
+    .acciones-sesion {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .usuario-autenticado {
+        max-width: none;
+    }
+
+    .acciones-sesion .boton,
+    .form-cerrar-sesion {
+        width: 100%;
+    }
+
+    .pagina-login {
+        min-height: auto;
+        padding: 0.5rem 0;
     }
 
     form,

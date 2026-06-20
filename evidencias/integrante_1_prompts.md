@@ -378,3 +378,33 @@ Se refinó la interfaz de captura y consulta de datos con formularios más claro
 - Se reforzaron la legibilidad de tablas, acciones por fila y mensajes de éxito, error, advertencia e información.
 - Se ajustaron formularios, botones y tablas para pantallas pequeñas mediante reglas responsive.
 - No se modificaron vistas, rutas, formularios de Django ni lógica de negocio.
+
+## Subfase 1.9
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 1.9 del proyecto.
+
+Necesito implementar login y logout en el sistema Django usando el sistema de autenticación propio de Django.
+
+Requisitos:
+- Usar django.contrib.auth.
+- Crear templates registration/login.html y registration/logged_out.html si es necesario.
+- Configurar rutas de login y logout, LOGIN_URL, LOGIN_REDIRECT_URL y LOGOUT_REDIRECT_URL.
+- Mostrar el usuario autenticado y los controles de iniciar o cerrar sesión en base.html.
+- Mantener el CSS global y no crear roles complejos.
+```
+
+### Resumen de lo generado
+
+Se incorporó autenticación básica mediante las vistas estándar de `django.contrib.auth`. El sistema muestra el estado de sesión en la cabecera y mantiene la misma interfaz visual en las pantallas de acceso y cierre de sesión.
+
+### Cambios realizados
+
+- Se configuraron las rutas `cuentas/login/` y `cuentas/logout/` con `LoginView` y `LogoutView` de Django.
+- Se agregaron `LOGIN_URL`, `LOGIN_REDIRECT_URL` y `LOGOUT_REDIRECT_URL` en `config/settings.py`.
+- Se crearon las plantillas `registration/login.html` y `registration/logged_out.html` usando `base.html` y el CSS global.
+- Se añadieron controles de iniciar sesión, nombre de usuario y cierre de sesión por POST en la cabecera.
+- Se añadieron estilos de autenticación y diseño adaptable en `static/css/styles.css`.
+- No se crearon roles, modelos nuevos ni lógica de autorización compleja.

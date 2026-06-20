@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Sesión cerrada | Control Académico{% endblock %}
+
+{% block content %}
+    <section class="pagina-login" aria-labelledby="titulo-sesion-cerrada">
+        <div class="tarjeta tarjeta-login tarjeta-sesion-cerrada">
+            <p class="etiqueta-login">Control Académico</p>
+            <h1 id="titulo-sesion-cerrada">Sesión cerrada</h1>
+            <p>Ha cerrado sesión correctamente.</p>
+            <a class="boton boton-primario" href="{% url 'login' %}">Iniciar sesión nuevamente</a>
+        </div>
+    </section>
+{% endblock %}
