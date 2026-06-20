@@ -1,5 +1,7 @@
 from django import forms
 
+from estudiantes.models import Estudiante
+
 from .models import Materia, Matricula, PeriodoAcademico
 
 
@@ -37,6 +39,12 @@ class MateriaForm(forms.ModelForm):
         widgets = {
             'descripcion': forms.Textarea(attrs={'rows': 3}),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        if not self.instance.pk:
+            self.fields.pop('estado')
 
     def clean_nombre(self):
         nombre = (self.cleaned_data.get('nombre') or '').strip()
@@ -102,6 +110,12 @@ class PeriodoAcademicoForm(forms.ModelForm):
             'fecha_fin': forms.DateInput(attrs={'type': 'date'}),
         }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        if not self.instance.pk:
+            self.fields.pop('estado')
+
     def clean(self):
         cleaned_data = super().clean()
         fecha_inicio = cleaned_data.get('fecha_inicio')
@@ -150,11 +164,32 @@ class MatriculaForm(forms.ModelForm):
             },
         }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['estudiante'].queryset = Estudiante.objects.filter(
+            estado=Estudiante.ESTADO_ACTIVO,
+        ).order_by('apellidos', 'nombres')
+        self.fields['materia'].queryset = Materia.objects.filter(
+            estado=Materia.ESTADO_ACTIVO,
+        ).order_by('nombre')
+        self.fields['periodo'].queryset = PeriodoAcademico.objects.filter(
+            estado=PeriodoAcademico.ESTADO_ACTIVO,
+        ).order_by('-fecha_inicio', 'nombre')
+
+        if not self.instance.pk:
+            self.fields.pop('estado')
+
     def clean_estudiante(self):
         estudiante = self.cleaned_data.get('estudiante')
 
         if not estudiante:
             raise forms.ValidationError('Seleccione un estudiante.')
+
+        if estudiante.estado != Estudiante.ESTADO_ACTIVO:
+            raise forms.ValidationError(
+                'Solo se pueden matricular estudiantes activos.'
+            )
 
         return estudiante
 
@@ -164,6 +199,11 @@ class MatriculaForm(forms.ModelForm):
         if not materia:
             raise forms.ValidationError('Seleccione una materia.')
 
+        if materia.estado != Materia.ESTADO_ACTIVO:
+            raise forms.ValidationError(
+                'Solo se pueden matricular materias activas.'
+            )
+
         return materia
 
     def clean_periodo(self):
@@ -171,6 +211,11 @@ class MatriculaForm(forms.ModelForm):
 
         if not periodo:
             raise forms.ValidationError('Seleccione un periodo academico.')
+
+        if periodo.estado != PeriodoAcademico.ESTADO_ACTIVO:
+            raise forms.ValidationError(
+                'Solo se pueden registrar matriculas en periodos activos.'
+            )
 
         return periodo
 
@@ -197,3 +242,15 @@ class MatriculaForm(forms.ModelForm):
                 )
 
         return cleaned_data
+
+    def save(self, commit=True):
+        matricula = super().save(commit=False)
+
+        if not matricula.pk:
+            matricula.estado = Matricula.ESTADO_MATRICULADO
+
+        if commit:
+            matricula.save()
+            self.save_m2m()
+
+        return matricula
