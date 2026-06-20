@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
@@ -14,12 +15,26 @@ def index(request):
 
 @login_required
 def listar_estudiantes(request):
-    estudiantes = Estudiante.objects.all().order_by('apellidos', 'nombres')
+    consulta = request.GET.get('q', '').strip()
+    estudiantes = Estudiante.objects.all()
+
+    if consulta:
+        estudiantes = estudiantes.filter(
+            Q(codigo__icontains=consulta)
+            | Q(nombres__icontains=consulta)
+            | Q(apellidos__icontains=consulta)
+            | Q(dni__icontains=consulta)
+        )
+
+    estudiantes = estudiantes.order_by('apellidos', 'nombres')
 
     return render(
         request,
         'estudiantes/lista.html',
-        {'estudiantes': estudiantes},
+        {
+            'estudiantes': estudiantes,
+            'consulta': consulta,
+        },
     )
 
 

@@ -8,7 +8,9 @@
 
         <nav>
             <a class="boton boton-secundario" href="{% url 'academico:listar_matriculas' %}">Volver a matriculas</a>
-            <a class="boton boton-peligro" href="{% url 'academico:retirar_matricula' matricula.id %}">Retirar</a>
+            {% if matricula.estado != 'retirado' %}
+                <a class="boton boton-peligro" href="{% url 'academico:retirar_matricula' matricula.id %}">Retirar</a>
+            {% endif %}
         </nav>
 
 

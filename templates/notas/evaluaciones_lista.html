@@ -8,7 +8,7 @@
 
         <nav>
             <a class="boton boton-secundario" href="{% url 'home' %}">Inicio</a>
-            <a href="{% url 'notas:listar_notas' %}">Notas</a>
+            <a class="boton boton-secundario" href="{% url 'notas:listar_notas' %}">Notas</a>
             <a class="boton boton-primario" href="{% url 'notas:crear_evaluacion' %}">Registrar evaluacion</a>
         </nav>
 
@@ -34,12 +34,17 @@
                         <td>{{ evaluacion.get_estado_display }}</td>
                         <td>
                             <a class="boton boton-editar" href="{% url 'notas:editar_evaluacion' evaluacion.id %}">Editar</a>
-                            <a class="boton boton-peligro" href="{% url 'notas:desactivar_evaluacion' evaluacion.id %}">Desactivar</a>
+                            {% if evaluacion.estado != 'inactivo' %}
+                                <a class="boton boton-peligro" href="{% url 'notas:desactivar_evaluacion' evaluacion.id %}">Desactivar</a>
+                            {% endif %}
                         </td>
                     </tr>
                 {% empty %}
                     <tr>
-                        <td colspan="6">No hay evaluaciones registradas.</td>
+                        <td colspan="6">
+                            <p>Aún no hay evaluaciones registradas.</p>
+                            <a class="boton boton-primario" href="{% url 'notas:crear_evaluacion' %}">Registrar evaluacion</a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

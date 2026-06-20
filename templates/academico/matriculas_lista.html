@@ -9,8 +9,8 @@
         <nav>
             <a class="boton boton-secundario" href="{% url 'home' %}">Inicio</a>
             <a class="boton boton-primario" href="{% url 'academico:crear_matricula' %}">Registrar matricula</a>
-            <a href="{% url 'academico:listar_materias' %}">Materias</a>
-            <a href="{% url 'academico:listar_periodos' %}">Periodos</a>
+            <a class="boton boton-secundario" href="{% url 'academico:listar_materias' %}">Materias</a>
+            <a class="boton boton-secundario" href="{% url 'academico:listar_periodos' %}">Periodos</a>
         </nav>
 
 
@@ -35,13 +35,18 @@
                         <td>{{ matricula.fecha_matricula|date:"d/m/Y H:i" }}</td>
                         <td>
                             <a class="boton boton-secundario" href="{% url 'academico:detalle_matricula' matricula.id %}">Ver</a>
-                            <a class="boton boton-peligro" href="{% url 'academico:retirar_matricula' matricula.id %}">Retirar</a>
+                            {% if matricula.estado != 'retirado' %}
+                                <a class="boton boton-peligro" href="{% url 'academico:retirar_matricula' matricula.id %}">Retirar</a>
+                            {% endif %}
                             <a class="boton" href="{% url 'reportes:reporte_materia' matricula.materia.id matricula.periodo.id %}">Reporte</a>
                         </td>
                     </tr>
                 {% empty %}
                     <tr>
-                        <td colspan="6">No hay matriculas registradas.</td>
+                        <td colspan="6">
+                            <p>Aún no hay matriculas registradas.</p>
+                            <a class="boton boton-primario" href="{% url 'academico:crear_matricula' %}">Crear matrícula</a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

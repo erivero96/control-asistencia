@@ -40,7 +40,10 @@
                     </tr>
                 {% empty %}
                     <tr>
-                        <td colspan="6">No hay asistencias registradas.</td>
+                        <td colspan="6">
+                            <p>Aún no hay asistencias registradas.</p>
+                            <a class="boton boton-primario" href="{% url 'asistencia:registrar_asistencia' %}">Registrar asistencia</a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

@@ -11,6 +11,22 @@
             <a class="boton boton-primario" href="{% url 'estudiantes:crear_estudiante' %}">Registrar estudiante</a>
         </nav>
 
+        <form class="formulario" method="get">
+            <div>
+                <label for="id_q">Buscar estudiantes</label>
+                <input
+                    id="id_q"
+                    name="q"
+                    type="search"
+                    value="{{ consulta }}"
+                    placeholder="Código, nombres, apellidos o DNI"
+                >
+            </div>
+            <button class="boton boton-primario" type="submit">Buscar</button>
+            {% if consulta %}
+                <a class="boton boton-secundario" href="{% url 'estudiantes:listar_estudiantes' %}">Limpiar búsqueda</a>
+            {% endif %}
+        </form>
 
         <table class="tabla-datos" border="1">
             <thead>
@@ -36,13 +52,23 @@
                         <td>
                             <a class="boton boton-secundario" href="{% url 'estudiantes:detalle_estudiante' estudiante.id %}">Ver</a>
                             <a class="boton boton-editar" href="{% url 'estudiantes:editar_estudiante' estudiante.id %}">Editar</a>
-                            <a class="boton boton-peligro" href="{% url 'estudiantes:desactivar_estudiante' estudiante.id %}">Desactivar</a>
+                            {% if estudiante.estado != 'inactivo' %}
+                                <a class="boton boton-peligro" href="{% url 'estudiantes:desactivar_estudiante' estudiante.id %}">Desactivar</a>
+                            {% endif %}
                             <a class="boton" href="{% url 'reportes:reporte_estudiante' estudiante.id %}">Reporte</a>
                         </td>
                     </tr>
                 {% empty %}
                     <tr>
-                        <td colspan="7">No hay estudiantes registrados.</td>
+                        <td colspan="7">
+                            {% if consulta %}
+                                <p>No se encontraron estudiantes para la búsqueda realizada.</p>
+                                <a class="boton boton-secundario" href="{% url 'estudiantes:listar_estudiantes' %}">Limpiar búsqueda</a>
+                            {% else %}
+                                <p>Aún no hay estudiantes registrados.</p>
+                                <a class="boton boton-primario" href="{% url 'estudiantes:crear_estudiante' %}">Registrar estudiante</a>
+                            {% endif %}
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

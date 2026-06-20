@@ -9,8 +9,8 @@
         <nav>
             <a class="boton boton-secundario" href="{% url 'home' %}">Inicio</a>
             <a class="boton boton-primario" href="{% url 'academico:crear_periodo' %}">Registrar periodo</a>
-            <a href="{% url 'academico:listar_materias' %}">Materias</a>
-            <a href="{% url 'academico:listar_matriculas' %}">Matriculas</a>
+            <a class="boton boton-secundario" href="{% url 'academico:listar_materias' %}">Materias</a>
+            <a class="boton boton-secundario" href="{% url 'academico:listar_matriculas' %}">Matriculas</a>
         </nav>
 
 
@@ -38,7 +38,10 @@
                     </tr>
                 {% empty %}
                     <tr>
-                        <td colspan="5">No hay periodos academicos registrados.</td>
+                        <td colspan="5">
+                            <p>Aún no hay periodos académicos registrados.</p>
+                            <a class="boton boton-primario" href="{% url 'academico:crear_periodo' %}">Registrar periodo</a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

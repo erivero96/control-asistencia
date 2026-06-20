@@ -9,8 +9,8 @@
         <nav>
             <a class="boton boton-secundario" href="{% url 'home' %}">Inicio</a>
             <a class="boton boton-primario" href="{% url 'academico:crear_materia' %}">Registrar materia</a>
-            <a href="{% url 'academico:listar_periodos' %}">Periodos</a>
-            <a href="{% url 'academico:listar_matriculas' %}">Matriculas</a>
+            <a class="boton boton-secundario" href="{% url 'academico:listar_periodos' %}">Periodos</a>
+            <a class="boton boton-secundario" href="{% url 'academico:listar_matriculas' %}">Matriculas</a>
         </nav>
 
 
@@ -33,12 +33,17 @@
                         <td>{{ materia.get_estado_display }}</td>
                         <td>
                             <a class="boton boton-editar" href="{% url 'academico:editar_materia' materia.id %}">Editar</a>
-                            <a class="boton boton-peligro" href="{% url 'academico:desactivar_materia' materia.id %}">Desactivar</a>
+                            {% if materia.estado != 'inactivo' %}
+                                <a class="boton boton-peligro" href="{% url 'academico:desactivar_materia' materia.id %}">Desactivar</a>
+                            {% endif %}
                         </td>
                     </tr>
                 {% empty %}
                     <tr>
-                        <td colspan="5">No hay materias registradas.</td>
+                        <td colspan="5">
+                            <p>Aún no hay materias registradas.</p>
+                            <a class="boton boton-primario" href="{% url 'academico:crear_materia' %}">Registrar materia</a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

@@ -9,7 +9,9 @@
         <nav>
             <a class="boton boton-secundario" href="{% url 'estudiantes:listar_estudiantes' %}">Volver a estudiantes</a>
             <a class="boton boton-editar" href="{% url 'estudiantes:editar_estudiante' estudiante.id %}">Editar</a>
-            <a class="boton boton-peligro" href="{% url 'estudiantes:desactivar_estudiante' estudiante.id %}">Desactivar</a>
+            {% if estudiante.estado != 'inactivo' %}
+                <a class="boton boton-peligro" href="{% url 'estudiantes:desactivar_estudiante' estudiante.id %}">Desactivar</a>
+            {% endif %}
             <a class="boton" href="{% url 'reportes:reporte_estudiante' estudiante.id %}">Ver reporte</a>
         </nav>
 
