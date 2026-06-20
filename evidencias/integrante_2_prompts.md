@@ -578,3 +578,66 @@ Se creo la funcion reutilizable `generar_codigo` en `core/utils/codigos.py`. La 
 - Se agregaron errores descriptivos para parametros invalidos, campos inexistentes, codigos con formato incorrecto y numeraciones agotadas.
 - Se agregaron pruebas unitarias en `core/test_codigos.py`.
 - No se modificaron modelos, vistas, formularios, rutas ni templates.
+
+## Subfase 2.10
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 2.10 del proyecto.
+
+Necesito aplicar la generacion automatica de codigo al modelo Estudiante.
+
+Requisitos:
+- Trabajar en la app estudiantes.
+- Revisar el modelo Estudiante.
+- El campo codigo ya no debe ser llenado manualmente por el usuario.
+- El codigo debe generarse automaticamente al crear un estudiante nuevo.
+- Usar el generador creado en la subfase 2.9.
+- El formato debe ser:
+  EST-0001
+  EST-0002
+  EST-0003
+- El campo codigo debe seguir siendo unico.
+- El campo codigo puede ser editable=False o excluirse del formulario.
+- Actualizar EstudianteForm para que no pida el codigo manualmente.
+- Actualizar templates de estudiantes si mostraban el campo codigo en el formulario.
+- La lista y el detalle si deben seguir mostrando el codigo del estudiante.
+- Crear migracion si es necesario.
+- No modificar otros modulos.
+
+Quiero que me indiques:
+1. Archivos modificados.
+2. Codigo actualizado de models.py.
+3. Codigo actualizado de forms.py.
+4. Templates modificados si corresponde.
+5. Comandos de migracion si aplica.
+6. Como probar creando un estudiante nuevo.
+7. Mensaje de commit recomendado.
+8. Breve explicacion para defensa.
+
+Tambien actualiza:
+evidencias/integrante_2_prompts.md
+
+Agrega:
+- Subfase 2.10
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se aplico la generacion automatica de codigos al modelo `Estudiante`. Al guardar un estudiante nuevo sin codigo, el modelo utiliza `generar_codigo` con el prefijo `EST` y cuatro digitos. El campo conserva su restriccion de unicidad, dejo de ser editable y fue retirado de `EstudianteForm`.
+
+### Cambios realizados
+
+- Se actualizo `estudiantes/models.py` para importar y utilizar `generar_codigo`.
+- Se configuro `codigo` con `unique=True` y `editable=False`.
+- Se sobrescribio `save()` para asignar el codigo solo cuando el estudiante aun no tiene uno.
+- Se retiro `codigo`, su etiqueta, sus mensajes y su validacion de `EstudianteForm`.
+- Se conservaron sin cambios la lista, el detalle y la confirmacion, donde el codigo sigue visible.
+- No fue necesario modificar `templates/estudiantes/formulario.html`, porque recorre automaticamente los campos del formulario.
+- Se creo una migracion para reflejar `editable=False` en el estado del modelo.
+- Se agregaron pruebas para la generacion inicial, la conservacion del codigo al editar y la ausencia del campo en el formulario.
+- No se modificaron otros modulos.

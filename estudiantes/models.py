@@ -1,5 +1,7 @@
 from django.db import models
 
+from core.utils.codigos import generar_codigo
+
 
 class Estudiante(models.Model):
     ESTADO_ACTIVO = 'activo'
@@ -10,7 +12,7 @@ class Estudiante(models.Model):
         (ESTADO_INACTIVO, 'Inactivo'),
     ]
 
-    codigo = models.CharField(max_length=20, unique=True)
+    codigo = models.CharField(max_length=20, unique=True, editable=False)
     nombres = models.CharField(max_length=100)
     apellidos = models.CharField(max_length=100)
     dni = models.CharField(max_length=8, unique=True)
@@ -28,6 +30,17 @@ class Estudiante(models.Model):
         ordering = ['apellidos', 'nombres']
         verbose_name = 'estudiante'
         verbose_name_plural = 'estudiantes'
+
+    def save(self, *args, **kwargs):
+        if not self.codigo:
+            self.codigo = generar_codigo(
+                modelo=type(self),
+                nombre_campo='codigo',
+                prefijo='EST',
+                cantidad_digitos=4,
+            )
+
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f'{self.codigo} - {self.nombres} {self.apellidos}'

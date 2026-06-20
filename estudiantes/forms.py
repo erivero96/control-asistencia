@@ -7,7 +7,6 @@ class EstudianteForm(forms.ModelForm):
     class Meta:
         model = Estudiante
         fields = [
-            'codigo',
             'nombres',
             'apellidos',
             'dni',
@@ -17,7 +16,6 @@ class EstudianteForm(forms.ModelForm):
             'estado',
         ]
         labels = {
-            'codigo': 'Codigo',
             'nombres': 'Nombres',
             'apellidos': 'Apellidos',
             'dni': 'DNI',
@@ -27,10 +25,6 @@ class EstudianteForm(forms.ModelForm):
             'estado': 'Estado',
         }
         error_messages = {
-            'codigo': {
-                'required': 'El codigo del estudiante es obligatorio.',
-                'unique': 'Ya existe un estudiante registrado con este codigo.',
-            },
             'nombres': {
                 'required': 'Los nombres del estudiante son obligatorios.',
             },
@@ -60,16 +54,6 @@ class EstudianteForm(forms.ModelForm):
         widgets = {
             'direccion': forms.Textarea(attrs={'rows': 3}),
         }
-
-    def clean_codigo(self):
-        codigo = (self.cleaned_data.get('codigo') or '').strip()
-
-        if not codigo:
-            raise forms.ValidationError(
-                'El codigo del estudiante es obligatorio.'
-            )
-
-        return codigo
 
     def clean_dni(self):
         dni = (self.cleaned_data.get('dni') or '').strip()
