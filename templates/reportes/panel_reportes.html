@@ -3,36 +3,45 @@
 {% block title %}Panel de reportes | Control Académico{% endblock %}
 
 {% block content %}
-    <section class="page-section">
-        <h1>Panel de reportes</h1>
-        <p>Seleccione el tipo de reporte que desea consultar.</p>
+    <section class="page-section panel-reportes">
+        <div class="encabezado-panel-reportes">
+            <p class="etiqueta-panel-reportes">Consulta académica</p>
+            <h1>Panel de reportes</h1>
+            <p>Seleccione el tipo de reporte que desea consultar.</p>
+        </div>
 
-        <nav aria-label="Opciones de reportes">
-            <ul>
-                <li>
-                    <strong>Reporte por estudiante</strong>
-                    <p>Consulta la información académica de un estudiante.</p>
-                </li>
-                <li>
-                    <strong>Reporte por materia</strong>
-                    <p>Consulta el rendimiento y la asistencia por materia.</p>
-                </li>
-                <li>
-                    <strong>Reporte por periodo académico</strong>
-                    <p>Consulta la información registrada en un periodo.</p>
-                </li>
-                <li>
-                    <strong>Resumen de notas</strong>
-                    <p>Consulta los resultados generales de las evaluaciones.</p>
-                </li>
-                <li>
-                    <strong>Resumen de asistencia</strong>
-                    <p>Consulta los resultados generales de asistencia.</p>
-                </li>
-            </ul>
-        </nav>
+        <div class="panel-reportes-tarjetas" aria-label="Opciones de reportes">
+            <article class="tarjeta-reporte">
+                <h2>Reporte por estudiante</h2>
+                <p>Consulte el rendimiento académico y la asistencia de un estudiante.</p>
+                <a class="boton" href="{% url 'estudiantes:listar_estudiantes' %}">Ingresar</a>
+            </article>
 
-        <p>Los reportes detallados se habilitarán en las siguientes subfases.</p>
-        <a class="boton boton-secundario" href="/">Volver al inicio</a>
+            <article class="tarjeta-reporte">
+                <h2>Reporte por materia</h2>
+                <p>Revise el desempeño y la asistencia registrados por materia.</p>
+                <a class="boton" href="{% url 'academico:listar_materias' %}">Ingresar</a>
+            </article>
+
+            <article class="tarjeta-reporte">
+                <h2>Reporte por periodo académico</h2>
+                <p>Visualice los indicadores académicos de un periodo seleccionado.</p>
+                <a class="boton" href="{% url 'academico:listar_periodos' %}">Ingresar</a>
+            </article>
+
+            <article class="tarjeta-reporte">
+                <h2>Resumen de notas</h2>
+                <p>Consulte las notas y los resultados registrados en las evaluaciones.</p>
+                <a class="boton" href="{% url 'notas:listar_notas' %}">Ingresar</a>
+            </article>
+
+            <article class="tarjeta-reporte">
+                <h2>Resumen de asistencia</h2>
+                <p>Revise los registros de asistencia y sus estados por estudiante.</p>
+                <a class="boton" href="{% url 'asistencia:listar_asistencias' %}">Ingresar</a>
+            </article>
+        </div>
+
+        <a class="boton boton-secundario" href="{% url 'home' %}">Volver al inicio</a>
     </section>
 {% endblock %}

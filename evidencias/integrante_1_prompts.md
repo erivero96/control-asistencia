@@ -435,3 +435,30 @@ Se refinó la presentación de la pantalla de acceso con una tarjeta centrada, j
 - Se reforzó la tarjeta de login en `styles.css` con borde superior, sombra sobria, espaciado y campos visualmente ordenados.
 - Se ajustó la tarjeta para pantallas pequeñas sin alterar el comportamiento del formulario.
 - No se modificaron rutas, vistas, credenciales ni lógica de autenticación.
+
+## Tarea extra: diseño del panel de reportes
+
+### Prompt usado
+
+```text
+Necesito mejorar visualmente el panel de reportes, porque actualmente el panel se ve muy simple y solo muestra texto en lista.
+
+Requisitos:
+- Trabajar principalmente en templates/reportes/panel_reportes.html.
+- Usar el CSS global existente.
+- Convertir las opciones de reportes en tarjetas visuales.
+- Cada tarjeta debe tener título, descripción corta y botón para ingresar.
+- Incluir: Reporte por estudiante, Reporte por materia, Reporte por periodo académico, Resumen de notas y Resumen de asistencia.
+- No modificar la lógica de los reportes ni cambiar rutas existentes.
+- Mantener diseño simple, limpio y académico.
+```
+
+### Resumen de lo generado
+
+Se rediseñó el panel de reportes como una cuadrícula de tarjetas académicas. Cada opción muestra un título, una descripción breve y un botón para acceder a la pantalla de consulta relacionada, reutilizando únicamente rutas existentes.
+
+### Cambios realizados
+
+- Se actualizó `templates/reportes/panel_reportes.html` con cinco tarjetas de reportes y botones de acceso.
+- Se agregaron estilos específicos y adaptables para el panel en `static/css/styles.css`.
+- Se mantuvieron las vistas, rutas y lógica de reportes sin modificaciones.
