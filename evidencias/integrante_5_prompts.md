@@ -588,3 +588,30 @@ Se verificó la configuración de middleware de sesión y autenticación de Djan
 - Se crearon extensiones mínimas de `LoginView` y `LogoutView` para mostrar mensajes de sesión sin cambiar las rutas existentes.
 - Se confirmó que `base.html` ya muestra el nombre del usuario autenticado y los mensajes del sistema.
 - Se agregaron pruebas para middleware, duración de sesión, bienvenida, cierre de sesión y bloqueo de inicio después del logout.
+
+## Subfase 5.11 - Pruebas de autenticación y sesiones
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 5.11 del proyecto.
+
+Necesito probar el login, logout y protección de sesiones del sistema.
+
+Responsable principal: Integrante 5.
+
+Requisitos:
+- Crear o actualizar evidencias/integrante_5_pruebas_auth.md.
+- Probar acceso sin sesión, redirección al login, login correcto e incorrecto, acceso autenticado, cierre de sesión y bloqueo posterior.
+- Registrar caso probado, datos usados, resultado esperado, resultado obtenido y estado.
+```
+
+### Resumen de lo generado
+
+Se creó una evidencia específica para autenticación y sesiones. Las pruebas verifican que las rutas internas redirigen al login sin sesión, que las credenciales válidas crean una sesión, que las inválidas no la crean, y que el logout bloquea de nuevo las rutas internas.
+
+### Cambios realizados
+
+- Se creó `evidencias/integrante_5_pruebas_auth.md` con los siete casos de autenticación solicitados.
+- Se agregó una prueba automatizada para login incorrecto en `core/tests.py`.
+- Se documentaron datos de prueba no reales, comandos ejecutados y errores frecuentes de configuración.

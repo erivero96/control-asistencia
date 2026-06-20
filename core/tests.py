@@ -107,6 +107,19 @@ class ProteccionDeVistasTests(TestCase):
         self.assertContains(respuesta_destino, self.usuario.username)
         self.assertEqual(self.client.get(reverse('home')).status_code, 200)
 
+    def test_login_incorrecto_no_crea_una_sesion(self):
+        respuesta = self.client.post(
+            reverse('login'),
+            {
+                'username': self.usuario.username,
+                'password': 'clave-incorrecta',
+            },
+        )
+
+        self.assertEqual(respuesta.status_code, 200)
+        self.assertContains(respuesta, 'No se pudo iniciar sesión.')
+        self.assertNotIn('_auth_user_id', self.client.session)
+
     def test_logout_elimina_la_sesion_y_vuelve_al_login(self):
         self.client.force_login(self.usuario)
 
