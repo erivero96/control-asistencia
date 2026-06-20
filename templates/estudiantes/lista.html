@@ -37,6 +37,7 @@
                             <a class="boton boton-secundario" href="{% url 'estudiantes:detalle_estudiante' estudiante.id %}">Ver</a>
                             <a class="boton boton-editar" href="{% url 'estudiantes:editar_estudiante' estudiante.id %}">Editar</a>
                             <a class="boton boton-peligro" href="{% url 'estudiantes:desactivar_estudiante' estudiante.id %}">Desactivar</a>
+                            <a class="boton" href="{% url 'reportes:reporte_estudiante' estudiante.id %}">Reporte</a>
                         </td>
                     </tr>
                 {% empty %}

@@ -368,3 +368,54 @@ Se probaron las funciones principales del modulo de estudiantes: acceso al lista
 - Se probaron errores por DNI con menos y mas de 8 digitos.
 - Se creo `evidencias/integrante_2_pruebas.md`.
 - Se corrigio el mensaje de error de `dni` para el caso `max_length`, mostrando un mensaje claro cuando el DNI tiene mas de 8 digitos.
+
+## Tarea extra: reporte por estudiante
+
+### Prompt usado
+
+```text
+Estoy trabajando en el sistema Django de Control Academico.
+
+Yo soy el Integrante 2 y desarrolle el modulo de estudiantes. Ahora necesito agregar el reporte por estudiante dentro del modulo reportes.
+
+Requisitos:
+- Trabajar en la app reportes.
+- Crear una vista llamada reporte_estudiante.
+- El reporte debe permitir seleccionar o recibir un estudiante.
+- Usar los modelos existentes:
+  - Estudiante
+  - Matricula
+  - Nota
+  - Asistencia
+- El reporte debe mostrar:
+  - codigo del estudiante
+  - nombres y apellidos
+  - DNI
+  - correo
+  - materias matriculadas
+  - periodo academico
+  - notas registradas si existen
+  - asistencias registradas si existen
+- Manejar casos donde:
+  - el estudiante no tiene matriculas
+  - el estudiante no tiene notas
+  - el estudiante no tiene asistencias
+- Crear o actualizar la ruta correspondiente.
+- Crear template reportes/reporte_estudiante.html.
+- Agregar acceso desde el panel de reportes si todavia no existe.
+- No modificar la logica interna de estudiantes, notas ni asistencia.
+```
+
+### Resumen de lo generado
+
+Se verifico que la vista `reporte_estudiante` ya existia en `reportes/views.py` (construida previamente por el Integrante 1 en la estructura base de reportes), junto con la URL `estudiante/<int:estudiante_id>/` y el template `reportes/reporte_estudiante.html`. La vista consulta el modelo `Estudiante`, recorre las `Matricula` vinculadas y agrega `Nota` y `Asistencia` por cada matricula usando `calcular_promedio_ponderado_por_matricula` y `resumen_asistencia_matricula`. Se agregaron enlaces de navegacion desde `estudiantes/lista.html` y `estudiantes/detalle.html` hacia `reportes:reporte_estudiante` para permitir que el usuario acceda al reporte desde el modulo de estudiantes.
+
+### Cambios realizados
+
+- Se verifico el funcionamiento de `reportes/views.py` con la funcion `reporte_estudiante`.
+- Se verifico la ruta `reporte_estudiante` en `reportes/urls.py`.
+- Se verifico el template `reportes/reporte_estudiante.html`.
+- Se verifico el acceso desde `panel_reportes.html` hacia el listado de estudiantes.
+- Se agrego boton "Reporte" en `estudiantes/lista.html` dentro de la columna de acciones.
+- Se agrego boton "Ver reporte" en `estudiantes/detalle.html` en la barra de navegacion.
+- Se mantuvo sin cambios la logica interna de `estudiantes/views.py`, `notas` y `asistencia`.
