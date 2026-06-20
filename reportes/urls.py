@@ -22,4 +22,9 @@ urlpatterns = [
         views.reporte_periodo,
         name='reporte_periodo',
     ),
+    path(
+        'resumen-notas/',
+        views.resumen_notas,
+        name='resumen_notas',
+    ),
 ]

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}Resumen de notas | Control Académico{% endblock %}
+
+{% block content %}
+    <section class="page-section pagina-detalle">
+        <h1>Resumen de notas</h1>
+
+        <nav>
+            <a class="boton boton-secundario" href="{% url 'reportes:panel_reportes' %}">Volver a reportes</a>
+            <a class="boton boton-secundario" href="{% url 'notas:listar_notas' %}">Ver notas</a>
+        </nav>
+
+        <section class="tarjeta">
+            <h2>Indicadores generales</h2>
+            <ul>
+                <li>Total de evaluaciones: {{ total_evaluaciones }}</li>
+                <li>Total de notas registradas: {{ total_notas }}</li>
+                <li>
+                    Promedio general:
+                    {% if promedio_general is not None %}
+                        {{ promedio_general|floatformat:2 }}
+                    {% else %}
+                        No hay notas registradas.
+                    {% endif %}
+                </li>
+                <li>Aprobados: {{ aprobados }}</li>
+                <li>Desaprobados: {{ desaprobados }}</li>
+            </ul>
+        </section>
+
+        <section class="tarjeta">
+            <h2>Estudiantes con promedio</h2>
+
+            {% if estudiantes_reporte %}
+                <table class="tabla-datos" border="1">
+                    <thead>
+                        <tr>
+                            <th>Estudiante</th>
+                            <th>Promedio</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for reporte in estudiantes_reporte %}
+                            <tr>
+                                <td>{{ reporte.estudiante }}</td>
+                                <td>
+                                    {% if reporte.promedio is not None %}
+                                        {{ reporte.promedio|floatformat:2 }}
+                                    {% else %}
+                                        Pendiente
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if reporte.estado == 'aprobado' %}
+                                        Aprobado
+                                    {% elif reporte.estado == 'desaprobado' %}
+                                        Desaprobado
+                                    {% else %}
+                                        Pendiente
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No hay notas registradas para ningun estudiante.</p>
+            {% endif %}
+        </section>
+    </section>
+{% endblock %}

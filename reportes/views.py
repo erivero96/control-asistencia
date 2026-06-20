@@ -8,8 +8,9 @@ from academico.models import Materia, Matricula, PeriodoAcademico
 from asistencia.models import Asistencia
 from asistencia.utils import resumen_asistencia_matricula
 from estudiantes.models import Estudiante
-from notas.models import Nota
+from notas.models import Evaluacion, Nota
 from notas.utils import (
+    NOTA_MINIMA_APROBATORIA,
     calcular_promedio_ponderado_por_matricula,
     determinar_estado_promedio,
 )
@@ -208,5 +209,63 @@ def reporte_periodo(request, periodo_id):
             'total_matriculas': total_matriculas,
             'resumen_notas': resumen_notas,
             'resumen_asistencia': resumen_asistencia,
+        },
+    )
+
+
+@login_required
+def resumen_notas(request):
+    """Muestra un resumen general de notas y promedios por estudiante."""
+    total_evaluaciones = Evaluacion.objects.count()
+    total_notas = Nota.objects.count()
+
+    resumen_global = Nota.objects.aggregate(
+        promedio_general=Avg('calificacion'),
+    )
+
+    estudiantes_con_notas = (
+        Estudiante.objects
+        .filter(matricula__nota__isnull=False)
+        .distinct()
+        .order_by('apellidos', 'nombres')
+    )
+
+    aprobados = 0
+    desaprobados = 0
+    estudiantes_reporte = []
+
+    for estudiante in estudiantes_con_notas:
+        promedio_estudiante = Nota.objects.filter(
+            matricula__estudiante=estudiante,
+        ).aggregate(
+            promedio=Avg('calificacion'),
+        )['promedio']
+
+        if promedio_estudiante is not None:
+            if promedio_estudiante >= NOTA_MINIMA_APROBATORIA:
+                aprobados += 1
+                estado = 'aprobado'
+            else:
+                desaprobados += 1
+                estado = 'desaprobado'
+        else:
+            estado = 'pendiente'
+
+        estudiantes_reporte.append({
+            'estudiante': estudiante,
+            'promedio': promedio_estudiante,
+            'estado': estado,
+        })
+
+    return render(
+        request,
+        'reportes/resumen_notas.html',
+        {
+            'total_evaluaciones': total_evaluaciones,
+            'total_notas': total_notas,
+            'promedio_general': resumen_global['promedio_general'],
+            'aprobados': aprobados,
+            'desaprobados': desaprobados,
+            'estudiantes_reporte': estudiantes_reporte,
         },
     )

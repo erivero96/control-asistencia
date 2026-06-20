@@ -579,3 +579,50 @@ Se probaron las funcionalidades principales del modulo `notas`: servidor, evalua
 - Se probaron consultas por estudiante y por materia.
 - Se probaron calculos de promedio y estados `aprobado`, `desaprobado` y `pendiente`.
 - Se creo `evidencias/integrante_4_pruebas.md`.
+
+## Tarea extra: resumen de notas
+
+### Prompt usado
+
+```text
+Estoy trabajando en el sistema Django de Control Academico.
+
+Yo soy el Integrante 4 y desarrolle el modulo de notas. Ahora necesito agregar el resumen de notas dentro de la app reportes.
+
+Requisitos:
+- Trabajar en la app reportes.
+- Crear una vista llamada resumen_notas.
+- Usar los modelos existentes:
+  - Evaluacion
+  - Nota
+  - Matricula
+  - Materia
+  - PeriodoAcademico
+  - Estudiante
+- El resumen debe mostrar:
+  - total de evaluaciones
+  - total de notas registradas
+  - promedio general
+  - cantidad de aprobados
+  - cantidad de desaprobados
+  - listado de estudiantes con promedio si se puede calcular
+- Nota minima aprobatoria: 11.
+- Manejar el caso donde no existan notas registradas.
+- Crear template reportes/resumen_notas.html.
+- Crear o actualizar ruta.
+- Agregar enlace desde el panel de reportes si todavia no existe.
+- No modificar la logica interna del modulo notas salvo que sea estrictamente necesario.
+```
+
+### Resumen de lo generado
+
+Se creo la vista `resumen_notas` en `reportes/views.py`, la ruta `reportes/resumen-notas/` en `reportes/urls.py` y el template `reportes/resumen_notas.html`. La vista consulta el modelo `Evaluacion` para el total de evaluaciones, el modelo `Nota` para el total de notas registradas y el promedio general (`Avg` de calificacion). Para cada estudiante con al menos una nota, se calcula su promedio individual y se clasifica como aprobado (promedio >= 11) o desaprobado (promedio < 11). El template muestra indicadores generales y una tabla con el listado de estudiantes, su promedio y estado academico. Se maneja el caso sin notas con mensajes informativos. Se actualizo el enlace del panel de reportes para que la tarjeta "Resumen de notas" apunte a la nueva vista.
+
+### Cambios realizados
+
+- Se agrego la vista `resumen_notas` en `reportes/views.py`.
+- Se importo el modelo `Evaluacion` y la constante `NOTA_MINIMA_APROBATORIA` en `reportes/views.py`.
+- Se agrego la ruta `resumen-notas/` en `reportes/urls.py`.
+- Se creo el template `templates/reportes/resumen_notas.html`.
+- Se actualizo el enlace en `panel_reportes.html` de `notas:listar_notas` a `reportes:resumen_notas`.
+- No se modifico la logica interna del modulo notas.
