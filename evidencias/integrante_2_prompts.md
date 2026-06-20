@@ -776,3 +776,74 @@ Se revisaron todos los modelos de `estudiantes`, `academico`, `notas`, `asistenc
 - No se requirieron cambios en templates, porque los formularios ya iteran los campos disponibles y las vistas de lista/detalle existentes muestran los codigos de estudiante y materia.
 - No se crearon migraciones, ya que no hubo cambios de esquema en esta subfase.
 - No se modifico la logica principal de notas, asistencia ni reportes.
+
+## Subfase 2.13
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 2.13 del proyecto.
+
+Ya se completo la auditoria de codigos automaticos en la subfase 2.12.
+
+Resultado de la auditoria:
+- Estudiante genera codigo automatico con formato EST-0001.
+- Materia genera codigo automatico con formato MAT-0001.
+- PeriodoAcademico, Matricula, Evaluacion, Nota y Asistencia no manejan campo codigo, por lo que no se les agregaron codigos artificiales.
+- No se requieren migraciones nuevas.
+- Las pruebas existentes aprobaron correctamente.
+
+Ahora necesito documentar formalmente las pruebas de codigos automaticos.
+
+Requisitos:
+- Crear o actualizar el archivo:
+  evidencias/integrante_2_pruebas_codigos.md
+- Documentar pruebas para:
+  1. Creacion automatica de codigo de estudiante.
+  2. Creacion consecutiva de estudiantes: EST-0001, EST-0002.
+  3. Verificar que el formulario de estudiante no pide codigo manual.
+  4. Verificar que el codigo de estudiante se muestra en lista y detalle.
+  5. Creacion automatica de codigo de materia.
+  6. Creacion consecutiva de materias: MAT-0001, MAT-0002.
+  7. Verificar que el formulario de materia no pide codigo manual.
+  8. Verificar que el codigo de materia se muestra en lista.
+  9. Verificar que no se generan codigos duplicados.
+  10. Verificar que los demas modelos no requieren codigo automatico.
+
+El archivo debe tener esta estructura:
+- Caso probado
+- Accion realizada
+- Resultado esperado
+- Resultado obtenido
+- Estado
+
+Tambien debes actualizar:
+evidencias/integrante_2_prompts.md
+
+Agrega:
+- Subfase 2.13
+- Prompt usado
+- Resumen de pruebas documentadas
+- Cambios realizados
+
+No modifiques modelos, formularios ni templates si no encuentras errores reales.
+Solo documenta las pruebas y, si es necesario, ajusta errores menores de evidencia.
+
+Quiero que me indiques:
+1. Contenido completo de integrante_2_pruebas_codigos.md.
+2. Comandos usados para validar.
+3. Resultado de las pruebas.
+4. Mensaje de commit recomendado.
+5. Breve explicacion para defensa.
+```
+
+### Resumen de pruebas documentadas
+
+Se documentaron diez casos de prueba sobre generacion automatica, correlatividad, exclusion de formularios, visualizacion en templates, unicidad y auditoria de modelos sin codigo. La evidencia registra los resultados obtenidos para estudiantes y materias, junto con los comandos de validacion ejecutados.
+
+### Cambios realizados
+
+- Se creo `evidencias/integrante_2_pruebas_codigos.md`.
+- Se documentaron los diez casos solicitados con accion, resultado esperado, resultado obtenido y estado.
+- Se registraron los comandos de pruebas, comprobacion de Django y verificacion de migraciones.
+- No se modificaron modelos, formularios, templates ni migraciones.
