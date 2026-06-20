@@ -411,3 +411,44 @@ Se creó una guía de defensa final con la explicación general del sistema, los
 - Se incluyeron preguntas y respuestas sugeridas para los seis integrantes.
 - Se documentaron errores encontrados y sus correcciones.
 - Se agregó una sección específica sobre reportes, navegación, pruebas y evidencias del Integrante 6.
+
+## Tarea extra: integracion de reportes
+
+### Prompt usado
+
+```text
+Estoy trabajando en el sistema Django de Control Academico.
+
+Yo soy el Integrante 6. Mi tarea ahora es integrar y probar los reportes que fueron desarrollados por los demas integrantes.
+
+Requisitos:
+- Revisar el panel principal de reportes.
+- Verificar que existan enlaces funcionales a:
+  - reporte por estudiante
+  - reporte por materia
+  - reporte por periodo academico
+  - resumen de notas
+  - resumen de asistencia
+- Revisar que todas las rutas funcionen.
+- Revisar que todos los templates extiendan base.html.
+- Revisar que los reportes no fallen cuando no hay datos.
+- Revisar que los reportes no fallen cuando si hay datos.
+- Crear archivo de pruebas:
+  evidencias/integrante_6_pruebas_reportes.md
+```
+
+### Resumen de lo generado
+
+Se realizo una revision completa del modulo `reportes`. Se verificaron las 6 vistas (`panel_reportes`, `reporte_estudiante`, `reporte_materia`, `reporte_periodo`, `resumen_notas`, `resumen_asistencia`), sus 6 rutas en `reportes/urls.py`, los 6 templates y la navegacion desde `panel_reportes.html`. Todos los templates extienden `base.html` y estan protegidos con `@login_required`. Se comprobo el manejo de casos borde en cada reporte (sin matriculas, sin notas, sin asistencias) y se creo el archivo `evidencias/integrante_6_pruebas_reportes.md` con 24 casos de prueba documentados. Se detecto y corrigio una inconsistencia en el titulo de `resumen_asistencia.html` donde faltaba la tilde en "Academico".
+
+### Cambios realizados
+
+- Se revisaron los 6 templates (`panel_reportes.html`, `reporte_estudiante.html`, `reporte_materia.html`, `reporte_periodo.html`, `resumen_notas.html`, `resumen_asistencia.html`).
+- Se verifico que todos los templates extienden `base.html`.
+- Se verificaron las 6 rutas en `reportes/urls.py`.
+- Se verificaron los 5 enlaces del panel de reportes.
+- Se verifico el manejo de casos borde (sin matriculas, sin notas, sin asistencias, IDs inexistentes).
+- Se verifico la proteccion de vistas con `@login_required`.
+- Se corrigio la tilde en el titulo de `resumen_asistencia.html` ("Control Academico" -> "Control Academico").
+- Se creo `evidencias/integrante_6_pruebas_reportes.md` con 24 casos de prueba.
+- Se valido el proyecto con `python manage.py check` sin errores.
