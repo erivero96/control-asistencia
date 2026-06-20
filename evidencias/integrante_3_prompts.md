@@ -485,3 +485,66 @@ Se probaron las funcionalidades principales del modulo academico y se creo el ar
 - Se probaron registro, duplicado y retiro de matriculas.
 - Se creo `evidencias/integrante_3_pruebas.md`.
 - No se modifico codigo funcional del modulo academico.
+
+## Tarea extra: reportes por materia y periodo
+
+### Prompt usado
+
+```text
+Estoy trabajando en el sistema Django de Control Academico.
+
+Yo soy el Integrante 3 y desarrolle el modulo academico: materias, periodos y matriculas. Ahora necesito agregar reportes academicos por materia y periodo dentro de la app reportes.
+
+Requisitos:
+- Trabajar en la app reportes.
+- Crear vista reporte_materia.
+- Crear vista reporte_periodo.
+- Usar los modelos existentes:
+  - Materia
+  - PeriodoAcademico
+  - Matricula
+  - Estudiante
+  - Nota
+  - Asistencia
+
+Reporte por materia debe mostrar:
+- datos de la materia
+- estudiantes matriculados
+- periodo academico
+- cantidad total de matriculados
+- notas registradas si existen
+- asistencias registradas si existen
+
+Reporte por periodo debe mostrar:
+- nombre del periodo
+- fecha de inicio
+- fecha de fin
+- materias registradas en ese periodo
+- total de matriculas
+- estudiantes matriculados
+- resumen general de registros academicos
+
+Tambien debe:
+- Manejar materia sin matriculas.
+- Manejar periodo sin matriculas.
+- Crear templates:
+  - reportes/reporte_materia.html
+  - reportes/reporte_periodo.html
+- Crear o actualizar rutas.
+- Agregar enlaces desde el panel de reportes si todavia no existen.
+- No modificar la logica interna de academico, notas ni asistencia.
+```
+
+### Resumen de lo generado
+
+Se verifico que las vistas `reporte_materia` y `reporte_periodo` ya existian en `reportes/views.py` (construidas previamente en la estructura base de reportes), junto con sus rutas en `reportes/urls.py` y los templates `reporte_materia.html` y `reporte_periodo.html`. El panel de reportes ya contaba con tarjetas de acceso hacia los listados de materias y periodos. Se agregaron enlaces de navegacion desde `periodos_lista.html` y `matriculas_lista.html` hacia los reportes correspondientes. La vista `reporte_materia` recibe `materia_id` y `periodo_id`, obtiene las matriculas filtradas, calcula promedios y estados academicos por estudiante, y genera un resumen de asistencia agregado. La vista `reporte_periodo` recibe `periodo_id` y presenta indicadores generales: total de estudiantes, materias activas, matriculas, y resumenes agregados de notas y asistencias.
+
+### Cambios realizados
+
+- Se verifico el funcionamiento de `reportes/views.py` con `reporte_materia` y `reporte_periodo`.
+- Se verificaron las rutas en `reportes/urls.py`.
+- Se verificaron los templates `reporte_materia.html` y `reporte_periodo.html`.
+- Se verifico el acceso desde `panel_reportes.html` hacia los listados de materias y periodos.
+- Se agrego boton "Reporte" en `periodos_lista.html` dentro de la columna de acciones.
+- Se agrego boton "Reporte" en `matriculas_lista.html` dentro de la columna de acciones.
+- Se mantuvo sin cambios la logica interna de `academico/views.py`, `notas` y `asistencia`.
