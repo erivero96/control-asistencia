@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte académico por estudiante</title>
+</head>
+<body>
+    <main>
+        <h1>Reporte académico por estudiante</h1>
+
+        <nav>
+            <a href="{% url 'reportes:panel_reportes' %}">Volver a reportes</a>
+            <a href="{% url 'estudiantes:listar_estudiantes' %}">Ver estudiantes</a>
+        </nav>
+
+        <section>
+            <h2>Datos del estudiante</h2>
+            <dl>
+                <dt>Código</dt>
+                <dd>{{ estudiante.codigo }}</dd>
+
+                <dt>Nombres y apellidos</dt>
+                <dd>{{ estudiante.nombres }} {{ estudiante.apellidos }}</dd>
+
+                <dt>DNI</dt>
+                <dd>{{ estudiante.dni }}</dd>
+
+                <dt>Correo</dt>
+                <dd>{{ estudiante.correo }}</dd>
+
+                <dt>Estado</dt>
+                <dd>{{ estudiante.get_estado_display }}</dd>
+            </dl>
+        </section>
+
+        <section>
+            <h2>Materias matriculadas</h2>
+
+            {% if reportes_materias %}
+                {% for reporte in reportes_materias %}
+                    <article>
+                        <h3>{{ reporte.matricula.materia }}</h3>
+                        <p><strong>Periodo académico:</strong> {{ reporte.matricula.periodo }}</p>
+                        <p><strong>Estado de matrícula:</strong> {{ reporte.matricula.get_estado_display }}</p>
+
+                        <h4>Notas registradas</h4>
+                        {% if reporte.tiene_notas %}
+                            <ul>
+                                {% for nota in reporte.notas %}
+                                    <li>
+                                        {{ nota.evaluacion.nombre }}:
+                                        {{ nota.calificacion }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>No hay notas registradas para esta materia.</p>
+                        {% endif %}
+
+                        <p>
+                            <strong>Promedio por materia:</strong>
+                            {% if reporte.promedio is not None %}
+                                {{ reporte.promedio }}
+                            {% else %}
+                                Pendiente
+                            {% endif %}
+                        </p>
+                        <p>
+                            <strong>Estado académico:</strong>
+                            {% if reporte.estado == 'aprobado' %}
+                                Aprobado
+                            {% elif reporte.estado == 'desaprobado' %}
+                                Desaprobado
+                            {% else %}
+                                Pendiente
+                            {% endif %}
+                        </p>
+
+                        <h4>Resumen de asistencia</h4>
+                        {% if reporte.tiene_asistencia %}
+                            <ul>
+                                <li>Total de clases: {{ reporte.asistencia.total_clases }}</li>
+                                <li>Presentes: {{ reporte.asistencia.presentes }}</li>
+                                <li>Tardanzas: {{ reporte.asistencia.tardanzas }}</li>
+                                <li>Faltas: {{ reporte.asistencia.faltas }}</li>
+                                <li>Justificados: {{ reporte.asistencia.justificados }}</li>
+                                <li>Porcentaje de asistencia: {{ reporte.asistencia.porcentaje }}%</li>
+                            </ul>
+                        {% else %}
+                            <p>No hay asistencias registradas para esta materia.</p>
+                        {% endif %}
+                    </article>
+                {% endfor %}
+            {% else %}
+                <p>El estudiante no tiene matrículas registradas.</p>
+            {% endif %}
+        </section>
+    </main>
+</body>
+</html>

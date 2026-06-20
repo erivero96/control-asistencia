@@ -38,3 +38,65 @@ Se creó la base visual del módulo `reportes` mediante la vista `panel_reportes
 - Se creó `templates/reportes/panel_reportes.html` con las opciones de reporte por estudiante, materia, periodo, resumen de notas y resumen de asistencia.
 - Se verificó que `config/urls.py` ya incluye la ruta `reportes/`; no fue necesario modificarlo.
 - No se crearon modelos ni se modificó la lógica de los módulos de estudiantes, académico, notas o asistencia.
+
+## Subfase 6.2
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 6.2 del proyecto.
+
+Necesito crear el reporte académico por estudiante.
+
+Requisitos:
+- Trabajar en la app reportes.
+- Usar los modelos existentes:
+  - Estudiante
+  - Matricula
+  - Nota
+  - Asistencia
+- Crear una vista reporte_estudiante.
+- El reporte debe mostrar:
+  - datos del estudiante
+  - materias matriculadas
+  - periodo académico
+  - notas registradas
+  - promedio por materia si existe
+  - estado aprobado, desaprobado o pendiente
+  - resumen de asistencia si existe
+- Debe manejar el caso de estudiante sin matrículas.
+- Debe manejar el caso de estudiante sin notas.
+- Debe manejar el caso de estudiante sin asistencia.
+- Crear template reporte_estudiante.html.
+
+Quiero que me indiques:
+1. Código completo o actualizado de views.py.
+2. Código del template.
+3. Código de la ruta necesaria.
+4. Explicación de cómo se obtienen los datos.
+5. Comando para probar.
+6. Mensaje de commit recomendado.
+7. Breve explicación para defensa.
+
+También actualiza:
+evidencias/integrante_6_prompts.md
+
+Agrega:
+- Subfase 6.2
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se creó el reporte académico por estudiante. El reporte reúne las matrículas del estudiante con su materia y periodo, las notas registradas, el promedio ponderado y estado académico, además del resumen de asistencia por cada materia.
+
+### Cambios realizados
+
+- Se agregó la vista `reporte_estudiante` en `reportes/views.py`.
+- Se reutilizaron los modelos `Estudiante`, `Matricula`, `Nota` y `Asistencia` sin modificar sus definiciones.
+- Se reutilizaron las utilidades existentes para calcular el promedio ponderado, el estado académico y el resumen de asistencia.
+- Se agregó la ruta `reportes/estudiante/<int:estudiante_id>/` con el nombre `reporte_estudiante`.
+- Se creó `templates/reportes/reporte_estudiante.html`.
+- Se muestran mensajes adecuados cuando el estudiante no posee matrículas, cuando una materia no tiene notas o cuando no tiene asistencias registradas.
