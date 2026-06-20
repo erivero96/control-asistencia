@@ -14,8 +14,11 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
+from django.views.static import serve
 
 urlpatterns = [
     path('', include('core.urls')),
@@ -26,3 +29,12 @@ urlpatterns = [
     path('reportes/', include('reportes.urls')),
     path('admin/', admin.site.urls),
 ]
+
+# Permite servir los recursos visuales locales desde la misma configuración
+# usada por el proyecto durante el desarrollo.
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
+else:
+    urlpatterns.append(
+        path('static/<path:path>', serve, {'document_root': settings.STATICFILES_DIRS[0]}),
+    )

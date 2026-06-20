@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar asistencia por materia</title>
-</head>
-<body>
-    <main>
+{% extends 'base.html' %}
+
+{% block title %}Registrar asistencia por materia | Control Académico{% endblock %}
+
+{% block content %}
+    <section class="page-section">
         <h1>Registrar asistencia por materia</h1>
 
         <nav>
@@ -14,13 +11,6 @@
             <a href="{% url 'asistencia:registrar_asistencia' %}">Registrar asistencia individual</a>
         </nav>
 
-        {% if messages %}
-            <ul>
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
 
         <form method="get" novalidate>
             {% if form.non_field_errors %}
@@ -90,6 +80,5 @@
         {% elif form.is_bound and materia and periodo and fecha %}
             <p>No hay estudiantes matriculados para la materia y periodo seleccionados.</p>
         {% endif %}
-    </main>
-</body>
-</html>
+    </section>
+{% endblock %}

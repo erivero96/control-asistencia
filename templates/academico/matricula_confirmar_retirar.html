@@ -1,21 +1,11 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retirar matricula</title>
-</head>
-<body>
-    <main>
+{% extends 'base.html' %}
+
+{% block title %}Retirar matricula | Control Académico{% endblock %}
+
+{% block content %}
+    <section class="page-section">
         <h1>Retirar matricula</h1>
 
-        {% if messages %}
-            <ul>
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
 
         <p>
             Desea retirar la matricula de
@@ -34,6 +24,5 @@
             <button type="submit">Confirmar retiro</button>
             <a href="{% url 'academico:detalle_matricula' matricula.id %}">Cancelar</a>
         </form>
-    </main>
-</body>
-</html>
+    </section>
+{% endblock %}

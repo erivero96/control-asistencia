@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Promedio de matricula</title>
-</head>
-<body>
-    <main>
+{% extends 'base.html' %}
+
+{% block title %}Promedio de matricula | Control Académico{% endblock %}
+
+{% block content %}
+    <section class="page-section">
         <h1>Promedio de matricula</h1>
 
         <nav>
@@ -15,13 +12,6 @@
             <a href="{% url 'notas:notas_por_materia' materia.id %}">Notas de la materia</a>
         </nav>
 
-        {% if messages %}
-            <ul>
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
 
         <dl>
             <dt>Estudiante</dt>
@@ -50,6 +40,5 @@
                 {% endif %}
             </dd>
         </dl>
-    </main>
-</body>
-</html>
+    </section>
+{% endblock %}

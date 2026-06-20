@@ -1,114 +1,47 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1f4b6e">
     <title>{% block title %}Control Académico{% endblock %}</title>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f6f8;
-            color: #1f2933;
-        }
-
-        .encabezado {
-            background: #1f4b6e;
-            color: #ffffff;
-            padding: 1rem 2rem;
-        }
-
-        .encabezado h1 {
-            margin: 0 0 0.75rem;
-            font-size: 1.4rem;
-        }
-
-        .navegacion-principal {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .navegacion-principal a {
-            color: #ffffff;
-            padding: 0.45rem 0.65rem;
-            text-decoration: none;
-        }
-
-        .navegacion-principal a:hover,
-        .navegacion-principal a:focus {
-            background: #326b94;
-            border-radius: 4px;
-        }
-
-        .contenido {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .panel-modulos {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .tarjeta-modulo {
-            display: block;
-            padding: 1.25rem;
-            border: 1px solid #d9e2ec;
-            border-radius: 6px;
-            background: #ffffff;
-            color: #1f2933;
-            text-decoration: none;
-        }
-
-        .tarjeta-modulo:hover,
-        .tarjeta-modulo:focus {
-            border-color: #1f4b6e;
-            box-shadow: 0 2px 6px rgba(31, 75, 110, 0.18);
-        }
-
-        .tarjeta-modulo h2 {
-            margin-top: 0;
-            color: #1f4b6e;
-            font-size: 1.1rem;
-        }
-
-        .pie-pagina {
-            padding: 1rem 2rem;
-            color: #52606d;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <header class="encabezado">
-        <h1>Control Académico</h1>
-        <nav class="navegacion-principal" aria-label="Navegación principal">
-            <a href="{% url 'home' %}">Inicio</a>
-            <a href="{% url 'estudiantes:listar_estudiantes' %}">Estudiantes</a>
-            <a href="{% url 'academico:listar_materias' %}">Materias</a>
-            <a href="{% url 'academico:listar_periodos' %}">Periodos</a>
-            <a href="{% url 'academico:listar_matriculas' %}">Matrículas</a>
-            <a href="{% url 'notas:listar_evaluaciones' %}">Evaluaciones</a>
-            <a href="{% url 'notas:listar_notas' %}">Notas</a>
-            <a href="{% url 'asistencia:listar_asistencias' %}">Asistencia</a>
-            <a href="{% url 'reportes:panel_reportes' %}">Reportes</a>
-        </nav>
-    </header>
+    <div class="site-shell">
+        <header class="encabezado">
+            <div class="encabezado-contenido">
+                <a class="marca" href="{% url 'home' %}">
+                    <span class="marca-titulo">Control Académico</span>
+                    <span class="marca-subtitulo">Gestión académica</span>
+                </a>
+                <nav class="navegacion-principal" aria-label="Navegación principal">
+                    <a href="{% url 'home' %}">Inicio</a>
+                    <a href="{% url 'estudiantes:listar_estudiantes' %}">Estudiantes</a>
+                    <a href="{% url 'academico:listar_materias' %}">Académico</a>
+                    <a href="{% url 'notas:listar_notas' %}">Notas</a>
+                    <a href="{% url 'asistencia:listar_asistencias' %}">Asistencia</a>
+                    <a href="{% url 'reportes:panel_reportes' %}">Reportes</a>
+                </nav>
+            </div>
+        </header>
 
-    <main class="contenido">
-        {% block content %}{% endblock %}
-    </main>
+        <main id="contenido" class="contenido">
+            {% if messages %}
+                <ul class="messages" aria-label="Mensajes del sistema">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
 
-    <footer class="pie-pagina">
-        Sistema de Control Académico
-    </footer>
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer class="pie-pagina">
+            <div class="pie-pagina-contenido">Sistema de Control Académico</div>
+        </footer>
+    </div>
 </body>
 </html>

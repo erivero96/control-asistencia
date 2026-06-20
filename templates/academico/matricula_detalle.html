@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle de matricula</title>
-</head>
-<body>
-    <main>
+{% extends 'base.html' %}
+
+{% block title %}Detalle de matricula | Control Académico{% endblock %}
+
+{% block content %}
+    <section class="page-section">
         <h1>Detalle de matricula</h1>
 
         <nav>
@@ -14,13 +11,6 @@
             <a href="{% url 'academico:retirar_matricula' matricula.id %}">Retirar</a>
         </nav>
 
-        {% if messages %}
-            <ul>
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
 
         <dl>
             <dt>Estudiante</dt>
@@ -38,6 +28,5 @@
             <dt>Fecha de matricula</dt>
             <dd>{{ matricula.fecha_matricula|date:"d/m/Y H:i" }}</dd>
         </dl>
-    </main>
-</body>
-</html>
+    </section>
+{% endblock %}

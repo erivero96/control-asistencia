@@ -289,3 +289,35 @@ Se creo la documentacion tecnica inicial del proyecto. El `README.md` explica co
 - Se documento la estructura de carpetas del proyecto.
 - Se documento el alcance del trabajo realizado por el Integrante 1.
 - No se documentaron funcionalidades internas que aun no han sido desarrolladas.
+
+## Subfase 1.6
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 1.6 del proyecto.
+
+Necesito crear un diseño visual global para todo el sistema Django.
+
+Requisitos:
+- Crear o mejorar templates/base.html.
+- Crear archivo static/css/styles.css.
+- Configurar correctamente la carga de archivos estáticos con {% load static %}.
+- Agregar estructura general: header, menú de navegación, contenedor principal, bloque de mensajes y footer simple.
+- Agregar enlaces a Inicio, Estudiantes, Académico, Notas, Asistencia y Reportes.
+- El diseño debe ser simple, ordenado y usable.
+- No modificar la lógica de las vistas.
+```
+
+### Resumen de lo generado
+
+Se implementó un diseño visual global y reutilizable para el Sistema de Control Académico. La plantilla base centraliza la estructura común y todas las pantallas de los módulos la heredan para mantener una apariencia consistente.
+
+### Cambios realizados
+
+- Se mejoró `templates/base.html` con encabezado, menú de navegación, contenedor principal, mensajes del sistema y pie de página.
+- Se creó `static/css/styles.css` con estilos generales para navegación, formularios, tablas, mensajes, fichas de detalle y diseño adaptable.
+- Se configuró la carga del CSS mediante `{% load static %}` y `{% static 'css/styles.css' %}`.
+- Se migraron las plantillas de estudiantes, académico, notas, asistencia y reportes para que hereden de `base.html`, sin cambiar sus enlaces, variables ni formularios.
+- Se ajustó la configuración de estáticos para que el CSS se cargue desde cualquier ruta local del sistema.
+- No se modificaron modelos, vistas, rutas de los módulos, formularios ni lógica de negocio.

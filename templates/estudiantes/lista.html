@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estudiantes</title>
-</head>
-<body>
-    <main>
+{% extends 'base.html' %}
+
+{% block title %}Estudiantes | Control Académico{% endblock %}
+
+{% block content %}
+    <section class="page-section">
         <h1>Estudiantes</h1>
 
         <nav>
@@ -14,13 +11,6 @@
             <a href="{% url 'estudiantes:crear_estudiante' %}">Registrar estudiante</a>
         </nav>
 
-        {% if messages %}
-            <ul>
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
 
         <table border="1">
             <thead>
@@ -56,6 +46,5 @@
                 {% endfor %}
             </tbody>
         </table>
-    </main>
-</body>
-</html>
+    </section>
+{% endblock %}

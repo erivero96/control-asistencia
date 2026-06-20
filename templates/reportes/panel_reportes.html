@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de reportes</title>
-</head>
-<body>
-    <main>
+{% extends 'base.html' %}
+
+{% block title %}Panel de reportes | Control Académico{% endblock %}
+
+{% block content %}
+    <section class="page-section">
         <h1>Panel de reportes</h1>
         <p>Seleccione el tipo de reporte que desea consultar.</p>
 
@@ -37,6 +34,5 @@
 
         <p>Los reportes detallados se habilitarán en las siguientes subfases.</p>
         <a href="/">Volver al inicio</a>
-    </main>
-</body>
-</html>
+    </section>
+{% endblock %}

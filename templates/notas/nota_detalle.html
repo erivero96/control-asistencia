@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle de nota</title>
-</head>
-<body>
-    <main>
+{% extends 'base.html' %}
+
+{% block title %}Detalle de nota | Control Académico{% endblock %}
+
+{% block content %}
+    <section class="page-section">
         <h1>Detalle de nota</h1>
 
         <nav>
@@ -15,13 +12,6 @@
             <a href="{% url 'notas:promedio_matricula' nota.matricula.id %}">Ver promedio</a>
         </nav>
 
-        {% if messages %}
-            <ul>
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
 
         <dl>
             <dt>Estudiante</dt>
@@ -45,6 +35,5 @@
             <dt>Fecha de registro</dt>
             <dd>{{ nota.fecha_registro|date:"d/m/Y H:i" }}</dd>
         </dl>
-    </main>
-</body>
-</html>
+    </section>
+{% endblock %}

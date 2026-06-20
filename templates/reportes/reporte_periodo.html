@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reporte por periodo académico</title>
-</head>
-<body>
-    <main>
+{% extends 'base.html' %}
+
+{% block title %}Reporte por periodo académico | Control Académico{% endblock %}
+
+{% block content %}
+    <section class="page-section">
         <h1>Reporte por periodo académico</h1>
 
         <nav>
@@ -70,6 +67,5 @@
         {% else %}
             <p>Este periodo no tiene matrículas registradas.</p>
         {% endif %}
-    </main>
-</body>
-</html>
+    </section>
+{% endblock %}
