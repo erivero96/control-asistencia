@@ -82,3 +82,12 @@ System check identified no issues (0 silenced).
 Ran 9 tests
 OK
 ```
+
+## Subfase 5.10 - Manejo básico de sesiones
+
+| Caso probado | Resultado obtenido | Estado |
+| --- | --- | --- |
+| Middleware de sesión y autenticación | `SessionMiddleware` y `AuthenticationMiddleware` permanecen activos en la configuración. | Correcto |
+| Inicio de sesión | Se crea la sesión, se muestra el mensaje de bienvenida y el nombre del usuario en el menú. | Correcto |
+| Cierre de sesión | La sesión se elimina, se muestra el mensaje de cierre y el usuario no puede volver al inicio protegido. | Correcto |
+| Duración de sesión | La configuración establece un máximo de ocho horas y caducidad al cerrar el navegador. | Correcto |

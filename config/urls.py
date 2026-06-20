@@ -17,18 +17,19 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.contrib.auth import views as auth_views
 from django.urls import include, path
 from django.views.static import serve
+
+from core import views as core_views
 
 urlpatterns = [
     path('', include('core.urls')),
     path(
         'cuentas/login/',
-        auth_views.LoginView.as_view(template_name='registration/login.html'),
+        core_views.InicioSesionView.as_view(),
         name='login',
     ),
-    path('cuentas/logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('cuentas/logout/', core_views.CerrarSesionView.as_view(), name='logout'),
     path('estudiantes/', include('estudiantes.urls')),
     path('academico/', include('academico.urls')),
     path('notas/', include('notas.urls')),

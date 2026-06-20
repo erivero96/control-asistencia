@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
@@ -91,9 +92,19 @@ class ProteccionDeVistasTests(TestCase):
             },
         )
 
-        self.assertRedirects(respuesta, destino)
+        self.assertRedirects(
+            respuesta,
+            destino,
+            fetch_redirect_response=False,
+        )
         self.assertIn('_auth_user_id', self.client.session)
-        self.assertEqual(self.client.get(destino).status_code, 200)
+        respuesta_destino = self.client.get(destino)
+        self.assertEqual(respuesta_destino.status_code, 200)
+        self.assertContains(
+            respuesta_destino,
+            f'Bienvenido, {self.usuario.username}.',
+        )
+        self.assertContains(respuesta_destino, self.usuario.username)
         self.assertEqual(self.client.get(reverse('home')).status_code, 200)
 
     def test_logout_elimina_la_sesion_y_vuelve_al_login(self):
@@ -101,10 +112,35 @@ class ProteccionDeVistasTests(TestCase):
 
         respuesta = self.client.post(reverse('logout'))
 
-        self.assertRedirects(respuesta, reverse('login'))
+        self.assertRedirects(
+            respuesta,
+            reverse('login'),
+            fetch_redirect_response=False,
+        )
         self.assertNotIn('_auth_user_id', self.client.session)
+        self.assertRedirects(
+            self.client.get(reverse('home')),
+            f'{reverse("login")}?next={reverse("home")}',
+            fetch_redirect_response=False,
+        )
+        self.assertContains(
+            self.client.get(reverse('login')),
+            'Sesión cerrada correctamente.',
+        )
 
     def test_login_es_accesible_sin_sesion(self):
         self.assertEqual(self.client.get(reverse('login')).status_code, 200)
+
+    def test_configuracion_de_sesion_esta_activa(self):
+        self.assertIn(
+            'django.contrib.sessions.middleware.SessionMiddleware',
+            settings.MIDDLEWARE,
+        )
+        self.assertIn(
+            'django.contrib.auth.middleware.AuthenticationMiddleware',
+            settings.MIDDLEWARE,
+        )
+        self.assertEqual(settings.SESSION_COOKIE_AGE, 60 * 60 * 8)
+        self.assertTrue(settings.SESSION_EXPIRE_AT_BROWSER_CLOSE)
 
 # Create your tests here.

@@ -554,3 +554,37 @@ Se protegieron las vistas de Estudiantes, Académico, Notas, Asistencia, Reporte
 - Se configuró `LOGOUT_REDIRECT_URL = 'login'` para que el cierre de sesión termine en la pantalla de acceso.
 - Se agregaron pruebas de protección de rutas, creación de sesión, cierre de sesión y acceso por POST sin autenticar en `core/tests.py`.
 - Se adaptaron las pruebas de integración existentes para ejecutarse con un usuario autenticado.
+
+## Subfase 5.10 - Manejo básico de sesiones
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 5.10 del proyecto.
+
+Necesito agregar manejo básico de sesiones en el sistema.
+
+Responsable principal: Integrante 5.
+
+Requisitos:
+- Verificar que Django tenga activado SessionMiddleware.
+- Verificar que AuthenticationMiddleware esté activo.
+- Mostrar en el menú el usuario autenticado.
+- Agregar mensaje de bienvenida al iniciar sesión.
+- Agregar mensaje al cerrar sesión si es posible.
+- Configurar duración de sesión si corresponde.
+- Evitar acceso a páginas internas después de cerrar sesión.
+- No implementar roles avanzados todavía.
+```
+
+### Resumen de lo generado
+
+Se verificó la configuración de middleware de sesión y autenticación de Django. Se mantuvo la visualización del usuario autenticado en el menú, se añadieron mensajes de bienvenida y cierre de sesión, y se configuró una duración máxima de ocho horas con cierre al terminar el navegador. Las vistas protegidas continúan impidiendo el acceso después de cerrar sesión.
+
+### Cambios realizados
+
+- Se verificó que `SessionMiddleware` y `AuthenticationMiddleware` están activos y en el orden requerido.
+- Se configuraron `SESSION_COOKIE_AGE = 60 * 60 * 8` y `SESSION_EXPIRE_AT_BROWSER_CLOSE = True`.
+- Se crearon extensiones mínimas de `LoginView` y `LogoutView` para mostrar mensajes de sesión sin cambiar las rutas existentes.
+- Se confirmó que `base.html` ya muestra el nombre del usuario autenticado y los mensajes del sistema.
+- Se agregaron pruebas para middleware, duración de sesión, bienvenida, cierre de sesión y bloqueo de inicio después del logout.

@@ -130,6 +130,10 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'login'
 
+# Sesiones
+SESSION_COOKIE_AGE = 60 * 60 * 8
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
