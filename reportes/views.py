@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-from django.db.models import Count, Q
+from django.db.models import Avg, Count, Q
 from django.shortcuts import get_object_or_404, render
 
 from academico.models import Materia, Matricula, PeriodoAcademico
@@ -146,6 +146,62 @@ def reporte_materia(request, materia_id, periodo_id):
             'aprobados': aprobados,
             'desaprobados': desaprobados,
             'pendientes': pendientes,
+            'resumen_asistencia': resumen_asistencia,
+        },
+    )
+
+
+def reporte_periodo(request, periodo_id):
+    """Muestra los indicadores académicos generales de un periodo."""
+    periodo = get_object_or_404(PeriodoAcademico, id=periodo_id)
+    matriculas = Matricula.objects.filter(periodo=periodo)
+    total_matriculas = matriculas.count()
+    total_estudiantes = Estudiante.objects.filter(
+        matricula__periodo=periodo,
+    ).distinct().count()
+    total_materias_activas = Materia.objects.filter(
+        matricula__periodo=periodo,
+        estado=Materia.ESTADO_ACTIVO,
+    ).distinct().count()
+
+    resumen_notas = Nota.objects.filter(
+        matricula__periodo=periodo,
+    ).aggregate(
+        total_registros=Count('id'),
+        promedio_general=Avg('calificacion'),
+    )
+
+    resumen_asistencia = Asistencia.objects.filter(
+        matricula__periodo=periodo,
+    ).aggregate(
+        total_registros=Count('id'),
+        presentes=Count(
+            'id',
+            filter=Q(estado=Asistencia.ESTADO_PRESENTE),
+        ),
+        tardanzas=Count(
+            'id',
+            filter=Q(estado=Asistencia.ESTADO_TARDANZA),
+        ),
+        faltas=Count(
+            'id',
+            filter=Q(estado=Asistencia.ESTADO_FALTA),
+        ),
+        justificados=Count(
+            'id',
+            filter=Q(estado=Asistencia.ESTADO_JUSTIFICADO),
+        ),
+    )
+
+    return render(
+        request,
+        'reportes/reporte_periodo.html',
+        {
+            'periodo': periodo,
+            'total_estudiantes': total_estudiantes,
+            'total_materias_activas': total_materias_activas,
+            'total_matriculas': total_matriculas,
+            'resumen_notas': resumen_notas,
             'resumen_asistencia': resumen_asistencia,
         },
     )

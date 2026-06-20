@@ -17,4 +17,9 @@ urlpatterns = [
         views.reporte_materia,
         name='reporte_materia',
     ),
+    path(
+        'periodo/<int:periodo_id>/',
+        views.reporte_periodo,
+        name='reporte_periodo',
+    ),
 ]

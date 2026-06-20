@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte por periodo académico</title>
+</head>
+<body>
+    <main>
+        <h1>Reporte por periodo académico</h1>
+
+        <nav>
+            <a href="{% url 'reportes:panel_reportes' %}">Volver a reportes</a>
+            <a href="{% url 'academico:listar_periodos' %}">Ver periodos</a>
+        </nav>
+
+        <section>
+            <h2>Datos del periodo</h2>
+            <dl>
+                <dt>Nombre</dt>
+                <dd>{{ periodo.nombre }}</dd>
+
+                <dt>Fecha de inicio</dt>
+                <dd>{{ periodo.fecha_inicio|date:"d/m/Y" }}</dd>
+
+                <dt>Fecha de fin</dt>
+                <dd>{{ periodo.fecha_fin|date:"d/m/Y" }}</dd>
+
+                <dt>Estado</dt>
+                <dd>{{ periodo.get_estado_display }}</dd>
+            </dl>
+        </section>
+
+        {% if total_matriculas %}
+            <section>
+                <h2>Indicadores de matrícula</h2>
+                <ul>
+                    <li>Total de estudiantes matriculados: {{ total_estudiantes }}</li>
+                    <li>Total de materias activas: {{ total_materias_activas }}</li>
+                    <li>Total de matrículas: {{ total_matriculas }}</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Resumen de notas registradas</h2>
+                {% if resumen_notas.total_registros %}
+                    <ul>
+                        <li>Total de notas registradas: {{ resumen_notas.total_registros }}</li>
+                        <li>Promedio general de calificaciones: {{ resumen_notas.promedio_general|floatformat:2 }}</li>
+                    </ul>
+                {% else %}
+                    <p>No hay notas registradas en este periodo.</p>
+                {% endif %}
+            </section>
+
+            <section>
+                <h2>Resumen de asistencias registradas</h2>
+                {% if resumen_asistencia.total_registros %}
+                    <ul>
+                        <li>Total de asistencias registradas: {{ resumen_asistencia.total_registros }}</li>
+                        <li>Presentes: {{ resumen_asistencia.presentes }}</li>
+                        <li>Tardanzas: {{ resumen_asistencia.tardanzas }}</li>
+                        <li>Faltas: {{ resumen_asistencia.faltas }}</li>
+                        <li>Justificados: {{ resumen_asistencia.justificados }}</li>
+                    </ul>
+                {% else %}
+                    <p>No hay asistencias registradas en este periodo.</p>
+                {% endif %}
+            </section>
+        {% else %}
+            <p>Este periodo no tiene matrículas registradas.</p>
+        {% endif %}
+    </main>
+</body>
+</html>

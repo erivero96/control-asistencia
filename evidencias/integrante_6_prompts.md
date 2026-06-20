@@ -164,3 +164,67 @@ Se creó el reporte académico por materia y periodo académico. El reporte pres
 - Se agregó la ruta `reportes/materia/<int:materia_id>/periodo/<int:periodo_id>/` con el nombre `reporte_materia`.
 - Se creó `templates/reportes/reporte_materia.html`.
 - Se muestra un mensaje cuando no hay matrículas para la materia y periodo seleccionados.
+
+## Subfase 6.4
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 6.4 del proyecto.
+
+Necesito crear el reporte por periodo académico.
+
+Requisitos:
+- Trabajar en la app reportes.
+- Usar los modelos:
+  - PeriodoAcademico
+  - Matricula
+  - Materia
+  - Estudiante
+  - Nota
+  - Asistencia
+- Crear una vista reporte_periodo.
+- El reporte debe mostrar:
+  - nombre del periodo
+  - fechas del periodo
+  - total de estudiantes matriculados
+  - total de materias activas en ese periodo
+  - total de matrículas
+  - resumen de notas registradas
+  - resumen de asistencias registradas
+- Debe manejar el caso de periodo sin matrículas.
+- Crear template reporte_periodo.html.
+
+Quiero que me indiques:
+1. Código completo o actualizado de views.py.
+2. Código del template.
+3. Código de la ruta necesaria.
+4. Explicación de los indicadores mostrados.
+5. Comando para probar.
+6. Mensaje de commit recomendado.
+7. Breve explicación para defensa.
+
+También actualiza:
+evidencias/integrante_6_prompts.md
+
+Agrega:
+- Subfase 6.4
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se creó el reporte por periodo académico. Este presenta los datos del periodo seleccionado, los indicadores de matrículas, estudiantes y materias activas, además del resumen de notas y asistencias registradas únicamente en ese periodo.
+
+### Cambios realizados
+
+- Se agregó la vista `reporte_periodo` en `reportes/views.py`.
+- Se utilizaron los modelos existentes `PeriodoAcademico`, `Matricula`, `Materia`, `Estudiante`, `Nota` y `Asistencia`.
+- Se agregaron indicadores de total de estudiantes únicos, materias activas con matrículas y matrículas del periodo.
+- Se agregó el total de notas y su promedio general de calificaciones.
+- Se agregó el resumen de asistencias por estado: presentes, tardanzas, faltas y justificados.
+- Se agregó la ruta `reportes/periodo/<int:periodo_id>/` con el nombre `reporte_periodo`.
+- Se creó `templates/reportes/reporte_periodo.html`.
+- Se muestra un mensaje específico cuando el periodo no tiene matrículas registradas.
