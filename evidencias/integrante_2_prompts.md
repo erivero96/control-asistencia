@@ -702,3 +702,77 @@ Se aplico la generacion automatica de codigos al modelo `Materia`. Al guardar un
 - No fue necesario modificar `templates/academico/materia_formulario.html`, porque recorre los campos del formulario.
 - Se agregaron pruebas unitarias e integradas para la generacion, la edicion y la ausencia del campo en el formulario.
 - No se modificaron `Matricula`, `notas`, `asistencia` ni `reportes`.
+
+## Subfase 2.12
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 2.12 del proyecto.
+
+Necesito revisar todos los modelos del sistema para identificar cuales manejan campos de codigo y aplicar generacion automatica donde corresponda.
+
+Requisitos:
+- Revisar los modelos de estas apps:
+  - estudiantes
+  - academico
+  - notas
+  - asistencia
+  - reportes
+- Buscar campos llamados:
+  - codigo
+  - codigo
+  - cod
+  - numero
+  - identificador
+- Si un modelo ya tiene campo codigo, configurar generacion automatica usando la utilidad creada.
+- No agregar campo codigo a un modelo si no es necesario.
+- Si Matricula tiene codigo, usar formato:
+  MTR-0001
+- Si Evaluacion tiene codigo, usar formato:
+  EVA-0001
+- Si Nota tiene codigo, usar formato:
+  NOT-0001
+- Si Asistencia tiene codigo, usar formato:
+  ASI-0001
+- Si un modelo no tiene codigo, solo documentar que fue revisado y no se modifico.
+- Actualizar formularios para que los codigos automaticos no se pidan manualmente.
+- Actualizar templates si corresponde.
+- Crear migraciones si corresponde.
+- No cambiar la logica principal de notas, asistencia ni reportes.
+
+Quiero que me indiques:
+1. Modelos revisados.
+2. Modelos que si tenian codigo.
+3. Modelos modificados.
+4. Modelos que no necesitaban cambios.
+5. Codigo actualizado de cada archivo modificado.
+6. Comandos de migracion si aplica.
+7. Como probar cada codigo automatico.
+8. Mensaje de commit recomendado.
+9. Breve explicacion para defensa.
+
+Tambien actualiza:
+evidencias/integrante_2_prompts.md
+
+Agrega:
+- Subfase 2.12
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se revisaron todos los modelos de `estudiantes`, `academico`, `notas`, `asistencia` y `reportes` buscando campos `codigo`, `cod`, `numero` o `identificador`. Solo `Estudiante` y `Materia` poseen un campo `codigo`; ambos ya estaban correctamente configurados con generacion automatica y formularios sin ingreso manual. No se agregaron campos artificiales a los demas modelos.
+
+### Cambios realizados
+
+- Se verifico que `Estudiante.codigo` genera codigos `EST-0001` y conserva `unique=True` con `editable=False`.
+- Se verifico que `Materia.codigo` genera codigos `MAT-0001` y conserva `unique=True` con `editable=False`.
+- Se verifico que `EstudianteForm` y `MateriaForm` excluyen los campos de codigo.
+- Se revisaron `PeriodoAcademico`, `Matricula`, `Evaluacion`, `Nota` y `Asistencia`: no contienen campos `codigo`, `cod`, `numero` ni `identificador`; no se modificaron.
+- Se reviso `reportes/models.py`: no define modelos de negocio ni campos de codigo; no se modifico.
+- No se requirieron cambios en templates, porque los formularios ya iteran los campos disponibles y las vistas de lista/detalle existentes muestran los codigos de estudiante y materia.
+- No se crearon migraciones, ya que no hubo cambios de esquema en esta subfase.
+- No se modifico la logica principal de notas, asistencia ni reportes.
