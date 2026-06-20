@@ -7,24 +7,18 @@ class MateriaForm(forms.ModelForm):
     class Meta:
         model = Materia
         fields = [
-            'codigo',
             'nombre',
             'descripcion',
             'creditos',
             'estado',
         ]
         labels = {
-            'codigo': 'Codigo',
             'nombre': 'Nombre',
             'descripcion': 'Descripcion',
             'creditos': 'Creditos',
             'estado': 'Estado',
         }
         error_messages = {
-            'codigo': {
-                'required': 'El codigo de la materia es obligatorio.',
-                'unique': 'Ya existe una materia registrada con este codigo.',
-            },
             'nombre': {
                 'required': 'El nombre de la materia es obligatorio.',
             },
@@ -43,16 +37,6 @@ class MateriaForm(forms.ModelForm):
         widgets = {
             'descripcion': forms.Textarea(attrs={'rows': 3}),
         }
-
-    def clean_codigo(self):
-        codigo = (self.cleaned_data.get('codigo') or '').strip()
-
-        if not codigo:
-            raise forms.ValidationError(
-                'El codigo de la materia es obligatorio.'
-            )
-
-        return codigo
 
     def clean_nombre(self):
         nombre = (self.cleaned_data.get('nombre') or '').strip()

@@ -1,6 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.db import models
 
+from core.utils.codigos import generar_codigo
 from estudiantes.models import Estudiante
 
 
@@ -13,7 +14,7 @@ class Materia(models.Model):
         (ESTADO_INACTIVO, 'Inactivo'),
     ]
 
-    codigo = models.CharField(max_length=20, unique=True)
+    codigo = models.CharField(max_length=20, unique=True, editable=False)
     nombre = models.CharField(max_length=100)
     descripcion = models.TextField()
     creditos = models.PositiveSmallIntegerField()
@@ -28,6 +29,17 @@ class Materia(models.Model):
         ordering = ['nombre']
         verbose_name = 'materia'
         verbose_name_plural = 'materias'
+
+    def save(self, *args, **kwargs):
+        if not self.codigo:
+            self.codigo = generar_codigo(
+                modelo=type(self),
+                nombre_campo='codigo',
+                prefijo='MAT',
+                cantidad_digitos=4,
+            )
+
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f'{self.codigo} - {self.nombre}'

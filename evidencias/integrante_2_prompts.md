@@ -641,3 +641,64 @@ Se aplico la generacion automatica de codigos al modelo `Estudiante`. Al guardar
 - Se creo una migracion para reflejar `editable=False` en el estado del modelo.
 - Se agregaron pruebas para la generacion inicial, la conservacion del codigo al editar y la ausencia del campo en el formulario.
 - No se modificaron otros modulos.
+
+## Subfase 2.11
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 2.11 del proyecto.
+
+Necesito aplicar la generacion automatica de codigo al modelo Materia.
+
+Requisitos:
+- Trabajar en la app academico.
+- Revisar el modelo Materia.
+- El campo codigo ya no debe ser llenado manualmente por el usuario.
+- El codigo debe generarse automaticamente al crear una materia nueva.
+- Usar el generador creado en core/utils/codigos.py o donde haya sido ubicado.
+- El formato debe ser:
+  MAT-0001
+  MAT-0002
+  MAT-0003
+- El campo codigo debe seguir siendo unico.
+- Excluir codigo del formulario MateriaForm.
+- Actualizar templates si el formulario mostraba el campo codigo.
+- La lista y detalle de materias si deben seguir mostrando el codigo.
+- Crear migracion si es necesario.
+- No modificar matricula, notas, asistencia ni reportes en esta subfase.
+
+Quiero que me indiques:
+1. Archivos modificados.
+2. Codigo actualizado de academico/models.py.
+3. Codigo actualizado de academico/forms.py.
+4. Templates modificados si corresponde.
+5. Comandos de migracion si aplica.
+6. Como probar creando una materia nueva.
+7. Mensaje de commit recomendado.
+8. Breve explicacion para defensa.
+
+Tambien actualiza:
+evidencias/integrante_2_prompts.md
+
+Agrega:
+- Subfase 2.11
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se aplico la generacion automatica de codigos al modelo `Materia`. Al guardar una materia nueva sin codigo, el modelo reutiliza `generar_codigo` con el prefijo `MAT` y cuatro digitos. El campo conserva su unicidad, se marco como no editable y fue retirado de `MateriaForm`.
+
+### Cambios realizados
+
+- Se actualizo `academico/models.py` para importar y utilizar `generar_codigo` solo en `Materia`.
+- Se configuro `Materia.codigo` con `unique=True` y `editable=False`.
+- Se sobrescribio `Materia.save()` para asignar el codigo solo cuando aun no existe.
+- Se retiro `codigo`, su etiqueta, sus mensajes y su validacion de `MateriaForm`.
+- Se conservaron sin cambios la lista y la confirmacion de desactivacion, donde el codigo permanece visible.
+- No fue necesario modificar `templates/academico/materia_formulario.html`, porque recorre los campos del formulario.
+- Se agregaron pruebas unitarias e integradas para la generacion, la edicion y la ausencia del campo en el formulario.
+- No se modificaron `Matricula`, `notas`, `asistencia` ni `reportes`.
