@@ -18,7 +18,6 @@ class IntegracionSistemaTests(TestCase):
 
     def _datos_estudiante(self, **cambios):
         datos = {
-            'codigo': 'EST-INT-001',
             'nombres': 'Ana',
             'apellidos': 'Prueba',
             'dni': '12345678',
@@ -39,23 +38,23 @@ class IntegracionSistemaTests(TestCase):
             respuesta,
             reverse('estudiantes:listar_estudiantes'),
         )
-        estudiante = Estudiante.objects.get(codigo='EST-INT-001')
+        estudiante = Estudiante.objects.get(dni='12345678')
+        self.assertTrue(estudiante.codigo.startswith('EST-'))
 
         respuesta = self.client.post(
             reverse('academico:crear_materia'),
             {
-                'codigo': 'MAT-INT-001',
                 'nombre': 'Materia de Integracion',
                 'descripcion': 'Materia utilizada en pruebas de integracion.',
                 'creditos': '4',
-                'estado': Materia.ESTADO_ACTIVO,
             },
         )
         self.assertRedirects(
             respuesta,
             reverse('academico:listar_materias'),
         )
-        materia = Materia.objects.get(codigo='MAT-INT-001')
+        materia = Materia.objects.get(nombre='Materia de Integracion')
+        self.assertTrue(materia.codigo.startswith('MAT-'))
 
         respuesta = self.client.post(
             reverse('academico:crear_periodo'),
@@ -63,7 +62,6 @@ class IntegracionSistemaTests(TestCase):
                 'nombre': '2026-I Integracion',
                 'fecha_inicio': '2026-03-01',
                 'fecha_fin': '2026-07-31',
-                'estado': PeriodoAcademico.ESTADO_ACTIVO,
             },
         )
         self.assertRedirects(
@@ -78,7 +76,6 @@ class IntegracionSistemaTests(TestCase):
                 'estudiante': estudiante.id,
                 'materia': materia.id,
                 'periodo': periodo.id,
-                'estado': Matricula.ESTADO_MATRICULADO,
             },
         )
         matricula = Matricula.objects.get(
@@ -101,7 +98,7 @@ class IntegracionSistemaTests(TestCase):
                 'periodo': periodo.id,
                 'nombre': 'Evaluacion de Integracion',
                 'descripcion': 'Evaluacion utilizada en pruebas de integracion.',
-                'peso': '100.00',
+                'peso': '50.00',
                 'estado': Evaluacion.ESTADO_ACTIVO,
             },
         )
@@ -201,7 +198,6 @@ class IntegracionSistemaTests(TestCase):
         respuesta = self.client.post(
             reverse('estudiantes:crear_estudiante'),
             self._datos_estudiante(
-                codigo='EST-INT-002',
                 correo='ana.duplicada@example.com',
             ),
         )
@@ -213,21 +209,18 @@ class IntegracionSistemaTests(TestCase):
         )
 
         respuesta = self.client.post(
-            reverse('academico:crear_materia'),
+            reverse('notas:crear_evaluacion'),
             {
-                'codigo': materia.codigo,
-                'nombre': 'Materia duplicada',
+                'materia': materia.id,
+                'periodo': periodo.id,
+                'nombre': evaluacion.nombre,
                 'descripcion': 'Intento de duplicado.',
-                'creditos': '3',
-                'estado': Materia.ESTADO_ACTIVO,
+                'peso': '50.00',
+                'estado': Evaluacion.ESTADO_ACTIVO,
             },
         )
         self.assertEqual(respuesta.status_code, 200)
-        self.assertFormError(
-            respuesta.context['form'],
-            'codigo',
-            'Ya existe una materia registrada con este codigo.',
-        )
+        self.assertFalse(respuesta.context['form'].is_valid())
 
         respuesta = self.client.post(
             reverse('academico:crear_matricula'),
@@ -235,7 +228,6 @@ class IntegracionSistemaTests(TestCase):
                 'estudiante': estudiante.id,
                 'materia': materia.id,
                 'periodo': periodo.id,
-                'estado': Matricula.ESTADO_MATRICULADO,
             },
         )
         self.assertEqual(respuesta.status_code, 200)
@@ -286,7 +278,6 @@ class IntegracionSistemaTests(TestCase):
 
     def test_reportes_sin_datos_responden_correctamente(self):
         estudiante = Estudiante.objects.create(
-            codigo='EST-SIN-DATOS',
             nombres='Sin',
             apellidos='Matricula',
             dni='87654321',
@@ -295,7 +286,6 @@ class IntegracionSistemaTests(TestCase):
             direccion='Av. Sin Datos 100',
         )
         materia = Materia.objects.create(
-            codigo='MAT-SIN-DATOS',
             nombre='Materia sin matrículas',
             descripcion='Materia usada para reportes sin datos.',
             creditos=3,
@@ -329,3 +319,24 @@ class IntegracionSistemaTests(TestCase):
                 respuesta = self.client.get(ruta)
                 self.assertEqual(respuesta.status_code, 200)
                 self.assertContains(respuesta, mensaje)
+
+    def test_selector_de_reporte_por_materia_redirige_al_reporte(self):
+        estudiante, materia, periodo, matricula, evaluacion = (
+            self._registrar_datos_base()
+        )
+
+        respuesta = self.client.post(
+            reverse('reportes:panel_reportes'),
+            {
+                'materia': materia.id,
+                'periodo': periodo.id,
+            },
+        )
+
+        self.assertRedirects(
+            respuesta,
+            reverse(
+                'reportes:reporte_materia',
+                args=[materia.id, periodo.id],
+            ),
+        )

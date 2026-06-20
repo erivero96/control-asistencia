@@ -3,7 +3,7 @@ from decimal import Decimal, ROUND_HALF_UP
 
 from django.contrib.auth.decorators import login_required
 from django.db.models import Avg, Count, Q
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 
 from academico.models import Materia, Matricula, PeriodoAcademico
 from asistencia.models import Asistencia
@@ -16,11 +16,31 @@ from notas.utils import (
     determinar_estado_promedio,
 )
 
+from .forms import ReporteMateriaForm
+
 
 @login_required
 def panel_reportes(request):
     """Muestra las opciones iniciales del módulo de reportes."""
-    return render(request, 'reportes/panel_reportes.html')
+    if request.method == 'POST':
+        reporte_materia_form = ReporteMateriaForm(request.POST)
+
+        if reporte_materia_form.is_valid():
+            materia = reporte_materia_form.cleaned_data['materia']
+            periodo = reporte_materia_form.cleaned_data['periodo']
+            return redirect(
+                'reportes:reporte_materia',
+                materia_id=materia.id,
+                periodo_id=periodo.id,
+            )
+    else:
+        reporte_materia_form = ReporteMateriaForm()
+
+    return render(
+        request,
+        'reportes/panel_reportes.html',
+        {'reporte_materia_form': reporte_materia_form},
+    )
 
 
 @login_required
@@ -175,7 +195,7 @@ def reporte_periodo(request, periodo_id):
         matricula__periodo=periodo,
     ).aggregate(
         total_registros=Count('id'),
-        promedio_general=Avg('calificacion'),
+        media_simple_calificaciones=Avg('calificacion'),
     )
 
     resumen_asistencia = Asistencia.objects.filter(
@@ -216,12 +236,12 @@ def reporte_periodo(request, periodo_id):
 
 @login_required
 def resumen_notas(request):
-    """Muestra un resumen general de notas y promedios por estudiante."""
+    """Muestra medias simples de notas y resultados por estudiante."""
     total_evaluaciones = Evaluacion.objects.count()
     total_notas = Nota.objects.count()
 
     resumen_global = Nota.objects.aggregate(
-        promedio_general=Avg('calificacion'),
+        media_simple_general=Avg('calificacion'),
     )
 
     estudiantes_con_notas = (
@@ -236,14 +256,14 @@ def resumen_notas(request):
     estudiantes_reporte = []
 
     for estudiante in estudiantes_con_notas:
-        promedio_estudiante = Nota.objects.filter(
+        media_simple_estudiante = Nota.objects.filter(
             matricula__estudiante=estudiante,
         ).aggregate(
-            promedio=Avg('calificacion'),
-        )['promedio']
+            media_simple=Avg('calificacion'),
+        )['media_simple']
 
-        if promedio_estudiante is not None:
-            if promedio_estudiante >= NOTA_MINIMA_APROBATORIA:
+        if media_simple_estudiante is not None:
+            if media_simple_estudiante >= NOTA_MINIMA_APROBATORIA:
                 aprobados += 1
                 estado = 'aprobado'
             else:
@@ -254,7 +274,7 @@ def resumen_notas(request):
 
         estudiantes_reporte.append({
             'estudiante': estudiante,
-            'promedio': promedio_estudiante,
+            'media_simple': media_simple_estudiante,
             'estado': estado,
         })
 
@@ -264,7 +284,7 @@ def resumen_notas(request):
         {
             'total_evaluaciones': total_evaluaciones,
             'total_notas': total_notas,
-            'promedio_general': resumen_global['promedio_general'],
+            'media_simple_general': resumen_global['media_simple_general'],
             'aprobados': aprobados,
             'desaprobados': desaprobados,
             'estudiantes_reporte': estudiantes_reporte,

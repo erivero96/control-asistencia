@@ -17,9 +17,9 @@
                 <li>Total de evaluaciones: {{ total_evaluaciones }}</li>
                 <li>Total de notas registradas: {{ total_notas }}</li>
                 <li>
-                    Promedio general:
-                    {% if promedio_general is not None %}
-                        {{ promedio_general|floatformat:2 }}
+                    Media simple general de calificaciones:
+                    {% if media_simple_general is not None %}
+                        {{ media_simple_general|floatformat:2 }}
                     {% else %}
                         No hay notas registradas.
                     {% endif %}
@@ -30,14 +30,14 @@
         </section>
 
         <section class="tarjeta">
-            <h2>Estudiantes con promedio</h2>
+            <h2>Estudiantes con media simple</h2>
 
             {% if estudiantes_reporte %}
                 <table class="tabla-datos" border="1">
                     <thead>
                         <tr>
                             <th>Estudiante</th>
-                            <th>Promedio</th>
+                            <th>Media simple</th>
                             <th>Estado</th>
                         </tr>
                     </thead>
@@ -46,8 +46,8 @@
                             <tr>
                                 <td>{{ reporte.estudiante }}</td>
                                 <td>
-                                    {% if reporte.promedio is not None %}
-                                        {{ reporte.promedio|floatformat:2 }}
+                                    {% if reporte.media_simple is not None %}
+                                        {{ reporte.media_simple|floatformat:2 }}
                                     {% else %}
                                         Pendiente
                                     {% endif %}

@@ -43,7 +43,7 @@
                 {% if resumen_notas.total_registros %}
                     <ul>
                         <li>Total de notas registradas: {{ resumen_notas.total_registros }}</li>
-                        <li>Promedio general de calificaciones: {{ resumen_notas.promedio_general|floatformat:2 }}</li>
+                        <li>Media simple de calificaciones: {{ resumen_notas.media_simple_calificaciones|floatformat:2 }}</li>
                     </ul>
                 {% else %}
                     <p>No hay notas registradas en este periodo.</p>
