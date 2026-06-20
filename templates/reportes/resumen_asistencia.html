@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Resumen de asistencia | Control Academico{% endblock %}
+
+{% block content %}
+    <section class="page-section pagina-detalle">
+        <h1>Resumen de asistencia</h1>
+
+        <nav>
+            <a class="boton boton-secundario" href="{% url 'reportes:panel_reportes' %}">Volver a reportes</a>
+            <a class="boton boton-secundario" href="{% url 'asistencia:listar_asistencias' %}">Ver asistencias</a>
+        </nav>
+
+        {% if total_registros %}
+            <section class="tarjeta">
+                <h2>Indicadores generales</h2>
+                <ul>
+                    <li>Total de asistencias registradas: {{ total_registros }}</li>
+                    <li>Presentes: {{ presentes }}</li>
+                    <li>Tardanzas: {{ tardanzas }}</li>
+                    <li>Faltas: {{ faltas }}</li>
+                    <li>Justificados: {{ justificados }}</li>
+                    <li>Porcentaje general de asistencia: {{ porcentaje_general }}%</li>
+                </ul>
+            </section>
+        {% else %}
+            <section class="tarjeta">
+                <h2>Indicadores generales</h2>
+                <p>No hay registros de asistencia en el sistema.</p>
+            </section>
+        {% endif %}
+    </section>
+{% endblock %}

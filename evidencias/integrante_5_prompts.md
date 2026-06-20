@@ -523,6 +523,57 @@ Se probaron los flujos principales del modulo `asistencia` y se documento la evi
 - Se documento que falta cuenta como inasistencia.
 - Se agregaron errores comunes y formas de solucionarlos.
 
+## Tarea extra: resumen de asistencia
+
+### Prompt usado
+
+```text
+Estoy trabajando en el sistema Django de Control Academico.
+
+Yo soy el Integrante 5 y desarrolle el modulo de asistencia. Ahora necesito agregar el resumen de asistencia dentro de la app reportes.
+
+Requisitos:
+- Trabajar en la app reportes.
+- Crear una vista llamada resumen_asistencia.
+- Usar los modelos existentes:
+  - Asistencia
+  - Matricula
+  - Estudiante
+  - Materia
+  - PeriodoAcademico
+- El resumen debe mostrar:
+  - total de asistencias registradas
+  - total de presentes
+  - total de tardanzas
+  - total de faltas
+  - total de justificados
+  - porcentaje general de asistencia
+- Considerar como asistencia valida:
+  - presente
+  - tardanza
+  - justificado
+- Considerar como inasistencia:
+  - falta
+- Manejar el caso donde no existan registros de asistencia.
+- Crear template reportes/resumen_asistencia.html.
+- Crear o actualizar ruta.
+- Agregar enlace desde el panel de reportes si todavia no existe.
+- No modificar la logica interna del modulo asistencia salvo que sea estrictamente necesario.
+```
+
+### Resumen de lo generado
+
+Se creo la vista `resumen_asistencia` en `reportes/views.py`, la ruta `resumen-asistencia/` en `reportes/urls.py` y el template `reportes/resumen_asistencia.html`. La vista usa `aggregate` con `Count` y filtros `Q` sobre el modelo `Asistencia` para obtener totales generales de registros, presentes, tardanzas, faltas y justificados. El porcentaje general se calcula como `(presentes + tardanzas + justificados) / total_registros * 100`, siguiendo la misma logica de `asistencia/utils.py` donde presente, tardanza y justificado se consideran asistencia valida y falta como inasistencia. El template muestra los indicadores cuando hay registros y un mensaje informativo cuando no los hay. Se actualizo el enlace del panel de reportes para que la tarjeta "Resumen de asistencia" apunte a la nueva vista.
+
+### Cambios realizados
+
+- Se agrego la vista `resumen_asistencia` en `reportes/views.py`.
+- Se agrego la importacion de `Decimal` y `ROUND_HALF_UP` en `reportes/views.py`.
+- Se agrego la ruta `resumen-asistencia/` en `reportes/urls.py`.
+- Se creo el template `templates/reportes/resumen_asistencia.html`.
+- Se actualizo el enlace en `panel_reportes.html` de `asistencia:listar_asistencias` a `reportes:resumen_asistencia`.
+- No se modifico la logica interna del modulo asistencia.
+
 ## Subfase 5.9 - Protección de vistas y sesiones
 
 ### Prompt usado

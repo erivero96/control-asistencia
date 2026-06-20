@@ -1,4 +1,5 @@
 from collections import defaultdict
+from decimal import Decimal, ROUND_HALF_UP
 
 from django.contrib.auth.decorators import login_required
 from django.db.models import Avg, Count, Q
@@ -267,5 +268,60 @@ def resumen_notas(request):
             'aprobados': aprobados,
             'desaprobados': desaprobados,
             'estudiantes_reporte': estudiantes_reporte,
+        },
+    )
+
+
+@login_required
+def resumen_asistencia(request):
+    """Muestra el resumen general de asistencia del sistema."""
+    resumen = Asistencia.objects.aggregate(
+        total_registros=Count('id'),
+        presentes=Count(
+            'id',
+            filter=Q(estado=Asistencia.ESTADO_PRESENTE),
+        ),
+        tardanzas=Count(
+            'id',
+            filter=Q(estado=Asistencia.ESTADO_TARDANZA),
+        ),
+        faltas=Count(
+            'id',
+            filter=Q(estado=Asistencia.ESTADO_FALTA),
+        ),
+        justificados=Count(
+            'id',
+            filter=Q(estado=Asistencia.ESTADO_JUSTIFICADO),
+        ),
+    )
+
+    porcentaje_general = None
+
+    if resumen['total_registros'] and resumen['total_registros'] > 0:
+        asistencias_validas = (
+            resumen['presentes']
+            + resumen['tardanzas']
+            + resumen['justificados']
+        )
+        porcentaje = (
+            Decimal(asistencias_validas)
+            * Decimal('100.00')
+            / Decimal(resumen['total_registros'])
+        )
+        porcentaje_general = porcentaje.quantize(
+            Decimal('0.01'),
+            rounding=ROUND_HALF_UP,
+        )
+
+    return render(
+        request,
+        'reportes/resumen_asistencia.html',
+        {
+            'total_registros': resumen['total_registros'],
+            'presentes': resumen['presentes'],
+            'tardanzas': resumen['tardanzas'],
+            'faltas': resumen['faltas'],
+            'justificados': resumen['justificados'],
+            'porcentaje_general': porcentaje_general,
         },
     )
