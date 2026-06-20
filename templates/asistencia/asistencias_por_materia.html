@@ -7,9 +7,9 @@
         <h1>Asistencias de {{ materia }}</h1>
 
         <nav>
-            <a href="{% url 'asistencia:listar_asistencias' %}">Volver a asistencias</a>
-            <a href="{% url 'asistencia:registrar_asistencia_por_materia' %}">Registrar por materia</a>
-            <a href="{% url 'asistencia:porcentajes_por_materia' materia.id %}">Ver porcentajes</a>
+            <a class="boton boton-secundario" href="{% url 'asistencia:listar_asistencias' %}">Volver a asistencias</a>
+            <a class="boton boton-primario" href="{% url 'asistencia:registrar_asistencia_por_materia' %}">Registrar por materia</a>
+            <a class="boton boton-secundario" href="{% url 'asistencia:porcentajes_por_materia' materia.id %}">Ver porcentajes</a>
         </nav>
 
 
@@ -31,9 +31,9 @@
                         <td>{{ asistencia.fecha|date:"d/m/Y" }}</td>
                         <td>{{ asistencia.get_estado_display }}</td>
                         <td>
-                            <a href="{% url 'asistencia:detalle_asistencia' asistencia.id %}">Ver</a>
-                            <a href="{% url 'asistencia:editar_asistencia' asistencia.id %}">Editar</a>
-                            <a href="{% url 'asistencia:porcentaje_asistencia_matricula' asistencia.matricula.id %}">Porcentaje</a>
+                            <a class="boton boton-secundario" href="{% url 'asistencia:detalle_asistencia' asistencia.id %}">Ver</a>
+                            <a class="boton boton-editar" href="{% url 'asistencia:editar_asistencia' asistencia.id %}">Editar</a>
+                            <a class="boton boton-secundario" href="{% url 'asistencia:porcentaje_asistencia_matricula' asistencia.matricula.id %}">Porcentaje</a>
                         </td>
                     </tr>
                 {% empty %}

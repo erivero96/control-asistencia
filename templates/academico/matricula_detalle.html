@@ -7,8 +7,8 @@
         <h1>Detalle de matricula</h1>
 
         <nav>
-            <a href="{% url 'academico:listar_matriculas' %}">Volver a matriculas</a>
-            <a href="{% url 'academico:retirar_matricula' matricula.id %}">Retirar</a>
+            <a class="boton boton-secundario" href="{% url 'academico:listar_matriculas' %}">Volver a matriculas</a>
+            <a class="boton boton-peligro" href="{% url 'academico:retirar_matricula' matricula.id %}">Retirar</a>
         </nav>
 
 

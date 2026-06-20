@@ -7,7 +7,7 @@
         <h1>Promedios de {{ materia }}</h1>
 
         <nav>
-            <a href="{% url 'notas:listar_notas' %}">Volver a notas</a>
+            <a class="boton boton-secundario" href="{% url 'notas:listar_notas' %}">Volver a notas</a>
             <a href="{% url 'notas:notas_por_materia' materia.id %}">Notas de la materia</a>
         </nav>
 
@@ -40,7 +40,7 @@
                             {% endif %}
                         </td>
                         <td>
-                            <a href="{% url 'notas:promedio_matricula' item.matricula.id %}">Ver promedio</a>
+                            <a class="boton boton-secundario" href="{% url 'notas:promedio_matricula' item.matricula.id %}">Ver promedio</a>
                             <a href="{% url 'notas:notas_por_estudiante' item.estudiante.id %}">Notas del estudiante</a>
                         </td>
                     </tr>

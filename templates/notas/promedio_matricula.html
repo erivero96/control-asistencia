@@ -7,7 +7,7 @@
         <h1>Promedio de matricula</h1>
 
         <nav>
-            <a href="{% url 'notas:listar_notas' %}">Volver a notas</a>
+            <a class="boton boton-secundario" href="{% url 'notas:listar_notas' %}">Volver a notas</a>
             <a href="{% url 'notas:notas_por_estudiante' estudiante.id %}">Notas del estudiante</a>
             <a href="{% url 'notas:notas_por_materia' materia.id %}">Notas de la materia</a>
         </nav>

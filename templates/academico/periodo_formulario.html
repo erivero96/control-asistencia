@@ -7,7 +7,7 @@
         <h1>{{ titulo }}</h1>
 
         <nav>
-            <a href="{% url 'academico:listar_periodos' %}">Volver a periodos</a>
+            <a class="boton boton-secundario" href="{% url 'academico:listar_periodos' %}">Volver a periodos</a>
         </nav>
 
 
@@ -37,8 +37,8 @@
                 </div>
             {% endfor %}
 
-            <button class="boton" type="submit">{{ texto_boton }}</button>
-            <a href="{% url 'academico:listar_periodos' %}">Cancelar</a>
+            <button class="boton boton-primario" type="submit">{{ texto_boton }}</button>
+            <a class="boton boton-secundario" href="{% url 'academico:listar_periodos' %}">Cancelar</a>
         </form>
     </section>
 {% endblock %}

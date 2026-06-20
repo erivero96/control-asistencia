@@ -7,7 +7,7 @@
         <h1>{{ titulo }}</h1>
 
         <nav>
-            <a href="{% url 'notas:listar_notas' %}">Volver a notas</a>
+            <a class="boton boton-secundario" href="{% url 'notas:listar_notas' %}">Volver a notas</a>
             <a href="{% url 'notas:listar_evaluaciones' %}">Evaluaciones</a>
         </nav>
 
@@ -38,8 +38,8 @@
                 </div>
             {% endfor %}
 
-            <button class="boton" type="submit">{{ texto_boton }}</button>
-            <a href="{% url 'notas:listar_notas' %}">Cancelar</a>
+            <button class="boton boton-primario" type="submit">{{ texto_boton }}</button>
+            <a class="boton boton-secundario" href="{% url 'notas:listar_notas' %}">Cancelar</a>
         </form>
     </section>
 {% endblock %}

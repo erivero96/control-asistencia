@@ -7,8 +7,8 @@
         <h1>Notas</h1>
 
         <nav>
-            <a href="/">Inicio</a>
-            <a href="{% url 'notas:registrar_nota' %}">Registrar nota</a>
+            <a class="boton boton-secundario" href="/">Inicio</a>
+            <a class="boton boton-primario" href="{% url 'notas:registrar_nota' %}">Registrar nota</a>
             <a href="{% url 'notas:listar_evaluaciones' %}">Evaluaciones</a>
         </nav>
 
@@ -33,9 +33,9 @@
                         <td>{{ nota.evaluacion.nombre }}</td>
                         <td>{{ nota.calificacion }}</td>
                         <td>
-                            <a href="{% url 'notas:detalle_nota' nota.id %}">Ver</a>
-                            <a href="{% url 'notas:editar_nota' nota.id %}">Editar</a>
-                            <a href="{% url 'notas:promedio_matricula' nota.matricula.id %}">Promedio</a>
+                            <a class="boton boton-secundario" href="{% url 'notas:detalle_nota' nota.id %}">Ver</a>
+                            <a class="boton boton-editar" href="{% url 'notas:editar_nota' nota.id %}">Editar</a>
+                            <a class="boton boton-secundario" href="{% url 'notas:promedio_matricula' nota.matricula.id %}">Promedio</a>
                         </td>
                     </tr>
                 {% empty %}

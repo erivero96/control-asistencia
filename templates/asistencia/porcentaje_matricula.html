@@ -7,10 +7,10 @@
         <h1>Porcentaje de asistencia</h1>
 
         <nav>
-            <a href="{% url 'asistencia:listar_asistencias' %}">Volver a asistencias</a>
+            <a class="boton boton-secundario" href="{% url 'asistencia:listar_asistencias' %}">Volver a asistencias</a>
             <a href="{% url 'asistencia:asistencias_por_estudiante' estudiante.id %}">Asistencias del estudiante</a>
             <a href="{% url 'asistencia:asistencias_por_materia' materia.id %}">Asistencias de la materia</a>
-            <a href="{% url 'asistencia:porcentajes_por_materia' materia.id %}">Porcentajes de la materia</a>
+            <a class="boton boton-secundario" href="{% url 'asistencia:porcentajes_por_materia' materia.id %}">Porcentajes de la materia</a>
         </nav>
 
 

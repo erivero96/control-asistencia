@@ -349,3 +349,32 @@ Se consolidó el uso de la plantilla base y del CSS global en todos los módulos
 - Se ampliaron los selectores de `static/css/styles.css` para mantener estilos comunes y adaptables con esas clases.
 - Se conservaron los bloques `title` y `content`, las rutas, los formularios, las variables de contexto y los datos ya mostrados.
 - No se modificó la lógica de las vistas.
+
+## Subfase 1.8
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 1.8 del proyecto.
+
+Necesito mejorar visualmente los formularios, tablas y botones del sistema.
+
+Requisitos:
+- Mejorar estilos de formularios, tablas, botones y mensajes de éxito y error.
+- Estilizar acciones de registrar, editar, volver, desactivar, retirar, guardar y cancelar.
+- Agregar diseño responsive básico, colores sobrios y diseño académico.
+- No modificar la lógica del sistema.
+```
+
+### Resumen de lo generado
+
+Se refinó la interfaz de captura y consulta de datos con formularios más claros, tablas legibles y botones con variantes visuales según su acción. La interfaz conserva una paleta académica sobria y se adapta mejor a pantallas pequeñas.
+
+### Cambios realizados
+
+- Se añadieron variantes de botón para acciones principales, edición, volver o cancelar y acciones de peligro.
+- Se aplicaron esas variantes a los enlaces y botones de registrar, editar, ver, guardar, cancelar, desactivar y retirar existentes.
+- Se mejoraron los estados de enfoque y desplazamiento de campos de formulario.
+- Se reforzaron la legibilidad de tablas, acciones por fila y mensajes de éxito, error, advertencia e información.
+- Se ajustaron formularios, botones y tablas para pantallas pequeñas mediante reglas responsive.
+- No se modificaron vistas, rutas, formularios de Django ni lógica de negocio.

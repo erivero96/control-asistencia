@@ -7,8 +7,8 @@
         <h1>Estudiantes</h1>
 
         <nav>
-            <a href="/">Inicio</a>
-            <a href="{% url 'estudiantes:crear_estudiante' %}">Registrar estudiante</a>
+            <a class="boton boton-secundario" href="/">Inicio</a>
+            <a class="boton boton-primario" href="{% url 'estudiantes:crear_estudiante' %}">Registrar estudiante</a>
         </nav>
 
 
@@ -34,9 +34,9 @@
                         <td>{{ estudiante.correo }}</td>
                         <td>{{ estudiante.get_estado_display }}</td>
                         <td>
-                            <a href="{% url 'estudiantes:detalle_estudiante' estudiante.id %}">Ver</a>
-                            <a href="{% url 'estudiantes:editar_estudiante' estudiante.id %}">Editar</a>
-                            <a href="{% url 'estudiantes:desactivar_estudiante' estudiante.id %}">Desactivar</a>
+                            <a class="boton boton-secundario" href="{% url 'estudiantes:detalle_estudiante' estudiante.id %}">Ver</a>
+                            <a class="boton boton-editar" href="{% url 'estudiantes:editar_estudiante' estudiante.id %}">Editar</a>
+                            <a class="boton boton-peligro" href="{% url 'estudiantes:desactivar_estudiante' estudiante.id %}">Desactivar</a>
                         </td>
                     </tr>
                 {% empty %}

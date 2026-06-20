@@ -21,8 +21,8 @@
 
         <form class="formulario" method="post">
             {% csrf_token %}
-            <button class="boton" type="submit">Confirmar retiro</button>
-            <a href="{% url 'academico:detalle_matricula' matricula.id %}">Cancelar</a>
+            <button class="boton boton-peligro" type="submit">Confirmar retiro</button>
+            <a class="boton boton-secundario" href="{% url 'academico:detalle_matricula' matricula.id %}">Cancelar</a>
         </form>
     </section>
 {% endblock %}

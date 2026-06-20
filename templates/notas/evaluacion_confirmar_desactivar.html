@@ -7,7 +7,7 @@
         <h1>Desactivar evaluacion</h1>
 
         <nav>
-            <a href="{% url 'notas:listar_evaluaciones' %}">Volver a evaluaciones</a>
+            <a class="boton boton-secundario" href="{% url 'notas:listar_evaluaciones' %}">Volver a evaluaciones</a>
         </nav>
 
 
@@ -25,8 +25,8 @@
 
         <form class="formulario" method="post">
             {% csrf_token %}
-            <button class="boton" type="submit">Confirmar desactivacion</button>
-            <a href="{% url 'notas:listar_evaluaciones' %}">Cancelar</a>
+            <button class="boton boton-peligro" type="submit">Confirmar desactivacion</button>
+            <a class="boton boton-secundario" href="{% url 'notas:listar_evaluaciones' %}">Cancelar</a>
         </form>
     </section>
 {% endblock %}

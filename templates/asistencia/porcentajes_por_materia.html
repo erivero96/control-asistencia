@@ -7,9 +7,9 @@
         <h1>Porcentajes de {{ materia }}</h1>
 
         <nav>
-            <a href="{% url 'asistencia:listar_asistencias' %}">Volver a asistencias</a>
+            <a class="boton boton-secundario" href="{% url 'asistencia:listar_asistencias' %}">Volver a asistencias</a>
             <a href="{% url 'asistencia:asistencias_por_materia' materia.id %}">Asistencias de la materia</a>
-            <a href="{% url 'asistencia:registrar_asistencia_por_materia' %}">Registrar por materia</a>
+            <a class="boton boton-primario" href="{% url 'asistencia:registrar_asistencia_por_materia' %}">Registrar por materia</a>
         </nav>
 
 
@@ -47,7 +47,7 @@
                             {% endif %}
                         </td>
                         <td>
-                            <a href="{% url 'asistencia:porcentaje_asistencia_matricula' item.matricula.id %}">Ver porcentaje</a>
+                            <a class="boton boton-secundario" href="{% url 'asistencia:porcentaje_asistencia_matricula' item.matricula.id %}">Ver porcentaje</a>
                             <a href="{% url 'asistencia:asistencias_por_estudiante' item.estudiante.id %}">Asistencias</a>
                         </td>
                     </tr>

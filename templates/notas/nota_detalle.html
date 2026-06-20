@@ -7,9 +7,9 @@
         <h1>Detalle de nota</h1>
 
         <nav>
-            <a href="{% url 'notas:listar_notas' %}">Volver a notas</a>
-            <a href="{% url 'notas:editar_nota' nota.id %}">Editar</a>
-            <a href="{% url 'notas:promedio_matricula' nota.matricula.id %}">Ver promedio</a>
+            <a class="boton boton-secundario" href="{% url 'notas:listar_notas' %}">Volver a notas</a>
+            <a class="boton boton-editar" href="{% url 'notas:editar_nota' nota.id %}">Editar</a>
+            <a class="boton boton-secundario" href="{% url 'notas:promedio_matricula' nota.matricula.id %}">Ver promedio</a>
         </nav>
 
 

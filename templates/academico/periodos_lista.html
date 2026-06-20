@@ -7,8 +7,8 @@
         <h1>Periodos academicos</h1>
 
         <nav>
-            <a href="/">Inicio</a>
-            <a href="{% url 'academico:crear_periodo' %}">Registrar periodo</a>
+            <a class="boton boton-secundario" href="/">Inicio</a>
+            <a class="boton boton-primario" href="{% url 'academico:crear_periodo' %}">Registrar periodo</a>
             <a href="{% url 'academico:listar_materias' %}">Materias</a>
             <a href="{% url 'academico:listar_matriculas' %}">Matriculas</a>
         </nav>
@@ -32,7 +32,7 @@
                         <td>{{ periodo.fecha_fin|date:"d/m/Y" }}</td>
                         <td>{{ periodo.get_estado_display }}</td>
                         <td>
-                            <a href="{% url 'academico:editar_periodo' periodo.id %}">Editar</a>
+                            <a class="boton boton-editar" href="{% url 'academico:editar_periodo' periodo.id %}">Editar</a>
                         </td>
                     </tr>
                 {% empty %}

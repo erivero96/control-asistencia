@@ -7,8 +7,8 @@
         <h1>Matriculas</h1>
 
         <nav>
-            <a href="/">Inicio</a>
-            <a href="{% url 'academico:crear_matricula' %}">Registrar matricula</a>
+            <a class="boton boton-secundario" href="/">Inicio</a>
+            <a class="boton boton-primario" href="{% url 'academico:crear_matricula' %}">Registrar matricula</a>
             <a href="{% url 'academico:listar_materias' %}">Materias</a>
             <a href="{% url 'academico:listar_periodos' %}">Periodos</a>
         </nav>
@@ -34,8 +34,8 @@
                         <td>{{ matricula.get_estado_display }}</td>
                         <td>{{ matricula.fecha_matricula|date:"d/m/Y H:i" }}</td>
                         <td>
-                            <a href="{% url 'academico:detalle_matricula' matricula.id %}">Ver</a>
-                            <a href="{% url 'academico:retirar_matricula' matricula.id %}">Retirar</a>
+                            <a class="boton boton-secundario" href="{% url 'academico:detalle_matricula' matricula.id %}">Ver</a>
+                            <a class="boton boton-peligro" href="{% url 'academico:retirar_matricula' matricula.id %}">Retirar</a>
                         </td>
                     </tr>
                 {% empty %}

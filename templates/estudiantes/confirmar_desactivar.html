@@ -19,8 +19,8 @@
 
         <form class="formulario" method="post">
             {% csrf_token %}
-            <button class="boton" type="submit">Confirmar desactivacion</button>
-            <a href="{% url 'estudiantes:detalle_estudiante' estudiante.id %}">Cancelar</a>
+            <button class="boton boton-peligro" type="submit">Confirmar desactivacion</button>
+            <a class="boton boton-secundario" href="{% url 'estudiantes:detalle_estudiante' estudiante.id %}">Cancelar</a>
         </form>
     </section>
 {% endblock %}

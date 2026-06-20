@@ -7,10 +7,10 @@
         <h1>Detalle de asistencia</h1>
 
         <nav>
-            <a href="{% url 'asistencia:listar_asistencias' %}">Volver a asistencias</a>
-            <a href="{% url 'asistencia:editar_asistencia' asistencia.id %}">Editar</a>
-            <a href="{% url 'asistencia:registrar_asistencia' %}">Registrar asistencia</a>
-            <a href="{% url 'asistencia:porcentaje_asistencia_matricula' asistencia.matricula.id %}">Ver porcentaje</a>
+            <a class="boton boton-secundario" href="{% url 'asistencia:listar_asistencias' %}">Volver a asistencias</a>
+            <a class="boton boton-editar" href="{% url 'asistencia:editar_asistencia' asistencia.id %}">Editar</a>
+            <a class="boton boton-primario" href="{% url 'asistencia:registrar_asistencia' %}">Registrar asistencia</a>
+            <a class="boton boton-secundario" href="{% url 'asistencia:porcentaje_asistencia_matricula' asistencia.matricula.id %}">Ver porcentaje</a>
         </nav>
 
 

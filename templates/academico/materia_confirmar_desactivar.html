@@ -20,8 +20,8 @@
 
         <form class="formulario" method="post">
             {% csrf_token %}
-            <button class="boton" type="submit">Confirmar desactivacion</button>
-            <a href="{% url 'academico:listar_materias' %}">Cancelar</a>
+            <button class="boton boton-peligro" type="submit">Confirmar desactivacion</button>
+            <a class="boton boton-secundario" href="{% url 'academico:listar_materias' %}">Cancelar</a>
         </form>
     </section>
 {% endblock %}

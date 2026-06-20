@@ -7,10 +7,10 @@
         <h1>{{ titulo }}</h1>
 
         <nav>
-            <a href="{% url 'asistencia:listar_asistencias' %}">Volver a asistencias</a>
-            <a href="{% url 'asistencia:registrar_asistencia_por_materia' %}">Registrar por materia</a>
+            <a class="boton boton-secundario" href="{% url 'asistencia:listar_asistencias' %}">Volver a asistencias</a>
+            <a class="boton boton-primario" href="{% url 'asistencia:registrar_asistencia_por_materia' %}">Registrar por materia</a>
             {% if asistencia %}
-                <a href="{% url 'asistencia:detalle_asistencia' asistencia.id %}">Ver detalle</a>
+                <a class="boton boton-secundario" href="{% url 'asistencia:detalle_asistencia' asistencia.id %}">Ver detalle</a>
             {% endif %}
         </nav>
 
@@ -41,8 +41,8 @@
                 </div>
             {% endfor %}
 
-            <button class="boton" type="submit">{{ texto_boton }}</button>
-            <a href="{% url 'asistencia:listar_asistencias' %}">Cancelar</a>
+            <button class="boton boton-primario" type="submit">{{ texto_boton }}</button>
+            <a class="boton boton-secundario" href="{% url 'asistencia:listar_asistencias' %}">Cancelar</a>
         </form>
     </section>
 {% endblock %}
