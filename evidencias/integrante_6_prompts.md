@@ -376,3 +376,38 @@ Se consolidó la documentación final de roles, prompts, cambios y pruebas. Tamb
 - Se creó `evidencias/prompts_resumen.md` con el resumen de subfases, prompts, cambios y pruebas por integrante.
 - Se creó `evidencias/declaracion_uso_ia.md` con la declaración de uso de IA como herramienta de apoyo revisada por el equipo.
 - Se mantuvo la identificación por Integrante 1 a Integrante 6, sin inventar nombres personales.
+
+## Subfase 6.8
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 6.8 del proyecto.
+
+Necesito preparar una guía breve para la defensa final del sistema.
+
+Requisitos:
+- Crear archivo evidencias/guia_defensa.md.
+- La guía debe incluir explicación general del sistema, explicación breve por integrante,
+  flujo de demostración en vivo, preguntas posibles del docente, respuestas sugeridas
+  y errores encontrados con su corrección.
+- Incluir una sección especial para el Integrante 6 explicando reportes desarrollados,
+  integración de navegación, pruebas realizadas y documentación de evidencias.
+- Mantener lenguaje simple, como para exponer en clase.
+
+También actualiza evidencias/integrante_6_prompts.md con la subfase, prompt,
+resumen y cambios realizados.
+```
+
+### Resumen de lo generado
+
+Se creó una guía de defensa final con la explicación general del sistema, los roles, un flujo de demostración, preguntas y respuestas sugeridas, errores corregidos y un resumen específico del trabajo realizado por el Integrante 6.
+
+### Cambios realizados
+
+- Se creó `evidencias/guia_defensa.md`.
+- Se documentó una explicación breve del sistema y de la responsabilidad de cada integrante.
+- Se agregó un flujo de demostración desde el registro de estudiante hasta los reportes.
+- Se incluyeron preguntas y respuestas sugeridas para los seis integrantes.
+- Se documentaron errores encontrados y sus correcciones.
+- Se agregó una sección específica sobre reportes, navegación, pruebas y evidencias del Integrante 6.
