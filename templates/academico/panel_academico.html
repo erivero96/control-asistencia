@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Panel académico | Control Académico{% endblock %}
+
+{% block content %}
+    <section class="page-section">
+        <h1>Panel académico</h1>
+        <p>Seleccione la sección académica que desea gestionar.</p>
+
+        <div class="panel-modulos" aria-label="Opciones del módulo académico">
+            <a class="tarjeta tarjeta-modulo" href="{% url 'academico:listar_materias' %}">
+                <h2>Materias</h2>
+                <p>Registre, consulte y actualice las materias académicas.</p>
+            </a>
+            <a class="tarjeta tarjeta-modulo" href="{% url 'academico:listar_periodos' %}">
+                <h2>Periodos</h2>
+                <p>Administre los periodos del calendario académico.</p>
+            </a>
+            <a class="tarjeta tarjeta-modulo" href="{% url 'academico:listar_matriculas' %}">
+                <h2>Matrículas</h2>
+                <p>Registre y consulte las matrículas de los estudiantes.</p>
+            </a>
+        </div>
+    </section>
+{% endblock %}

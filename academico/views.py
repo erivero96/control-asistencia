@@ -1,6 +1,5 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import MateriaForm, MatriculaForm, PeriodoAcademicoForm
@@ -9,7 +8,7 @@ from .models import Materia, Matricula, PeriodoAcademico
 
 @login_required
 def index(request):
-    return HttpResponse('Modulo academico')
+    return render(request, 'academico/panel_academico.html')
 
 
 @login_required

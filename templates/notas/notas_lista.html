@@ -7,7 +7,7 @@
         <h1>Notas</h1>
 
         <nav>
-            <a class="boton boton-secundario" href="/">Inicio</a>
+            <a class="boton boton-secundario" href="{% url 'home' %}">Inicio</a>
             <a class="boton boton-primario" href="{% url 'notas:registrar_nota' %}">Registrar nota</a>
             <a href="{% url 'notas:listar_evaluaciones' %}">Evaluaciones</a>
         </nav>

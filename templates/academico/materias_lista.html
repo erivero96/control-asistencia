@@ -7,7 +7,7 @@
         <h1>Materias</h1>
 
         <nav>
-            <a class="boton boton-secundario" href="/">Inicio</a>
+            <a class="boton boton-secundario" href="{% url 'home' %}">Inicio</a>
             <a class="boton boton-primario" href="{% url 'academico:crear_materia' %}">Registrar materia</a>
             <a href="{% url 'academico:listar_periodos' %}">Periodos</a>
             <a href="{% url 'academico:listar_matriculas' %}">Matriculas</a>
