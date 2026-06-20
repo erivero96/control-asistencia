@@ -476,3 +476,37 @@ Se corrigio la barra de navegacion en `templates/base.html` para que el menu pri
 - En el bloque `{% else %}` se muestra unicamente el boton "Iniciar sesion".
 - El titulo "Control Academico" y subtitulo "Gestion academica" permanecen visibles en ambos estados.
 - No se modifico CSS, rutas ni logica interna de ningun modulo.
+
+## Subfase 2.8
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 2.8 del proyecto.
+
+Necesito probar que el menu del sistema se comporte correctamente segun la sesion del usuario.
+
+Requisitos:
+- Crear o actualizar el archivo:
+  evidencias/integrante_2_pruebas_navegacion_auth.md
+- Probar los siguientes casos:
+  1. Entrar al login sin iniciar sesion.
+  2. Verificar que no aparecen Estudiantes, Academico, Notas, Asistencia ni Reportes.
+  3. Iniciar sesion con usuario valido.
+  4. Verificar que aparecen todas las opciones internas del sistema.
+  5. Verificar que aparece el nombre del usuario.
+  6. Cerrar sesion.
+  7. Verificar que vuelve a mostrarse solo el boton Iniciar sesion.
+  8. Intentar entrar a una URL interna sin sesion y verificar que redirige al login.
+```
+
+### Resumen de lo generado
+
+Se creo el archivo `evidencias/integrante_2_pruebas_navegacion_auth.md` con 8 casos de prueba que validan el comportamiento del menu de navegacion segun el estado de sesion del usuario. Se verifico que sin sesion el menu interno (Estudiantes, Academico, Notas, Asistencia, Reportes) esta completamente oculto, que al iniciar sesion aparece el menu completo con el nombre del usuario y el boton Cerrar sesion, que al cerrar sesion el menu vuelve a ocultarse, y que las rutas protegidas redirigen al login con el parametro `next`. Todos los casos pasaron correctamente.
+
+### Cambios realizados
+
+- Se creo `evidencias/integrante_2_pruebas_navegacion_auth.md`.
+- Se documentaron 8 casos de prueba cubriendo: login sin sesion, ocultacion del menu, inicio de sesion, visualizacion del menu completo, nombre de usuario, cierre de sesion, restauracion del estado inicial y redireccion de URLs protegidas.
+- Se verifico que `manage.py check` no reporta errores.
+- No se requirieron correcciones adicionales en el codigo.
