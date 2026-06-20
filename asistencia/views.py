@@ -4,7 +4,7 @@ from django.db import transaction
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
-from academico.models import Materia, Matricula
+from academico.models import Materia, Matricula, PeriodoAcademico
 from estudiantes.models import Estudiante
 
 from .forms import AsistenciaForm, AsistenciaPorMateriaForm
@@ -33,6 +33,8 @@ def _matriculas_activas_por_materia_periodo(materia, periodo):
             materia=materia,
             periodo=periodo,
             estado=Matricula.ESTADO_MATRICULADO,
+            materia__estado=Materia.ESTADO_ACTIVO,
+            periodo__estado=PeriodoAcademico.ESTADO_ACTIVO,
         )
         .order_by('estudiante__apellidos', 'estudiante__nombres')
     )
