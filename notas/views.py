@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
@@ -14,6 +15,7 @@ from .utils import (
 )
 
 
+@login_required
 def index(request):
     return HttpResponse('Modulo de notas')
 
@@ -50,6 +52,7 @@ def _resumen_promedio_matricula(matricula):
     }
 
 
+@login_required
 def listar_evaluaciones(request):
     evaluaciones = (
         Evaluacion.objects
@@ -64,6 +67,7 @@ def listar_evaluaciones(request):
     )
 
 
+@login_required
 def crear_evaluacion(request):
     if request.method == 'POST':
         form = EvaluacionForm(request.POST)
@@ -94,6 +98,7 @@ def crear_evaluacion(request):
     )
 
 
+@login_required
 def editar_evaluacion(request, evaluacion_id):
     evaluacion = get_object_or_404(Evaluacion, id=evaluacion_id)
 
@@ -127,6 +132,7 @@ def editar_evaluacion(request, evaluacion_id):
     )
 
 
+@login_required
 def desactivar_evaluacion(request, evaluacion_id):
     evaluacion = get_object_or_404(Evaluacion, id=evaluacion_id)
 
@@ -153,6 +159,7 @@ def desactivar_evaluacion(request, evaluacion_id):
     )
 
 
+@login_required
 def listar_notas(request):
     notas = _notas_con_relaciones().order_by(
         'matricula__estudiante__apellidos',
@@ -168,6 +175,7 @@ def listar_notas(request):
     )
 
 
+@login_required
 def registrar_nota(request):
     if request.method == 'POST':
         form = NotaForm(request.POST)
@@ -198,6 +206,7 @@ def registrar_nota(request):
     )
 
 
+@login_required
 def editar_nota(request, nota_id):
     nota = get_object_or_404(_notas_con_relaciones(), id=nota_id)
 
@@ -231,6 +240,7 @@ def editar_nota(request, nota_id):
     )
 
 
+@login_required
 def detalle_nota(request, nota_id):
     nota = get_object_or_404(_notas_con_relaciones(), id=nota_id)
 
@@ -241,6 +251,7 @@ def detalle_nota(request, nota_id):
     )
 
 
+@login_required
 def notas_por_estudiante(request, estudiante_id):
     estudiante = get_object_or_404(Estudiante, id=estudiante_id)
     notas = (
@@ -263,6 +274,7 @@ def notas_por_estudiante(request, estudiante_id):
     )
 
 
+@login_required
 def notas_por_materia(request, materia_id):
     materia = get_object_or_404(Materia, id=materia_id)
     notas = (
@@ -285,6 +297,7 @@ def notas_por_materia(request, materia_id):
     )
 
 
+@login_required
 def promedio_matricula(request, matricula_id):
     matricula = get_object_or_404(_matriculas_con_relaciones(), id=matricula_id)
     resumen = _resumen_promedio_matricula(matricula)
@@ -296,6 +309,7 @@ def promedio_matricula(request, matricula_id):
     )
 
 
+@login_required
 def promedios_por_materia(request, materia_id):
     materia = get_object_or_404(Materia, id=materia_id)
     matriculas = (

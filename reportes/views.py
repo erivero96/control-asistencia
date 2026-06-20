@@ -1,5 +1,6 @@
 from collections import defaultdict
 
+from django.contrib.auth.decorators import login_required
 from django.db.models import Avg, Count, Q
 from django.shortcuts import get_object_or_404, render
 
@@ -14,11 +15,13 @@ from notas.utils import (
 )
 
 
+@login_required
 def panel_reportes(request):
     """Muestra las opciones iniciales del módulo de reportes."""
     return render(request, 'reportes/panel_reportes.html')
 
 
+@login_required
 def reporte_estudiante(request, estudiante_id):
     """Muestra el resumen académico y de asistencia de un estudiante."""
     estudiante = get_object_or_404(Estudiante, id=estudiante_id)
@@ -70,6 +73,7 @@ def reporte_estudiante(request, estudiante_id):
     )
 
 
+@login_required
 def reporte_materia(request, materia_id, periodo_id):
     """Muestra el rendimiento y asistencia de una materia en un periodo."""
     materia = get_object_or_404(Materia, id=materia_id)
@@ -151,6 +155,7 @@ def reporte_materia(request, materia_id, periodo_id):
     )
 
 
+@login_required
 def reporte_periodo(request, periodo_id):
     """Muestra los indicadores académicos generales de un periodo."""
     periodo = get_object_or_404(PeriodoAcademico, id=periodo_id)

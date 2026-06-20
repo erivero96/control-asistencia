@@ -522,3 +522,35 @@ Se probaron los flujos principales del modulo `asistencia` y se documento la evi
 - Se documento que presente, tardanza y justificado cuentan como asistencia valida.
 - Se documento que falta cuenta como inasistencia.
 - Se agregaron errores comunes y formas de solucionarlos.
+
+## Subfase 5.9 - Protección de vistas y sesiones
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 5.9 del proyecto.
+
+Necesito proteger las vistas principales del sistema para que solo usuarios autenticados puedan acceder.
+
+Responsable principal: Integrante 5.
+
+Requisitos:
+- Usar @login_required en vistas principales de estudiantes, academico, notas, asistencia y reportes.
+- Proteger también la página de inicio si el sistema debe iniciar después del login.
+- Si un usuario no autenticado intenta entrar a un módulo, debe redirigirse al login.
+- No modificar la lógica de cada vista ni cambiar nombres de rutas.
+- Mantener compatibilidad con LOGIN_URL.
+```
+
+### Resumen de lo generado
+
+Se protegieron las vistas de Estudiantes, Académico, Notas, Asistencia, Reportes y la página de inicio mediante `login_required`. Como `LOGIN_REDIRECT_URL` apunta a `home`, la portada queda disponible inmediatamente después del login y no es accesible sin sesión. Se mantuvo el login de Django y la lógica interna de los módulos.
+
+### Cambios realizados
+
+- Se agregó `login_required` a las vistas de los cinco módulos principales, sin alterar su lógica interna.
+- Se protegió `core.views.home` para que el panel principal requiera una sesión válida.
+- Los usuarios sin sesión son redirigidos a `cuentas/login/` conservando la URL solicitada en el parámetro `next`.
+- Se configuró `LOGOUT_REDIRECT_URL = 'login'` para que el cierre de sesión termine en la pantalla de acceso.
+- Se agregaron pruebas de protección de rutas, creación de sesión, cierre de sesión y acceso por POST sin autenticar en `core/tests.py`.
+- Se adaptaron las pruebas de integración existentes para ejecutarse con un usuario autenticado.

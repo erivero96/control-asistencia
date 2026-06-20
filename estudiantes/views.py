@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
@@ -6,10 +7,12 @@ from .forms import EstudianteForm
 from .models import Estudiante
 
 
+@login_required
 def index(request):
     return HttpResponse('Modulo de estudiantes')
 
 
+@login_required
 def listar_estudiantes(request):
     estudiantes = Estudiante.objects.all().order_by('apellidos', 'nombres')
 
@@ -20,6 +23,7 @@ def listar_estudiantes(request):
     )
 
 
+@login_required
 def crear_estudiante(request):
     if request.method == 'POST':
         form = EstudianteForm(request.POST)
@@ -51,6 +55,7 @@ def crear_estudiante(request):
     )
 
 
+@login_required
 def detalle_estudiante(request, estudiante_id):
     estudiante = get_object_or_404(Estudiante, id=estudiante_id)
 
@@ -61,6 +66,7 @@ def detalle_estudiante(request, estudiante_id):
     )
 
 
+@login_required
 def editar_estudiante(request, estudiante_id):
     estudiante = get_object_or_404(Estudiante, id=estudiante_id)
 
@@ -95,6 +101,7 @@ def editar_estudiante(request, estudiante_id):
     )
 
 
+@login_required
 def desactivar_estudiante(request, estudiante_id):
     estudiante = get_object_or_404(Estudiante, id=estudiante_id)
 

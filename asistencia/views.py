@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
@@ -11,6 +12,7 @@ from .models import Asistencia
 from .utils import resumen_asistencia_matricula
 
 
+@login_required
 def index(request):
     return HttpResponse('Modulo de asistencia')
 
@@ -68,6 +70,7 @@ def _filas_asistencia_por_matricula(matriculas, fecha):
     ]
 
 
+@login_required
 def listar_asistencias(request):
     asistencias = _asistencias_con_relaciones().order_by(
         '-fecha',
@@ -83,6 +86,7 @@ def listar_asistencias(request):
     )
 
 
+@login_required
 def registrar_asistencia(request):
     if request.method == 'POST':
         form = AsistenciaForm(request.POST)
@@ -116,6 +120,7 @@ def registrar_asistencia(request):
     )
 
 
+@login_required
 def registrar_asistencia_por_materia(request):
     form_data = request.POST if request.method == 'POST' else request.GET or None
     form = AsistenciaPorMateriaForm(form_data)
@@ -198,6 +203,7 @@ def registrar_asistencia_por_materia(request):
     )
 
 
+@login_required
 def editar_asistencia(request, asistencia_id):
     asistencia = get_object_or_404(
         _asistencias_con_relaciones(),
@@ -237,6 +243,7 @@ def editar_asistencia(request, asistencia_id):
     )
 
 
+@login_required
 def detalle_asistencia(request, asistencia_id):
     asistencia = get_object_or_404(
         _asistencias_con_relaciones(),
@@ -250,6 +257,7 @@ def detalle_asistencia(request, asistencia_id):
     )
 
 
+@login_required
 def porcentaje_asistencia_matricula(request, matricula_id):
     matricula = get_object_or_404(
         _matriculas_con_relaciones(),
@@ -264,6 +272,7 @@ def porcentaje_asistencia_matricula(request, matricula_id):
     )
 
 
+@login_required
 def porcentajes_por_materia(request, materia_id):
     materia = get_object_or_404(Materia, id=materia_id)
     matriculas = (
@@ -290,6 +299,7 @@ def porcentajes_por_materia(request, materia_id):
     )
 
 
+@login_required
 def asistencias_por_estudiante(request, estudiante_id):
     estudiante = get_object_or_404(Estudiante, id=estudiante_id)
     asistencias = (
@@ -312,6 +322,7 @@ def asistencias_por_estudiante(request, estudiante_id):
     )
 
 
+@login_required
 def asistencias_por_materia(request, materia_id):
     materia = get_object_or_404(Materia, id=materia_id)
     asistencias = (

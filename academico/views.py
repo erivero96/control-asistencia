@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
@@ -6,10 +7,12 @@ from .forms import MateriaForm, MatriculaForm, PeriodoAcademicoForm
 from .models import Materia, Matricula, PeriodoAcademico
 
 
+@login_required
 def index(request):
     return HttpResponse('Modulo academico')
 
 
+@login_required
 def listar_materias(request):
     materias = Materia.objects.all().order_by('nombre')
 
@@ -20,6 +23,7 @@ def listar_materias(request):
     )
 
 
+@login_required
 def crear_materia(request):
     if request.method == 'POST':
         form = MateriaForm(request.POST)
@@ -50,6 +54,7 @@ def crear_materia(request):
     )
 
 
+@login_required
 def editar_materia(request, materia_id):
     materia = get_object_or_404(Materia, id=materia_id)
 
@@ -83,6 +88,7 @@ def editar_materia(request, materia_id):
     )
 
 
+@login_required
 def desactivar_materia(request, materia_id):
     materia = get_object_or_404(Materia, id=materia_id)
 
@@ -109,6 +115,7 @@ def desactivar_materia(request, materia_id):
     )
 
 
+@login_required
 def listar_periodos(request):
     periodos = PeriodoAcademico.objects.all().order_by('fecha_inicio')
 
@@ -119,6 +126,7 @@ def listar_periodos(request):
     )
 
 
+@login_required
 def crear_periodo(request):
     if request.method == 'POST':
         form = PeriodoAcademicoForm(request.POST)
@@ -150,6 +158,7 @@ def crear_periodo(request):
     )
 
 
+@login_required
 def editar_periodo(request, periodo_id):
     periodo = get_object_or_404(PeriodoAcademico, id=periodo_id)
 
@@ -184,6 +193,7 @@ def editar_periodo(request, periodo_id):
     )
 
 
+@login_required
 def listar_matriculas(request):
     matriculas = (
         Matricula.objects
@@ -202,6 +212,7 @@ def listar_matriculas(request):
     )
 
 
+@login_required
 def crear_matricula(request):
     if request.method == 'POST':
         form = MatriculaForm(request.POST)
@@ -232,6 +243,7 @@ def crear_matricula(request):
     )
 
 
+@login_required
 def detalle_matricula(request, matricula_id):
     matricula = get_object_or_404(
         Matricula.objects.select_related('estudiante', 'materia', 'periodo'),
@@ -245,6 +257,7 @@ def detalle_matricula(request, matricula_id):
     )
 
 
+@login_required
 def retirar_matricula(request, matricula_id):
     matricula = get_object_or_404(
         Matricula.objects.select_related('estudiante', 'materia', 'periodo'),

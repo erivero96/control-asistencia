@@ -57,3 +57,28 @@ PRUEBAS_ASISTENCIA_COMPLETADAS
 - Si una pagina de detalle devuelve 404, confirmar que el ID exista en la base de datos.
 - Si el porcentaje aparece como pendiente, verificar que la matricula tenga asistencias registradas.
 - Si el registro por materia no lista estudiantes, confirmar que existan matriculas activas para esa materia y periodo.
+
+## Subfase 5.9 - Sesiones y protección de vistas
+
+| Caso probado | Resultado obtenido | Estado |
+| --- | --- | --- |
+| Acceso sin sesión a Inicio, Estudiantes, Académico, Notas, Asistencia y Reportes | Las 43 rutas protegidas se redirigieron a `cuentas/login/` con el parámetro `next`. | Correcto |
+| POST sin sesión a una vista de creación | La solicitud a crear estudiante fue redirigida al login, sin ejecutar la vista de escritura. | Correcto |
+| Inicio de sesión | Las credenciales válidas crearon la sesión y permitieron acceder al módulo de asistencia. | Correcto |
+| Cierre de sesión | La sesión se eliminó y la respuesta redirigió a la pantalla de login. | Correcto |
+| Integración autenticada | Los cuatro flujos existentes de navegación, registro, validaciones y reportes continuaron funcionando con usuario autenticado. | Correcto |
+
+### Comandos ejecutados
+
+```bash
+.venv/bin/python manage.py check
+.venv/bin/python manage.py test core reportes --keepdb --verbosity 2
+```
+
+### Resultado
+
+```text
+System check identified no issues (0 silenced).
+Ran 9 tests
+OK
+```

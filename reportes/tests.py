@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
 
@@ -8,6 +9,13 @@ from notas.models import Evaluacion, Nota
 
 
 class IntegracionSistemaTests(TestCase):
+    def setUp(self):
+        usuario = get_user_model().objects.create_user(
+            username='usuario_integracion',
+            password='clave-segura-prueba',
+        )
+        self.client.force_login(usuario)
+
     def _datos_estudiante(self, **cambios):
         datos = {
             'codigo': 'EST-INT-001',
