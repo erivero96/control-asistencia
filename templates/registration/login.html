@@ -8,14 +8,15 @@
             <div class="encabezado-login">
                 <p class="etiqueta-login">Acceso al sistema</p>
                 <h1 id="titulo-login">Sistema de Control Académico</h1>
-                <p>Ingrese sus credenciales para continuar.</p>
+                <p class="descripcion-login">Ingrese sus credenciales para continuar.</p>
             </div>
 
             <form class="formulario formulario-login" method="post" novalidate>
                 {% csrf_token %}
 
                 {% if form.non_field_errors %}
-                    <div class="alerta-login alerta-login-error" role="alert">
+                    <div class="alerta-login alerta-login-error" role="alert" aria-live="assertive">
+                        <p class="titulo-error-login">No se pudo iniciar sesión.</p>
                         {% for error in form.non_field_errors %}
                             <p>{{ error }}</p>
                         {% endfor %}
@@ -24,7 +25,7 @@
 
                 {% for field in form %}
                     <div class="campo-login">
-                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        <label class="etiqueta-campo-login" for="{{ field.id_for_label }}">{{ field.label }}</label>
                         {{ field }}
 
                         {% for error in field.errors %}

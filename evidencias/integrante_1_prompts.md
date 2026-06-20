@@ -408,3 +408,30 @@ Se incorporó autenticación básica mediante las vistas estándar de `django.co
 - Se añadieron controles de iniciar sesión, nombre de usuario y cierre de sesión por POST en la cabecera.
 - Se añadieron estilos de autenticación y diseño adaptable en `static/css/styles.css`.
 - No se crearon roles, modelos nuevos ni lógica de autorización compleja.
+
+## Subfase 1.10
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 1.10 del proyecto.
+
+Necesito mejorar el diseño visual de la pantalla de login.
+
+Requisitos:
+- Usar el CSS global y crear una tarjeta centrada para el formulario.
+- Mostrar el título Sistema de Control Académico, campos ordenados, errores claros y botón para ingresar.
+- Mantener un diseño simple, limpio y académico.
+- No modificar la lógica de autenticación.
+```
+
+### Resumen de lo generado
+
+Se refinó la presentación de la pantalla de acceso con una tarjeta centrada, jerarquía visual académica y mensajes de error más visibles. La autenticación continúa usando las mismas vistas y formulario estándar de Django.
+
+### Cambios realizados
+
+- Se mejoró `registration/login.html` con etiquetas específicas de acceso, descripción y alerta accesible de errores.
+- Se reforzó la tarjeta de login en `styles.css` con borde superior, sombra sobria, espaciado y campos visualmente ordenados.
+- Se ajustó la tarjeta para pantallas pequeñas sin alterar el comportamiento del formulario.
+- No se modificaron rutas, vistas, credenciales ni lógica de autenticación.

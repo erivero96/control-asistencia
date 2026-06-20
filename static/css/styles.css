@@ -528,8 +528,22 @@ article {
 }
 
 .tarjeta-login {
+    position: relative;
     width: min(100%, 460px);
     padding: clamp(1.5rem, 5vw, 2.5rem);
+    border-color: #c7d6e0;
+    box-shadow: 0 16px 36px rgba(24, 55, 78, 0.14);
+}
+
+.tarjeta-login::before {
+    position: absolute;
+    top: 0;
+    right: 1.5rem;
+    left: 1.5rem;
+    height: 4px;
+    border-radius: 0 0 4px 4px;
+    background: var(--acento);
+    content: "";
 }
 
 .encabezado-login {
@@ -540,6 +554,11 @@ article {
 .encabezado-login h1,
 .tarjeta-sesion-cerrada h1 {
     margin: 0.2rem 0 0.6rem;
+}
+
+.descripcion-login {
+    margin-bottom: 0;
+    color: var(--texto-suave);
 }
 
 .etiqueta-login {
@@ -564,8 +583,13 @@ article {
     margin-bottom: 1.1rem;
 }
 
+.etiqueta-campo-login {
+    font-size: 0.94rem;
+}
+
 .campo-login input {
     min-height: 2.7rem;
+    background: #fbfdff;
 }
 
 .alerta-login {
@@ -575,6 +599,11 @@ article {
     border-radius: 4px;
     background: #fff0f0;
     color: #812b2b;
+}
+
+.titulo-error-login {
+    margin-bottom: 0.2rem !important;
+    font-weight: 700;
 }
 
 .alerta-login p,
@@ -797,6 +826,10 @@ article {
     .pagina-login {
         min-height: auto;
         padding: 0.5rem 0;
+    }
+
+    .tarjeta-login {
+        padding: 1.5rem 1.15rem;
     }
 
     form,
