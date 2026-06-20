@@ -2,6 +2,8 @@ from decimal import Decimal
 
 from django import forms
 
+from academico.models import Materia, Matricula, PeriodoAcademico
+
 from .models import Evaluacion, Nota
 
 
@@ -52,11 +54,26 @@ class EvaluacionForm(forms.ModelForm):
             'descripcion': forms.Textarea(attrs={'rows': 3}),
         }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['materia'].queryset = Materia.objects.filter(
+            estado=Materia.ESTADO_ACTIVO,
+        ).order_by('nombre')
+        self.fields['periodo'].queryset = PeriodoAcademico.objects.filter(
+            estado=PeriodoAcademico.ESTADO_ACTIVO,
+        ).order_by('-fecha_inicio', 'nombre')
+
     def clean_materia(self):
         materia = self.cleaned_data.get('materia')
 
         if not materia:
             raise forms.ValidationError('Seleccione una materia.')
+
+        if materia.estado != Materia.ESTADO_ACTIVO:
+            raise forms.ValidationError(
+                'Solo se pueden registrar evaluaciones para materias activas.'
+            )
 
         return materia
 
@@ -65,6 +82,11 @@ class EvaluacionForm(forms.ModelForm):
 
         if not periodo:
             raise forms.ValidationError('Seleccione un periodo academico.')
+
+        if periodo.estado != PeriodoAcademico.ESTADO_ACTIVO:
+            raise forms.ValidationError(
+                'Solo se pueden registrar evaluaciones en periodos activos.'
+            )
 
         return periodo
 
@@ -86,9 +108,9 @@ class EvaluacionForm(forms.ModelForm):
                 'El peso de la evaluacion es obligatorio.'
             )
 
-        if peso <= Decimal('0.00'):
+        if peso < Decimal('1.00') or peso > Decimal('100.00'):
             raise forms.ValidationError(
-                'El peso de la evaluacion debe ser mayor que cero.'
+                'El peso de la evaluacion debe estar entre 1 y 100.'
             )
 
         return peso
@@ -127,11 +149,31 @@ class NotaForm(forms.ModelForm):
             'observacion': forms.Textarea(attrs={'rows': 3}),
         }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['matricula'].queryset = Matricula.objects.filter(
+            estado=Matricula.ESTADO_MATRICULADO,
+        ).select_related(
+            'estudiante',
+            'materia',
+            'periodo',
+        ).order_by(
+            'estudiante__apellidos',
+            'estudiante__nombres',
+            'materia__nombre',
+        )
+
     def clean_matricula(self):
         matricula = self.cleaned_data.get('matricula')
 
         if not matricula:
             raise forms.ValidationError('Seleccione una matricula.')
+
+        if matricula.estado != Matricula.ESTADO_MATRICULADO:
+            raise forms.ValidationError(
+                'Solo se pueden registrar notas para matriculas activas.'
+            )
 
         return matricula
 
