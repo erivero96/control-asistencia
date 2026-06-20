@@ -228,3 +228,61 @@ Se creó el reporte por periodo académico. Este presenta los datos del periodo 
 - Se agregó la ruta `reportes/periodo/<int:periodo_id>/` con el nombre `reporte_periodo`.
 - Se creó `templates/reportes/reporte_periodo.html`.
 - Se muestra un mensaje específico cuando el periodo no tiene matrículas registradas.
+
+## Subfase 6.5
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 6.5 del proyecto.
+
+Necesito integrar la navegación general del sistema web de Control Académico.
+
+Requisitos:
+- Revisar si existe base.html.
+- Si existe, actualizarlo sin romper los módulos.
+- Si no existe, crear templates/base.html.
+- Agregar menú o barra de navegación con enlaces a:
+  - Inicio
+  - Estudiantes
+  - Materias
+  - Periodos
+  - Matrículas
+  - Evaluaciones
+  - Notas
+  - Asistencia
+  - Reportes
+- Actualizar la página de inicio para que se vea como panel principal.
+- No modificar la lógica interna de los módulos.
+- Mantener diseño simple y entendible.
+
+Quiero que me indiques:
+1. Archivos modificados.
+2. Código completo de base.html.
+3. Código actualizado de la página de inicio si aplica.
+4. Cómo verificar que los enlaces funcionan.
+5. Mensaje de commit recomendado.
+6. Breve explicación para defensa.
+
+También actualiza:
+evidencias/integrante_6_prompts.md
+
+Agrega:
+- Subfase 6.5
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se creó una plantilla base con una barra de navegación para los módulos principales del sistema. La página de inicio ahora hereda esta plantilla y presenta un panel principal con accesos directos a cada módulo.
+
+### Cambios realizados
+
+- Se verificó que no existía una plantilla `base.html`.
+- Se creó `templates/base.html` con enlaces a Inicio, Estudiantes, Materias, Periodos, Matrículas, Evaluaciones, Notas, Asistencia y Reportes.
+- Se agregó un diseño simple y adaptable para la barra de navegación y las tarjetas del panel.
+- Se actualizó `templates/core/home.html` para heredar de `base.html`.
+- Se transformó la página de inicio en un panel principal con accesos a los módulos existentes.
+- No se modificó la lógica Python ni las rutas de los módulos.
