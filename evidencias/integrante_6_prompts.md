@@ -286,3 +286,55 @@ Se creó una plantilla base con una barra de navegación para los módulos princ
 - Se actualizó `templates/core/home.html` para heredar de `base.html`.
 - Se transformó la página de inicio en un panel principal con accesos a los módulos existentes.
 - No se modificó la lógica Python ni las rutas de los módulos.
+
+## Subfase 6.6
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 6.6 del proyecto.
+
+Necesito realizar pruebas de integración del sistema completo.
+
+Requisitos:
+- Probar que el servidor Django inicia sin errores.
+- Probar navegación entre módulos.
+- Probar flujo completo:
+  1. Registrar estudiante.
+  2. Registrar materia.
+  3. Registrar periodo.
+  4. Crear matrícula.
+  5. Crear evaluación.
+  6. Registrar nota.
+  7. Registrar asistencia.
+  8. Ver reporte por estudiante.
+  9. Ver reporte por materia.
+  10. Ver reporte por periodo.
+- Probar casos incorrectos:
+  - DNI duplicado
+  - materia duplicada
+  - matrícula duplicada
+  - nota fuera de rango
+  - asistencia duplicada
+  - reporte sin datos
+- Crear archivo evidencias/integrante_6_pruebas_integracion.md.
+
+El archivo debe contener caso probado, datos ingresados, resultado esperado,
+resultado obtenido y estado: correcto o corregido.
+
+También actualiza evidencias/integrante_6_prompts.md con la subfase, prompt,
+resumen y cambios realizados.
+```
+
+### Resumen de lo generado
+
+Se agregaron pruebas automatizadas de integración que verifican la navegación principal, el flujo completo de registros y reportes, las validaciones de datos duplicados o fuera de rango y los reportes sin datos. Se creó el registro documentado de resultados de las pruebas.
+
+### Cambios realizados
+
+- Se reemplazó el archivo base de pruebas de `reportes` por pruebas de integración reproducibles con el cliente de Django.
+- Se verificó el flujo completo desde el registro de estudiante hasta los tres reportes.
+- Se verificaron los casos de DNI, materia, matrícula y asistencia duplicados, además de una nota fuera del rango permitido.
+- Se verificaron los reportes de estudiante, materia y periodo sin matrículas.
+- Se creó `evidencias/integrante_6_pruebas_integracion.md` con los datos, resultados esperados, resultados obtenidos y estado de cada caso.
+- Se detectó y resolvió temporalmente la falta de permisos del usuario de Django para crear la base de pruebas, sin alterar la base de datos real.
