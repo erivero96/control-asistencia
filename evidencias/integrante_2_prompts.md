@@ -510,3 +510,71 @@ Se creo el archivo `evidencias/integrante_2_pruebas_navegacion_auth.md` con 8 ca
 - Se documentaron 8 casos de prueba cubriendo: login sin sesion, ocultacion del menu, inicio de sesion, visualizacion del menu completo, nombre de usuario, cierre de sesion, restauracion del estado inicial y redireccion de URLs protegidas.
 - Se verifico que `manage.py check` no reporta errores.
 - No se requirieron correcciones adicionales en el codigo.
+
+## Subfase 2.9
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 2.9 del proyecto.
+
+Estoy trabajando en el sistema Django de Control Academico.
+
+Yo soy el Integrante 2 y tengo una tarea adicional: implementar una forma centralizada para generar codigos automaticos en los modelos que manejan codigos.
+
+Actualmente algunos registros, como estudiantes o materias, requieren que el usuario escriba manualmente el codigo. Esto debe corregirse para que el sistema genere los codigos automaticamente.
+
+Requisitos:
+- Crear una funcion reutilizable para generar codigos automaticos.
+- La funcion debe servir para distintos modelos.
+- Debe recibir:
+  - modelo
+  - nombre del campo de codigo
+  - prefijo
+  - cantidad de digitos
+- Debe generar codigos con formato similar:
+  - EST-0001
+  - MAT-0001
+  - MTR-0001
+  - EVA-0001
+- Debe buscar el ultimo codigo existente del modelo y generar el siguiente.
+- Si no existe ningun registro, debe iniciar en 0001.
+- Debe manejar errores si el codigo anterior no tiene formato valido.
+- Ubicar la funcion en un lugar reutilizable, por ejemplo:
+  core/utils/codigos.py
+  o una carpeta similar si ya existe una estructura de utilidades.
+- No modificar todavia los modelos en esta subfase.
+- No cambiar vistas ni templates todavia.
+
+Quiero que me indiques:
+1. Archivo creado o modificado.
+2. Codigo completo de la funcion generar_codigo.
+3. Explicacion de como funciona.
+4. Ejemplos de uso con Estudiante y Materia.
+5. Comando para probar que no hay errores.
+6. Mensaje de commit recomendado.
+7. Breve explicacion para defensa.
+
+Tambien actualiza:
+evidencias/integrante_2_prompts.md
+
+Agrega:
+- Subfase 2.9
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se creo la funcion reutilizable `generar_codigo` en `core/utils/codigos.py`. La utilidad recibe un modelo de Django, el nombre de su campo de codigo, un prefijo y la cantidad de digitos; consulta el ultimo codigo y devuelve el siguiente correlativo con ceros a la izquierda. Tambien valida los parametros, la existencia del campo, el formato del ultimo codigo y el limite de la numeracion.
+
+### Cambios realizados
+
+- Se creo el paquete compartido `core/utils/`.
+- Se creo la funcion `generar_codigo` en `core/utils/codigos.py`.
+- Se implemento el inicio de la numeracion en `0001` cuando no hay registros.
+- Se implemento el incremento del ultimo codigo existente.
+- Se agregaron errores descriptivos para parametros invalidos, campos inexistentes, codigos con formato incorrecto y numeraciones agotadas.
+- Se agregaron pruebas unitarias en `core/test_codigos.py`.
+- No se modificaron modelos, vistas, formularios, rutas ni templates.
