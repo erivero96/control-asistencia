@@ -1,5 +1,6 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 
 
-def index(request):
-    return HttpResponse('Modulo de reportes')
+def panel_reportes(request):
+    """Muestra las opciones iniciales del módulo de reportes."""
+    return render(request, 'reportes/panel_reportes.html')
