@@ -12,7 +12,7 @@
         </nav>
 
 
-        <form method="post" novalidate>
+        <form class="formulario" method="post" novalidate>
             {% csrf_token %}
 
             {% if form.non_field_errors %}
@@ -38,7 +38,7 @@
                 </div>
             {% endfor %}
 
-            <button type="submit">{{ texto_boton }}</button>
+            <button class="boton" type="submit">{{ texto_boton }}</button>
             <a href="{% url 'notas:listar_evaluaciones' %}">Cancelar</a>
         </form>
     </section>

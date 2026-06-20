@@ -321,3 +321,31 @@ Se implementó un diseño visual global y reutilizable para el Sistema de Contro
 - Se migraron las plantillas de estudiantes, académico, notas, asistencia y reportes para que hereden de `base.html`, sin cambiar sus enlaces, variables ni formularios.
 - Se ajustó la configuración de estáticos para que el CSS se cargue desde cualquier ruta local del sistema.
 - No se modificaron modelos, vistas, rutas de los módulos, formularios ni lógica de negocio.
+
+## Subfase 1.7
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 1.7 del proyecto.
+
+Necesito que todos los templates del sistema usen la plantilla base y el CSS global.
+
+Requisitos:
+- Revisar templates de core, estudiantes, academico, notas, asistencia y reportes.
+- Hacer que todos extiendan templates/base.html y usen los bloques title y content.
+- Aplicar clases CSS comunes a tablas, formularios, botones, tarjetas, mensajes, páginas de detalle y páginas de confirmación.
+- No cambiar nombres de rutas, lógica de vistas ni datos mostrados.
+```
+
+### Resumen de lo generado
+
+Se consolidó el uso de la plantilla base y del CSS global en todos los módulos. Las pantallas ahora usan clases visuales reutilizables para que tablas, formularios, botones, tarjetas, mensajes, detalles y confirmaciones mantengan el mismo estilo.
+
+### Cambios realizados
+
+- Se verificó que las 36 plantillas de contenido extiendan `base.html`; `base.html` permanece como el único documento HTML principal.
+- Se aplicaron las clases `tabla-datos`, `formulario`, `boton`, `tarjeta`, `mensajes`, `detalle`, `pagina-detalle` y `pagina-confirmacion` según el tipo de contenido.
+- Se ampliaron los selectores de `static/css/styles.css` para mantener estilos comunes y adaptables con esas clases.
+- Se conservaron los bloques `title` y `content`, las rutas, los formularios, las variables de contexto y los datos ya mostrados.
+- No se modificó la lógica de las vistas.

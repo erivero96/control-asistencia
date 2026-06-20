@@ -3,7 +3,7 @@
 {% block title %}Reporte académico por materia | Control Académico{% endblock %}
 
 {% block content %}
-    <section class="page-section">
+    <section class="page-section pagina-detalle">
         <h1>Reporte académico por materia</h1>
 
         <nav>
@@ -12,9 +12,9 @@
             <a href="{% url 'academico:listar_periodos' %}">Ver periodos</a>
         </nav>
 
-        <section>
+        <section class="tarjeta">
             <h2>Datos de la materia</h2>
-            <dl>
+            <dl class="detalle">
                 <dt>Código</dt>
                 <dd>{{ materia.codigo }}</dd>
 
@@ -29,9 +29,9 @@
             </dl>
         </section>
 
-        <section>
+        <section class="tarjeta">
             <h2>Periodo académico</h2>
-            <dl>
+            <dl class="detalle">
                 <dt>Periodo</dt>
                 <dd>{{ periodo.nombre }}</dd>
 
@@ -46,7 +46,7 @@
             </dl>
         </section>
 
-        <section>
+        <section class="tarjeta">
             <h2>Resumen académico</h2>
             <ul>
                 <li>Aprobados: {{ aprobados }}</li>
@@ -55,7 +55,7 @@
             </ul>
         </section>
 
-        <section>
+        <section class="tarjeta">
             <h2>Resumen básico de asistencia</h2>
             {% if resumen_asistencia.total_registros %}
                 <ul>
@@ -70,11 +70,11 @@
             {% endif %}
         </section>
 
-        <section>
+        <section class="tarjeta">
             <h2>Estudiantes matriculados</h2>
 
             {% if estudiantes_reporte %}
-                <table border="1">
+                <table class="tabla-datos" border="1">
                     <thead>
                         <tr>
                             <th>Estudiante</th>

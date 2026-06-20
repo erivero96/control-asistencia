@@ -172,7 +172,8 @@ textarea:focus-visible {
 }
 
 .page-section > nav a,
-form > a {
+form > a,
+.formulario > a {
     display: inline-flex;
     align-items: center;
     min-height: 2.4rem;
@@ -190,7 +191,8 @@ form > a:hover {
     background: var(--primario-claro);
 }
 
-.messages {
+.messages,
+.mensajes {
     display: grid;
     gap: 0.5rem;
     margin: 0 0 1.25rem;
@@ -198,24 +200,28 @@ form > a:hover {
     list-style: none;
 }
 
-.messages li {
+.messages li,
+.mensajes li {
     padding: 0.8rem 1rem;
     border-left: 4px solid var(--primario);
     border-radius: 4px;
     background: var(--primario-claro);
 }
 
-.messages .success {
+.messages .success,
+.mensajes .success {
     border-left-color: var(--acento);
     background: #e8f5f1;
 }
 
-.messages .error {
+.messages .error,
+.mensajes .error {
     border-left-color: var(--peligro);
     background: #fff0f0;
 }
 
-form {
+form,
+.formulario {
     width: min(100%, 780px);
     margin: 1.25rem 0;
     padding: 1.25rem;
@@ -225,7 +231,8 @@ form {
     box-shadow: var(--sombra);
 }
 
-form > div {
+form > div,
+.formulario > div {
     margin-bottom: 1rem;
 }
 
@@ -266,6 +273,7 @@ small {
 }
 
 form p,
+.formulario p,
 .errorlist {
     margin: 0.35rem 0 0;
     color: var(--peligro);
@@ -275,7 +283,8 @@ form p,
     padding-left: 1.25rem;
 }
 
-button {
+button,
+.boton {
     min-height: 2.4rem;
     padding: 0.45rem 0.85rem;
     border: 1px solid var(--primario);
@@ -287,7 +296,8 @@ button {
     font-weight: 700;
 }
 
-button:hover {
+button:hover,
+.boton:hover {
     border-color: var(--primario-oscuro);
     background: var(--primario-oscuro);
 }
@@ -297,7 +307,8 @@ form > a {
     vertical-align: middle;
 }
 
-table {
+table,
+.tabla-datos {
     width: 100%;
     margin: 1.25rem 0;
     border: 1px solid var(--borde);
@@ -335,7 +346,8 @@ td a + a {
     margin-left: 0.65rem;
 }
 
-dl {
+dl,
+.detalle {
     display: grid;
     grid-template-columns: minmax(150px, 0.35fr) 1fr;
     margin: 1.25rem 0;
@@ -364,7 +376,9 @@ dd {
 }
 
 dl dt:nth-last-of-type(1),
-dl dd:last-child {
+dl dd:last-child,
+.detalle dt:nth-last-of-type(1),
+.detalle dd:last-child {
     border-bottom: 0;
 }
 
@@ -392,6 +406,26 @@ article {
     padding: 1rem;
     border-left: 4px solid var(--primario);
     background: #f8fbfd;
+}
+
+.tarjeta {
+    padding: 1.25rem;
+    border: 1px solid var(--borde);
+    border-radius: 7px;
+    background: var(--superficie);
+    box-shadow: var(--sombra);
+}
+
+.pagina-detalle .detalle {
+    margin-top: 1.25rem;
+}
+
+.pagina-confirmacion {
+    max-width: 780px;
+}
+
+.pagina-confirmacion > p {
+    font-size: 1.05rem;
 }
 
 .panel-modulos {
@@ -457,7 +491,8 @@ article {
         justify-content: flex-start;
     }
 
-    table {
+    table,
+    .tabla-datos {
         display: block;
         overflow-x: auto;
         white-space: nowrap;
@@ -486,7 +521,8 @@ article {
         padding: 1rem;
     }
 
-    dl {
+    dl,
+    .detalle {
         grid-template-columns: 1fr;
     }
 

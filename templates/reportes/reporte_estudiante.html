@@ -3,7 +3,7 @@
 {% block title %}Reporte académico por estudiante | Control Académico{% endblock %}
 
 {% block content %}
-    <section class="page-section">
+    <section class="page-section pagina-detalle">
         <h1>Reporte académico por estudiante</h1>
 
         <nav>
@@ -11,9 +11,9 @@
             <a href="{% url 'estudiantes:listar_estudiantes' %}">Ver estudiantes</a>
         </nav>
 
-        <section>
+        <section class="tarjeta">
             <h2>Datos del estudiante</h2>
-            <dl>
+            <dl class="detalle">
                 <dt>Código</dt>
                 <dd>{{ estudiante.codigo }}</dd>
 
@@ -31,7 +31,7 @@
             </dl>
         </section>
 
-        <section>
+        <section class="tarjeta">
             <h2>Materias matriculadas</h2>
 
             {% if reportes_materias %}

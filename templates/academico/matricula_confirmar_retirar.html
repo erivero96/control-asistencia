@@ -3,7 +3,7 @@
 {% block title %}Retirar matricula | Control Académico{% endblock %}
 
 {% block content %}
-    <section class="page-section">
+    <section class="page-section pagina-confirmacion">
         <h1>Retirar matricula</h1>
 
 
@@ -19,9 +19,9 @@
             <li>Fecha de matricula: {{ matricula.fecha_matricula|date:"d/m/Y H:i" }}</li>
         </ul>
 
-        <form method="post">
+        <form class="formulario" method="post">
             {% csrf_token %}
-            <button type="submit">Confirmar retiro</button>
+            <button class="boton" type="submit">Confirmar retiro</button>
             <a href="{% url 'academico:detalle_matricula' matricula.id %}">Cancelar</a>
         </form>
     </section>

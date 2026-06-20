@@ -3,7 +3,7 @@
 {% block title %}Desactivar evaluacion | Control Académico{% endblock %}
 
 {% block content %}
-    <section class="page-section">
+    <section class="page-section pagina-confirmacion">
         <h1>Desactivar evaluacion</h1>
 
         <nav>
@@ -23,9 +23,9 @@
             <li>Estado actual: {{ evaluacion.get_estado_display }}</li>
         </ul>
 
-        <form method="post">
+        <form class="formulario" method="post">
             {% csrf_token %}
-            <button type="submit">Confirmar desactivacion</button>
+            <button class="boton" type="submit">Confirmar desactivacion</button>
             <a href="{% url 'notas:listar_evaluaciones' %}">Cancelar</a>
         </form>
     </section>

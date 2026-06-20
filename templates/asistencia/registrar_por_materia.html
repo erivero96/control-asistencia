@@ -12,7 +12,7 @@
         </nav>
 
 
-        <form method="get" novalidate>
+        <form class="formulario" method="get" novalidate>
             {% if form.non_field_errors %}
                 <ul>
                     {% for error in form.non_field_errors %}
@@ -32,20 +32,20 @@
                 </div>
             {% endfor %}
 
-            <button type="submit">Buscar estudiantes</button>
+            <button class="boton" type="submit">Buscar estudiantes</button>
         </form>
 
         {% if filas_asistencia %}
             <h2>Estudiantes matriculados</h2>
             <p>{{ materia }} - {{ periodo }} - {{ fecha|date:"d/m/Y" }}</p>
 
-            <form method="post" novalidate>
+            <form class="formulario" method="post" novalidate>
                 {% csrf_token %}
                 <input type="hidden" name="materia" value="{{ materia.id }}">
                 <input type="hidden" name="periodo" value="{{ periodo.id }}">
                 <input type="hidden" name="fecha" value="{{ fecha|date:'Y-m-d' }}">
 
-                <table border="1">
+                <table class="tabla-datos" border="1">
                     <thead>
                         <tr>
                             <th>Estudiante</th>
@@ -74,7 +74,7 @@
                     </tbody>
                 </table>
 
-                <button type="submit">Guardar asistencia</button>
+                <button class="boton" type="submit">Guardar asistencia</button>
                 <a href="{% url 'asistencia:listar_asistencias' %}">Cancelar</a>
             </form>
         {% elif form.is_bound and materia and periodo and fecha %}
