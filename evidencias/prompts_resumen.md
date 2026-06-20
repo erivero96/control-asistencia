@@ -1,0 +1,12 @@
+# Resumen de prompts y trabajo realizado
+
+Este documento resume el uso de prompts por rol. Los textos completos de cada prompt se conservan en los archivos `evidencias/integrante_*_prompts.md`.
+
+| Integrante | Subfase(s) | Prompt usado (resumen) | Cambios realizados | Prueba aplicada |
+| --- | --- | --- | --- | --- |
+| Integrante 1 | 1.1 a 1.5 | Crear y configurar la base técnica de Django, MySQL en Docker, variables de entorno, aplicaciones iniciales y documentación. | Se estructuró el proyecto, se configuraron `config`, MySQL, Docker Compose, dependencias, apps base y evidencias iniciales. | Validaciones de configuración y comandos de Django documentados en `integrante_1_prompts.md`. |
+| Integrante 2 | 2.1 a 2.6 | Desarrollar el módulo de estudiantes con modelo, administración, formularios, CRUD, validaciones y pruebas. | Se implementó el módulo `estudiantes`, sus migraciones, rutas, templates y controles para DNI y código únicos. | Pruebas de registro, edición, detalle, desactivación y validaciones en `integrante_2_pruebas.md`. |
+| Integrante 3 | 3.1 a 3.8 | Desarrollar materias, periodos académicos y matrículas con sus reglas de negocio, vistas y pruebas. | Se implementó el módulo `academico`, incluyendo modelos, formularios, CRUD y validación de matrícula única. | Pruebas de materias, periodos, matrículas, duplicados y retiro en `integrante_3_pruebas.md`. |
+| Integrante 4 | 4.1 a 4.9 | Desarrollar evaluaciones, notas, consultas y promedios, con validaciones de pesos y calificaciones. | Se implementó el módulo `notas`, cálculo de promedio simple y ponderado, estados académicos, formularios, vistas y templates. | Pruebas de evaluaciones, notas, rango de 0 a 20, duplicados y promedios en `integrante_4_pruebas.md`. |
+| Integrante 5 | 5.1 a 5.8 | Desarrollar asistencia individual y por materia, consultas, porcentajes y validaciones de duplicidad. | Se implementó el módulo `asistencia`, sus formularios, vistas, registro masivo por materia, resúmenes y porcentajes. | Pruebas de asistencia, duplicados, actualización por materia y porcentajes en `integrante_5_pruebas.md`. |
+| Integrante 6 | 6.1 a 6.7 | Desarrollar reportes por estudiante, materia y periodo; integrar navegación; ejecutar pruebas finales y documentar evidencias. | Se creó el módulo de reportes, la plantilla base, el panel principal, pruebas automatizadas de integración y documentación final. | `python manage.py check`, servidor con respuesta HTTP 200 y pruebas de integración documentadas en `integrante_6_pruebas_integracion.md`. |

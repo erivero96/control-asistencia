@@ -338,3 +338,41 @@ Se agregaron pruebas automatizadas de integración que verifican la navegación 
 - Se verificaron los reportes de estudiante, materia y periodo sin matrículas.
 - Se creó `evidencias/integrante_6_pruebas_integracion.md` con los datos, resultados esperados, resultados obtenidos y estado de cada caso.
 - Se detectó y resolvió temporalmente la falta de permisos del usuario de Django para crear la base de pruebas, sin alterar la base de datos real.
+
+## Subfase 6.7
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 6.7 del proyecto.
+
+Necesito documentar las evidencias finales de uso de IA y trabajo por roles.
+
+Requisitos:
+- Crear o actualizar:
+  - evidencias/matriz_roles.md
+  - evidencias/prompts_resumen.md
+  - evidencias/declaracion_uso_ia.md
+- La matriz de roles debe incluir integrante, módulo trabajado, responsabilidad,
+  archivos principales y evidencia generada.
+- El resumen de prompts debe indicar integrante, subfase, prompt usado,
+  cambios realizados y prueba aplicada.
+- La declaración de uso de IA debe indicar que la IA fue usada como apoyo, que el
+  código fue revisado, adaptado y probado por el equipo.
+- No inventar nombres de integrantes. Usar Integrante 1, Integrante 2, etc.
+- Mantener redacción sencilla y defendible.
+
+También actualiza evidencias/integrante_6_prompts.md con la subfase, prompt,
+resumen y cambios realizados.
+```
+
+### Resumen de lo generado
+
+Se consolidó la documentación final de roles, prompts, cambios y pruebas. También se creó una declaración clara sobre el uso responsable de IA como apoyo al trabajo del equipo.
+
+### Cambios realizados
+
+- Se creó `evidencias/matriz_roles.md` con la distribución de responsabilidades de los seis integrantes.
+- Se creó `evidencias/prompts_resumen.md` con el resumen de subfases, prompts, cambios y pruebas por integrante.
+- Se creó `evidencias/declaracion_uso_ia.md` con la declaración de uso de IA como herramienta de apoyo revisada por el equipo.
+- Se mantuvo la identificación por Integrante 1 a Integrante 6, sin inventar nombres personales.
