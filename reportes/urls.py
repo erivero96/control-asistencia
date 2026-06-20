@@ -12,4 +12,9 @@ urlpatterns = [
         views.reporte_estudiante,
         name='reporte_estudiante',
     ),
+    path(
+        'materia/<int:materia_id>/periodo/<int:periodo_id>/',
+        views.reporte_materia,
+        name='reporte_materia',
+    ),
 ]

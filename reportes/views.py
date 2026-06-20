@@ -1,8 +1,9 @@
 from collections import defaultdict
 
+from django.db.models import Count, Q
 from django.shortcuts import get_object_or_404, render
 
-from academico.models import Matricula
+from academico.models import Materia, Matricula, PeriodoAcademico
 from asistencia.models import Asistencia
 from asistencia.utils import resumen_asistencia_matricula
 from estudiantes.models import Estudiante
@@ -65,5 +66,86 @@ def reporte_estudiante(request, estudiante_id):
         {
             'estudiante': estudiante,
             'reportes_materias': reportes_materias,
+        },
+    )
+
+
+def reporte_materia(request, materia_id, periodo_id):
+    """Muestra el rendimiento y asistencia de una materia en un periodo."""
+    materia = get_object_or_404(Materia, id=materia_id)
+    periodo = get_object_or_404(PeriodoAcademico, id=periodo_id)
+    matriculas = list(
+        Matricula.objects
+        .filter(materia=materia, periodo=periodo)
+        .select_related('estudiante')
+        .order_by('estudiante__apellidos', 'estudiante__nombres')
+    )
+
+    notas_por_matricula = defaultdict(list)
+    for nota in (
+        Nota.objects
+        .filter(matricula__in=matriculas)
+        .select_related('evaluacion')
+        .order_by('matricula_id', 'evaluacion__nombre')
+    ):
+        notas_por_matricula[nota.matricula_id].append(nota)
+
+    estudiantes_reporte = []
+    aprobados = 0
+    desaprobados = 0
+    pendientes = 0
+
+    for matricula in matriculas:
+        promedio = calcular_promedio_ponderado_por_matricula(matricula)
+        estado = determinar_estado_promedio(promedio)
+
+        if estado == 'aprobado':
+            aprobados += 1
+        elif estado == 'desaprobado':
+            desaprobados += 1
+        else:
+            pendientes += 1
+
+        estudiantes_reporte.append({
+            'matricula': matricula,
+            'notas': notas_por_matricula[matricula.id],
+            'tiene_notas': bool(notas_por_matricula[matricula.id]),
+            'promedio': promedio,
+            'estado': estado,
+        })
+
+    resumen_asistencia = Asistencia.objects.filter(
+        matricula__in=matriculas,
+    ).aggregate(
+        total_registros=Count('id'),
+        presentes=Count(
+            'id',
+            filter=Q(estado=Asistencia.ESTADO_PRESENTE),
+        ),
+        tardanzas=Count(
+            'id',
+            filter=Q(estado=Asistencia.ESTADO_TARDANZA),
+        ),
+        faltas=Count(
+            'id',
+            filter=Q(estado=Asistencia.ESTADO_FALTA),
+        ),
+        justificados=Count(
+            'id',
+            filter=Q(estado=Asistencia.ESTADO_JUSTIFICADO),
+        ),
+    )
+
+    return render(
+        request,
+        'reportes/reporte_materia.html',
+        {
+            'materia': materia,
+            'periodo': periodo,
+            'estudiantes_reporte': estudiantes_reporte,
+            'aprobados': aprobados,
+            'desaprobados': desaprobados,
+            'pendientes': pendientes,
+            'resumen_asistencia': resumen_asistencia,
         },
     )

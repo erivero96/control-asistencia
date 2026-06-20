@@ -100,3 +100,67 @@ Se creó el reporte académico por estudiante. El reporte reúne las matrículas
 - Se agregó la ruta `reportes/estudiante/<int:estudiante_id>/` con el nombre `reporte_estudiante`.
 - Se creó `templates/reportes/reporte_estudiante.html`.
 - Se muestran mensajes adecuados cuando el estudiante no posee matrículas, cuando una materia no tiene notas o cuando no tiene asistencias registradas.
+
+## Subfase 6.3
+
+### Prompt usado
+
+```text
+Desarrolla la subfase 6.3 del proyecto.
+
+Necesito crear el reporte académico por materia.
+
+Requisitos:
+- Trabajar en la app reportes.
+- Usar los modelos existentes:
+  - Materia
+  - PeriodoAcademico
+  - Matricula
+  - Nota
+  - Asistencia
+- Crear una vista reporte_materia.
+- El reporte debe permitir ver:
+  - datos de la materia
+  - estudiantes matriculados
+  - periodo académico
+  - notas por estudiante
+  - promedio por estudiante
+  - cantidad de aprobados
+  - cantidad de desaprobados
+  - resumen básico de asistencia
+- Debe manejar el caso de materia sin matrículas.
+- Crear template reporte_materia.html.
+
+Quiero que me indiques:
+1. Código completo o actualizado de views.py.
+2. Código del template.
+3. Código de la ruta necesaria.
+4. Explicación del cálculo de aprobados y desaprobados.
+5. Comando para probar.
+6. Mensaje de commit recomendado.
+7. Breve explicación para defensa.
+
+También actualiza:
+evidencias/integrante_6_prompts.md
+
+Agrega:
+- Subfase 6.3
+- Prompt usado
+- Resumen de lo generado
+- Cambios realizados
+```
+
+### Resumen de lo generado
+
+Se creó el reporte académico por materia y periodo académico. El reporte presenta los datos de la materia y del periodo seleccionado, los estudiantes matriculados con sus notas, promedio y estado académico, además de los totales de aprobados, desaprobados y un resumen global de asistencia.
+
+### Cambios realizados
+
+- Se agregó la vista `reporte_materia` en `reportes/views.py`.
+- Se utilizaron los modelos existentes `Materia`, `PeriodoAcademico`, `Matricula`, `Nota` y `Asistencia`.
+- Se reutilizaron las utilidades de notas para calcular el promedio ponderado y determinar el estado académico de cada estudiante.
+- Se agregaron los conteos de aprobados, desaprobados y pendientes.
+- Se agregó el resumen global de presentes, tardanzas, faltas y justificados para la materia y periodo consultados.
+- Se agregó la ruta `reportes/materia/<int:materia_id>/periodo/<int:periodo_id>/` con el nombre `reporte_materia`.
+- Se creó `templates/reportes/reporte_materia.html`.
+- Se muestra un mensaje cuando no hay matrículas para la materia y periodo seleccionados.

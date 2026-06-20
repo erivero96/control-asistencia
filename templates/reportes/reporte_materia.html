@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte académico por materia</title>
+</head>
+<body>
+    <main>
+        <h1>Reporte académico por materia</h1>
+
+        <nav>
+            <a href="{% url 'reportes:panel_reportes' %}">Volver a reportes</a>
+            <a href="{% url 'academico:listar_materias' %}">Ver materias</a>
+            <a href="{% url 'academico:listar_periodos' %}">Ver periodos</a>
+        </nav>
+
+        <section>
+            <h2>Datos de la materia</h2>
+            <dl>
+                <dt>Código</dt>
+                <dd>{{ materia.codigo }}</dd>
+
+                <dt>Nombre</dt>
+                <dd>{{ materia.nombre }}</dd>
+
+                <dt>Créditos</dt>
+                <dd>{{ materia.creditos }}</dd>
+
+                <dt>Estado</dt>
+                <dd>{{ materia.get_estado_display }}</dd>
+            </dl>
+        </section>
+
+        <section>
+            <h2>Periodo académico</h2>
+            <dl>
+                <dt>Periodo</dt>
+                <dd>{{ periodo.nombre }}</dd>
+
+                <dt>Fecha de inicio</dt>
+                <dd>{{ periodo.fecha_inicio|date:"d/m/Y" }}</dd>
+
+                <dt>Fecha de fin</dt>
+                <dd>{{ periodo.fecha_fin|date:"d/m/Y" }}</dd>
+
+                <dt>Estado</dt>
+                <dd>{{ periodo.get_estado_display }}</dd>
+            </dl>
+        </section>
+
+        <section>
+            <h2>Resumen académico</h2>
+            <ul>
+                <li>Aprobados: {{ aprobados }}</li>
+                <li>Desaprobados: {{ desaprobados }}</li>
+                <li>Pendientes: {{ pendientes }}</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Resumen básico de asistencia</h2>
+            {% if resumen_asistencia.total_registros %}
+                <ul>
+                    <li>Total de registros: {{ resumen_asistencia.total_registros }}</li>
+                    <li>Presentes: {{ resumen_asistencia.presentes }}</li>
+                    <li>Tardanzas: {{ resumen_asistencia.tardanzas }}</li>
+                    <li>Faltas: {{ resumen_asistencia.faltas }}</li>
+                    <li>Justificados: {{ resumen_asistencia.justificados }}</li>
+                </ul>
+            {% else %}
+                <p>No hay asistencias registradas para esta materia y periodo.</p>
+            {% endif %}
+        </section>
+
+        <section>
+            <h2>Estudiantes matriculados</h2>
+
+            {% if estudiantes_reporte %}
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Estudiante</th>
+                            <th>Estado de matrícula</th>
+                            <th>Notas registradas</th>
+                            <th>Promedio</th>
+                            <th>Estado académico</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for reporte in estudiantes_reporte %}
+                            <tr>
+                                <td>{{ reporte.matricula.estudiante }}</td>
+                                <td>{{ reporte.matricula.get_estado_display }}</td>
+                                <td>
+                                    {% if reporte.tiene_notas %}
+                                        <ul>
+                                            {% for nota in reporte.notas %}
+                                                <li>{{ nota.evaluacion.nombre }}: {{ nota.calificacion }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% else %}
+                                        No hay notas registradas.
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if reporte.promedio is not None %}
+                                        {{ reporte.promedio }}
+                                    {% else %}
+                                        Pendiente
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if reporte.estado == 'aprobado' %}
+                                        Aprobado
+                                    {% elif reporte.estado == 'desaprobado' %}
+                                        Desaprobado
+                                    {% else %}
+                                        Pendiente
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No hay estudiantes matriculados en esta materia y periodo.</p>
+            {% endif %}
+        </section>
+    </main>
+</body>
+</html>
